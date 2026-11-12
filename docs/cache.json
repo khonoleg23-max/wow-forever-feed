@@ -569,5 +569,18 @@
   "engine": "free",
   "added": 1794512636,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383855": {
+  "guid": "https://www.wowhead.com/news=383855",
+  "title_en": "Season of Discovery's Scarlet Enclave Raid to Return in WoW: Forever",
+  "title_ru": "Рейд на Анклав Алого ордена сезона Discovery вернется в WoW: Forever",
+  "summary_ru": "В последнем выпуске подкаста WoW: Forever Blizzard подтвердила, что эксклюзивный рейд SoD, Анклав Алого ордена, в конечном итоге вернется в WoW: Forever!\nОбсуждая потенциальных любимых персонажей, лор и истории, которые можно привнести во вселенную WoW: Forever, Аггренд упомянул некоторых из своих личных фаворитов, в том числе эксклюзивный рейд сезона «Открытие»: Анклав Алого ордена.",
+  "link": "https://www.wowhead.com/news=383855/season-of-discoverys-scarlet-enclave-raid-to-return-in-wow-forever",
+  "pubDate": "Thu, 12 Nov 2026 16:02:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56115-season-of-discoverys-scarlet-enclave-raid-to-return-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794522967,
+  "webhook": true
  }
 }
