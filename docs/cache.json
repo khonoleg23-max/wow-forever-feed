@@ -478,5 +478,18 @@
   "professions": false,
   "engine": "free",
   "added": 1794466469
+ },
+ "https://www.wowhead.com/news=383818": {
+  "guid": "https://www.wowhead.com/news=383818",
+  "title_en": "Catch-Up Mechanics & The Economy in WoW: Forever - But Why Tho? Interview",
+  "title_ru": "Механика догоняющего развития и экономика в WoW: Forever — но почему? Интервью",
+  "summary_ru": "Но почему Тхо? взял интервью у Майка Наталса и Тима Джонса о WoW: Forever и обсудил возможность механики догоняющего развития и экономики. \nНо почему Тхо? Интервью\nНиже мы суммировали ключевые моменты интервью.\nОпираясь на классику\nКоманда много играла в классический WoW. Делали подземелья и рейды, смотрели на сложность и продолжительность боя.",
+  "link": "https://www.wowhead.com/news=383818/catch-up-mechanics-and-the-economy-in-wow-forever-but-why-tho-interview",
+  "pubDate": "Thu, 12 Nov 2026 08:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56082-catch-up-mechanics-and-the-economy-in-wow-forever-but-why-tho-interview.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794494776,
+  "webhook": true
  }
 }
