@@ -491,5 +491,31 @@
   "engine": "free",
   "added": 1794494776,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383842": {
+  "guid": "https://www.wowhead.com/news=383842",
+  "title_en": "Loot Ocarina of Time Boots from Drowned City in WoW: Forever",
+  "title_ru": "Добыча Окарины из сапог времени из Drowned City в WoW: Forever",
+  "summary_ru": "В таблице добычи Затонувшего города была обнаружена пара ботинок, которая, по-видимому, является явной отсылкой к The Legend of Zelda: Ocarina of Time!\nС недавно выпущенным ремастером этой культовой игры Nintendo для Switch 2, похоже, разработчики Blizzard хотят проявить некоторую любовь к этой игре. Согласно нашей базе данных, эти ботинки могут выпасть из любого босса нового подземелья WoW Forever: The Drowned City.",
+  "link": "https://www.wowhead.com/news=383842/loot-ocarina-of-time-boots-from-drowned-city-in-wow-forever",
+  "pubDate": "Thu, 12 Nov 2026 10:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56106-loot-ocarina-of-time-boots-from-drowned-city-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794502232,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383807": {
+  "guid": "https://www.wowhead.com/news=383807",
+  "title_en": "Party with Other Players to Use Their Sleeping Bags for Experience Buff in WoW: Forever",
+  "title_ru": "Объединяйтесь с другими игроками, чтобы использовать их спальные мешки для усиления опыта в WoW: Forever",
+  "summary_ru": "Получение уютного спального мешка займет много времени, но вы можете использовать спальные мешки других игроков, чтобы получить такой же бонус опыта, если вы находитесь в одной группе!\nПутеводитель по уютным спальным мешкам\nУютный спальный мешок — это предмет, добавленный в WoW: Forever, который дает положительный эффект на опыт на 2 часа. За каждую минуту, проведенную лежа в спальном мешке, вы получаете 1% бонуса опыта, который суммируется до 3 раз, давая 3% бонуса опыта.",
+  "link": "https://www.wowhead.com/news=383807/party-with-other-players-to-use-their-sleeping-bags-for-experience-buff-in-wow",
+  "pubDate": "Thu, 12 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56074-party-with-other-players-to-use-their-sleeping-bags-for-experience-buff-in-wow.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794502236,
+  "webhook": true
  }
 }
