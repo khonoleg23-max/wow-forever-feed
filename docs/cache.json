@@ -582,5 +582,18 @@
   "engine": "free",
   "added": 1794522967,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383862": {
+  "guid": "https://www.wowhead.com/news=383862",
+  "title_en": "Learning Dual Spec Can Trigger Empty Action Bars When Logging Out in WoW: Forever",
+  "title_ru": "Изучение двойной специализации может привести к появлению пустых панелей действий при выходе из WoW: Forever",
+  "summary_ru": "Как только вы изучите Dual Spec, при выходе из игры может случайно сработать ошибка, удаляющая способности с вашей панели действий!\nДвойную специализацию можно приобрести на 40-м уровне за 50 золотых, что позволит вам получить вторичное дерево талантов. Однако, как только вы изучите Dual Spec, при выходе из системы может возникнуть досадная ошибка. \nПо какой-то причине после того, как вы изучите Dual Spec, вы можете случайным образом сбросить некоторые панели действий после выхода из системы.",
+  "link": "https://www.wowhead.com/news=383862/dual-spec-bug-causes-empty-action-bars-after-logging-out",
+  "pubDate": "Thu, 12 Nov 2026 16:45:42 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56123-dual-spec-bug-causes-empty-action-bars-after-logging-out.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794526319,
+  "webhook": true
  }
 }
