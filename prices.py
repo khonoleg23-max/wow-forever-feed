@@ -6,7 +6,9 @@
   * сразу присылает тревогу, если цена резко сдвинулась относительно вчерашней.
 
 Сообщения уходят в канал профессий через вебхук DISCORD_WEBHOOK_PROFESSIONS (тихо, без пушей).
-TheWoWDB разрешает личное некоммерческое использование; запросы идут с паузой, по одному на товар.
+Отчёты по профессиям (выгода крафта + цены материалов) уходят в ветки канала: список веток
+и профессий для ежедневной рассылки — в prices/config.json, рецепты — prices/recipes.json.
+TheWoWDB разрешает личное некоммерческое использование; аукцион снимается по категориям с паузами.
 """
 
 import html
@@ -81,127 +83,171 @@ WATCHLIST = [
     ("Large Brilliant Shard", "Большой сверкающий осколок", "✨ Наложение чар"),
 ]
 
-# ---- крафт: рецепты WoW Classic (WoW Forever может их менять) ----
-# вспомогательные материалы, которых нет в основном списке
-CRAFT_MATS = [
-    ("Icecap", "Ледяной зев"),
-    ("Stonescale Oil", "Жир каменной чешуи"),
-    ("Swiftthistle", "Быстрочертополох"),
-    ("Blackmouth Oil", "Жир черноротки"),
-    ("Elemental Fire", "Огонь стихий"),
-]
-# склянки у торговца (медь), примерно
-VENDOR = {"Crystal Vial": 20, "Leaded Vial": 16, "Empty Vial": 4}
-VENDOR_RU = {"Crystal Vial": "хрустальная склянка", "Leaded Vial": "освинцованная склянка", "Empty Vial": "пустая склянка"}
-
-# (товар, русское название, профессия, количество за крафт, {материал: штук})
-RECIPES = [
-    ("Major Healing Potion", "Огромный флакон с лечебным зельем", "⚗️ Алхимия", 1,
-     {"Golden Sansam": 2, "Mountain Silversage": 1, "Crystal Vial": 1}),
-    ("Major Mana Potion", "Огромный флакон с зельем маны", "⚗️ Алхимия", 1,
-     {"Dreamfoil": 3, "Icecap": 2, "Crystal Vial": 1}),
-    ("Superior Healing Potion", "Наилучшее лечебное зелье", "⚗️ Алхимия", 1,
-     {"Sungrass": 1, "Khadgar's Whisker": 1, "Crystal Vial": 1}),
-    ("Elixir of the Mongoose", "Эликсир мангуста", "⚗️ Алхимия", 1,
-     {"Mountain Silversage": 2, "Plaguebloom": 2, "Crystal Vial": 1}),
-    ("Greater Arcane Elixir", "Большой тайный эликсир", "⚗️ Алхимия", 1,
-     {"Dreamfoil": 3, "Mountain Silversage": 1, "Crystal Vial": 1}),
-    ("Elixir of Giants", "Эликсир великанов", "⚗️ Алхимия", 1,
-     {"Gromsblood": 1, "Plaguebloom": 1, "Crystal Vial": 1}),
-    ("Free Action Potion", "Зелье свободы действий", "⚗️ Алхимия", 1,
-     {"Blackmouth Oil": 1, "Stranglekelp": 2, "Leaded Vial": 1}),
-    ("Swiftness Potion", "Зелье стремительности", "⚗️ Алхимия", 1,
-     {"Swiftthistle": 1, "Briarthorn": 1, "Empty Vial": 1}),
-    ("Greater Fire Protection Potion", "Сильное зелье защиты от огня", "⚗️ Алхимия", 1,
-     {"Elemental Fire": 1, "Dreamfoil": 1, "Crystal Vial": 1}),
-    ("Flask of the Titans", "Фляга титанов", "⚗️ Алхимия", 1,
-     {"Gromsblood": 30, "Stonescale Oil": 10, "Black Lotus": 1, "Crystal Vial": 1}),
-    ("Flask of Supreme Power", "Фляга высшей силы", "⚗️ Алхимия", 1,
-     {"Dreamfoil": 30, "Mountain Silversage": 10, "Black Lotus": 1, "Crystal Vial": 1}),
-    ("Flask of Distilled Wisdom", "Фляга дистиллированной мудрости", "⚗️ Алхимия", 1,
-     {"Dreamfoil": 30, "Icecap": 10, "Black Lotus": 1, "Crystal Vial": 1}),
-    ("Copper Bar", "Медный слиток", "⛏ Горное дело", 1, {"Copper Ore": 1}),
-    ("Iron Bar", "Железный слиток", "⛏ Горное дело", 1, {"Iron Ore": 1}),
-    ("Mithril Bar", "Мифриловый слиток", "⛏ Горное дело", 1, {"Mithril Ore": 1}),
-    ("Thorium Bar", "Ториевый слиток", "⛏ Горное дело", 1, {"Thorium Ore": 1}),
-    ("Arcanite Bar", "Арканитовый слиток", "⛏ Горное дело", 1, {"Thorium Bar": 1, "Arcane Crystal": 1}),
-    ("Bolt of Linen Cloth", "Рулон льняной ткани", "🧵 Портняжное дело", 1, {"Linen Cloth": 2}),
-    ("Bolt of Woolen Cloth", "Рулон шерстяной ткани", "🧵 Портняжное дело", 1, {"Wool Cloth": 3}),
-    ("Bolt of Silk Cloth", "Рулон шёлка", "🧵 Портняжное дело", 1, {"Silk Cloth": 4}),
-    ("Bolt of Mageweave", "Рулон магической ткани", "🧵 Портняжное дело", 1, {"Mageweave Cloth": 4}),
-    ("Bolt of Runecloth", "Рулон рунической ткани", "🧵 Портняжное дело", 1, {"Runecloth": 4}),
-]
+# ---- профессии: рецепты WoW Forever с Wowhead (prices/recipes.json) ----
+RECIPES_FILE = DATA / "recipes.json"
+CONFIG = DATA / "config.json"
+PROFESSIONS = {
+    "alchemy": "⚗️ Алхимия",
+    "blacksmithing": "🔨 Кузнечное дело",
+    "enchanting": "✨ Наложение чар",
+    "engineering": "⚙️ Инженерное дело",
+    "leatherworking": "🐾 Кожевничество",
+    "tailoring": "🧵 Портняжное дело",
+    "mining": "⛏ Горное дело",
+    "cooking": "🍳 Кулинария",
+    "firstaid": "🩹 Первая помощь",
+}
+# товары у торговца (item id -> медь), примерно; берётся меньшая из цены торговца и аукциона
+VENDOR = {
+    3371: 4, 3372: 16, 8925: 20,                               # склянки
+    2320: 10, 2321: 100, 4291: 500, 8343: 2000, 14341: 5000,   # нитки
+    2678: 10, 2692: 40, 3713: 160, 159: 25,                    # специи, вода
+    2880: 100, 3466: 2000,                                     # флюс
+    4289: 50, 2324: 25, 2604: 50, 6260: 50, 2325: 1000, 4340: 350,
+    4341: 500, 4342: 2500, 6261: 1000, 10290: 2500,            # соль, отбеливатель, краски
+    4399: 200, 4400: 2000, 6217: 124, 4470: 38, 11291: 4500,   # ложа, стержни, древесина
+}
 AH_CUT = 0.05  # аукцион забирает 5% с продажи
-
-
-def fetch_targets():
-    seen, out = set(), []
-    for en, ru, group in WATCHLIST:
-        seen.add(en)
-        out.append((en, ru, group))
-    for en, ru in CRAFT_MATS + [(r[0], r[1]) for r in RECIPES]:
-        if en not in seen:
-            seen.add(en)
-            out.append((en, ru, None))
-    return out
-
-
-def craft_fields(snapshot):
-    """Строки «выгодно ли крафтить» по профессиям, самые выгодные сверху."""
-    by_prof: dict[str, list[tuple[float, str]]] = {}
-    for en, ru, prof, yield_n, mats in RECIPES:
-        sell = snapshot.get(en)
-        cost, missing = 0, []
-        for mat, n in mats.items():
-            if mat in VENDOR:
-                cost += VENDOR[mat] * n
-            elif mat in snapshot:
-                cost += snapshot[mat]["price"] * n
-            else:
-                missing.append(mat)
-        if not sell or missing:
-            why = "нет на аукционе" if not sell else "нет материалов: " + ", ".join(missing)
-            by_prof.setdefault(prof, []).append((-1e12, f"▫️ {ru} — {why}"))
-            continue
-        cost /= yield_n
-        net = sell["price"] * (1 - AH_CUT)
-        profit = net - cost
-        margin = round(profit * 100 / cost) if cost else 0
-        mark = "✅" if profit > 0 else "❌"
-        sign = "+" if profit > 0 else "−"
-        link = f"https://thewowdb.com/wow-forever/item/{sell['id']}/"
-        line = (f"{mark} [{ru}]({link}) — продажа **{money(sell['price'])}**, материалы {money(int(cost))} → "
-                f"**{sign}{money(int(abs(profit)))}** ({'+' if margin > 0 else ''}{margin}%)")
-        by_prof.setdefault(prof, []).append((profit, line))
-    fields = []
-    for prof, rows in by_prof.items():
-        rows.sort(key=lambda r: r[0], reverse=True)
-        text, name = "", prof
-        for _, line in rows:
-            if len(text) + len(line) + 1 > 1000:
-                fields.append({"name": name, "value": text})
-                text, name = "", "​"
-            text += line + "\n"
-        fields.append({"name": name, "value": text})
-    return fields
+# категории аукциона TheWoWDB: расходуемое, сумки, реагенты, боеприпасы, хозяйственные товары,
+# колчаны, разное — каждый запуск; оружие и броня (~70 страниц) — только в запуск со сводкой
+AH_CLASSES = [0, 1, 5, 6, 7, 11, 15]
+GEAR_CLASSES = [2, 4]
+PAGE_SIZE = 50
+MAX_PAGES = 70
 
 
 ROW_RE = re.compile(
     r'data-copper="(\d+)".*?data-wgf-item="item=(\d+)"[^>]*>(?:<img[^>]*>)?([^<]+)</a>'
-    r'.*?class="qty-cell">([\d,]+)<span class="ah-subtext"> (\d+) listing',
+    r'.*?class="qty-cell">([\d,]+)(?:<span class="ah-subtext"> ([\d,]+) listing)?',
     re.DOTALL,
 )
 
 
-def fetch_item(name: str):
-    url = SEARCH + urllib.parse.urlencode({"q": name, "realm": "forever", "region": REGION})
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
+def fetch_page(cls: int, page: int) -> tuple[list, int]:
+    q = {"class": cls, "realm": "forever", "region": REGION}
+    if page > 1:
+        q["page"] = page
+    req = urllib.request.Request(SEARCH + urllib.parse.urlencode(q), headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=60) as r:
-        page = r.read().decode("utf-8", "ignore")
-    for copper, item_id, title, qty, listings in ROW_RE.findall(page):
-        if html.unescape(title).strip().lower() == name.lower():
-            return {"id": int(item_id), "price": int(copper), "qty": int(qty.replace(",", "")), "listings": int(listings)}
-    return None
+        text = r.read().decode("utf-8", "ignore")
+    start = text.find('<table class="ah-table"')
+    table = text[start:text.find("</table>", start)] if start >= 0 else ""
+    rows = []
+    for tr in re.findall(r"<tr>.*?</tr>", table, re.DOTALL):  # только основная таблица, построчно
+        m = ROW_RE.search(tr)
+        if m:
+            c, i, t, q_, l = m.groups()
+            rows.append({"id": int(i), "name": html.unescape(t).strip(), "price": int(c),
+                         "qty": int(q_.replace(",", "")), "listings": int((l or "1").replace(",", ""))})
+    return rows, table.count("<tr>") - 1  # строк в таблице без заголовка
+
+
+def snapshot_ah(classes) -> dict[int, dict]:
+    """Аукцион по категориям (по 50 товаров на странице), с паузами между запросами."""
+    snap: dict[int, dict] = {}
+    for cls in classes:
+        seen_first = set()
+        for page in range(1, MAX_PAGES + 1):
+            rows = None
+            for attempt in range(2):
+                try:
+                    rows, n_rows = fetch_page(cls, page)
+                    break
+                except Exception as exc:
+                    print(f"  class {cls} page {page}: error {exc}", file=sys.stderr)
+                    time.sleep(30)
+            time.sleep(3)  # бережно к сайту
+            if not rows or rows[0]["id"] in seen_first:
+                break  # ошибка или страницы закончились (сайт повторяет последнюю)
+            seen_first.add(rows[0]["id"])
+            for row in rows:
+                old = snap.get(row["id"])
+                if not old or row["price"] < old["price"]:
+                    snap[row["id"]] = row
+            if n_rows < PAGE_SIZE:
+                break
+        print(f"  class {cls}: {page} pages, items so far {len(snap)}")
+    return snap
+
+
+def load_recipes():
+    data = json.loads(RECIPES_FILE.read_text("utf-8"))
+    return data["recipes"], {int(k): v for k, v in data["names"].items()}
+
+
+def item_link(item_id: int, name: str) -> str:
+    return f"[{name}](https://thewowdb.com/wow-forever/item/{item_id}/)"
+
+
+def unit_cost(item_id: int, snap) -> int | None:
+    prices = [p for p in (VENDOR.get(item_id), snap.get(item_id, {}).get("price")) if p]
+    return min(prices) if prices else None
+
+
+def profession_report(prof: str, recipes, names, snap) -> list[dict]:
+    """Два эмбеда: выгода крафта и цены материалов этой профессии."""
+    title = PROFESSIONS[prof]
+    rows, no_sale, no_mats = [], 0, 0
+    mat_use: dict[int, int] = {}
+    for skill, product, count, reagents in recipes.get(prof, []):
+        for rid, _ in reagents:
+            mat_use[rid] = mat_use.get(rid, 0) + 1
+        sale = snap.get(product)
+        if not sale:
+            no_sale += 1
+            continue
+        costs = [unit_cost(rid, snap) for rid, _ in reagents]
+        if None in costs:
+            no_mats += 1
+            continue
+        cost = sum(c * n for c, (_, n) in zip(costs, reagents)) / max(1, count)
+        profit = sale["price"] * (1 - AH_CUT) - cost
+        margin = round(profit * 100 / cost) if cost else 0
+        ru = names.get(product, [sale["name"]] * 2)[1]
+        mark, sign = ("✅", "+") if profit > 0 else ("❌", "−")
+        rows.append((profit, f"{mark} {item_link(product, ru)} ({skill}) — {money(sale['price'])}, "
+                             f"мат. {money(int(cost))} → **{sign}{money(int(abs(profit)))}** "
+                             f"({'+' if margin > 0 else ''}{margin}%)"
+                             + (f" · ⚠️ {sale['qty']} шт." if sale["qty"] <= 3 else "")))
+    rows.sort(key=lambda r: r[0], reverse=True)
+    good = [line for p, line in rows if p > 0]
+    bad = [line for p, line in rows if p <= 0]
+    lines = good[:22] + bad[:max(0, 26 - len(good[:22]))][:4]
+    desc = ""
+    for line in lines:
+        if len(desc) + len(line) + 1 > 3600:
+            break
+        desc += line + "\n"
+    if not desc:
+        desc = "Сейчас на аукционе нет готовых предметов этой профессии с известными ценами материалов."
+    desc += (f"\n_Выгодно: {len(good)}, в минус: {len(bad)}, нет на аукционе: {no_sale}"
+             + (f", нет цены материалов: {no_mats}" if no_mats else "") + "._")
+    craft = {"title": f"{title} — что выгодно крафтить", "description": desc,
+             "footer": {"text": "Цена на аукционе − 5% комиссии − материалы · (число) — навык · рецепты WoW Forever с Wowhead"}}
+
+    mats = sorted(mat_use, key=lambda i: -mat_use[i])
+    mlines = []
+    for rid in mats:
+        price = unit_cost(rid, snap)
+        if price is None:
+            continue
+        ru = names.get(rid, ["?", "?"])[1]
+        if rid in snap:
+            s = snap[rid]
+            vend = " (у торговца дешевле)" if VENDOR.get(rid, 1e12) < s["price"] else ""
+            mlines.append(f"{item_link(rid, ru)} — **{money(price)}**{vend} · {s['qty']:,} шт.".replace(",", " "))
+        else:
+            mlines.append(f"{ru} — **{money(price)}** у торговца")
+        if len(mlines) >= 30:
+            break
+    mdesc = ""
+    for line in mlines:
+        if len(mdesc) + len(line) + 1 > 3800:
+            break
+        mdesc += line + "\n"
+    mats_embed = {"title": f"{title} — материалы", "description": mdesc or "Материалов на аукционе нет.",
+                  "footer": {"text": "Самые ходовые материалы профессии · самая низкая цена за штуку"}}
+    return [craft, mats_embed]
 
 
 def money(c: int) -> str:
@@ -244,9 +290,10 @@ def load(path, default):
     return json.loads(path.read_text("utf-8")) if path.exists() else default
 
 
-def post(hook, embed):
+def post(hook, embed, thread: str | None = None):
     embed.setdefault("color", 0xE0A933)
-    _send(hook, {**BOT, "embeds": [embed], "allowed_mentions": {"parse": []}, "flags": 4096})
+    _send(hook, {**BOT, "embeds": [embed], "allowed_mentions": {"parse": []}, "flags": 4096},
+          f"&thread_id={thread}" if thread else "")
     time.sleep(1)
 
 
@@ -256,14 +303,20 @@ def main() -> int:
     state = load(STATE, {"last_digest": 0, "alerts": {}})
     now = int(time.time())
 
+    hour = datetime.now(timezone.utc).hour
+    force_digest = os.environ.get("FORCE_DIGEST") == "1"
+    asked = os.environ.get("PROFESSION", "").strip()
+    digest_due = force_digest or (hour >= DIGEST_HOUR_UTC and now - state["last_digest"] > 20 * 3600)
+    gear = digest_due or asked in ("all", "blacksmithing", "leatherworking", "tailoring", "engineering")
+    ah = snapshot_ah(AH_CLASSES + (GEAR_CLASSES if gear else []))
+    by_name: dict[str, dict] = {}
+    for row in ah.values():
+        key = row["name"].lower()
+        if key not in by_name or row["price"] < by_name[key]["price"]:
+            by_name[key] = row
     snapshot = {}
-    for en, ru, group in fetch_targets():
-        try:
-            item = fetch_item(en)
-        except Exception as exc:
-            print(f"  {en}: error {exc}", file=sys.stderr)
-            item = None
-        time.sleep(2)  # бережно к сайту
+    for en, ru, group in WATCHLIST:
+        item = by_name.get(en.lower())
         if not item:
             print(f"  {en}: нет на аукционе")
             continue
@@ -272,12 +325,10 @@ def main() -> int:
         h["id"] = item["id"]
         h["points"].append([now, item["price"], item["qty"]])
         h["points"] = [p for p in h["points"] if p[0] >= now - KEEP_DAYS * 86400]
-        print(f"  {en}: {money(item['price'])} x{item['qty']}")
 
     HISTORY.write_text(json.dumps(history, ensure_ascii=False, separators=(",", ":")), "utf-8")
 
     hook = os.environ.get("DISCORD_WEBHOOK_PROFESSIONS", "").strip()
-    force_digest = os.environ.get("FORCE_DIGEST") == "1"
 
     # ---- тревоги о резких скачках ----
     alerts = []
@@ -300,8 +351,8 @@ def main() -> int:
                     "footer": {"text": "WoW Forever EU · данные TheWoWDB"}})
 
     # ---- ежедневная сводка ----
-    hour = datetime.now(timezone.utc).hour
-    if hook and (force_digest or (hour >= DIGEST_HOUR_UTC and now - state["last_digest"] > 20 * 3600)):
+    digest_sent = False
+    if hook and digest_due:
         groups: dict[str, list[str]] = {}
         for en, ru, group in WATCHLIST:
             if en not in snapshot:
@@ -325,12 +376,26 @@ def main() -> int:
         today = datetime.now(timezone.utc).strftime("%d.%m.%Y")
         post(hook, {"title": f"💰 Цены аукциона на {today}", "fields": fields[:25],
                     "description": "Самая низкая цена выкупа за штуку. Стрелки — изменение к прошлым суткам и неделе.",
-                    "footer": {"text": "WoW Forever EU · данные TheWoWDB · Кадгар следит за аукционом"}})
-        post(hook, {"title": "⚒ Что выгодно крафтить", "fields": craft_fields(snapshot)[:25],
-                    "description": "Цена готового предмета на аукционе минус 5% комиссии и стоимость материалов "
-                                   "по сегодняшним ценам. Склянки — по цене торговца. Рецепты как в Classic.",
-                    "footer": {"text": "WoW Forever EU · данные TheWoWDB · Кадгар считает выгоду"}})
+                    "footer": {"text": "WoW Forever EU · данные TheWoWDB · выгода крафта — в ветках профессий"}})
         state["last_digest"] = now
+        digest_sent = True
+
+    # ---- отчёты по профессиям: каждая в своей ветке канала ----
+    config = load(CONFIG, {"daily": list(PROFESSIONS), "threads": {}})
+    if asked == "all":
+        todo = list(PROFESSIONS)
+    elif asked in PROFESSIONS:
+        todo = [asked]
+    elif digest_sent:
+        todo = [p for p in config.get("daily", []) if p in PROFESSIONS]
+    else:
+        todo = []
+    if hook and todo:
+        recipes, names = load_recipes()
+        for prof in todo:
+            thread = config.get("threads", {}).get(prof)
+            for embed in profession_report(prof, recipes, names, ah):
+                post(hook, embed, thread)
 
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1), "utf-8")
     print(f"snapshot: {len(snapshot)} items, alerts: {len(alerts)}")

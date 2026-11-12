@@ -1,0 +1,15 @@
+{
+  "_comment": "daily — профессии, отчёт по которым Кадгар присылает раз в день; threads — ветки канала #⚒-профы-и-аук",
+  "daily": ["alchemy", "blacksmithing", "enchanting", "engineering", "leatherworking", "tailoring", "mining", "cooking", "firstaid"],
+  "threads": {
+    "cooking": "1570410430856167495",
+    "alchemy": "1570410561710071978",
+    "blacksmithing": "1570410701816860712",
+    "enchanting": "1570410720510607451",
+    "engineering": "1570410899230040095",
+    "leatherworking": "1570410921170305135",
+    "tailoring": "1570411010505048115",
+    "mining": "1570411033896685619",
+    "firstaid": "1570411100116090981"
+  }
+}

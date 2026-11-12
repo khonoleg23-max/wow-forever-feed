@@ -9,6 +9,22 @@ on:
         description: "Прислать сводку цен в Discord прямо сейчас"
         type: boolean
         default: false
+      profession:
+        description: "Прислать отчёт профессии в её ветку прямо сейчас"
+        type: choice
+        default: ""
+        options:
+          - ""
+          - all
+          - alchemy
+          - blacksmithing
+          - enchanting
+          - engineering
+          - leatherworking
+          - tailoring
+          - mining
+          - cooking
+          - firstaid
 
 permissions:
   contents: write
@@ -20,7 +36,7 @@ concurrency:
 jobs:
   prices:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -30,6 +46,7 @@ jobs:
         env:
           DISCORD_WEBHOOK_PROFESSIONS: ${{ secrets.DISCORD_WEBHOOK_PROFESSIONS }}
           FORCE_DIGEST: ${{ inputs.digest && '1' || '0' }}
+          PROFESSION: ${{ inputs.profession }}
         run: python prices.py
       - name: Commit history
         run: |

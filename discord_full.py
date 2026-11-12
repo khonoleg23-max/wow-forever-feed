@@ -183,11 +183,11 @@ def split_chunks(lines: list[str], limit: int = EMBED_LIMIT) -> list[str]:
     return chunks or [""]
 
 
-def _send(webhook: str, payload: dict):
+def _send(webhook: str, payload: dict, query: str = ""):
     data = json.dumps(payload).encode("utf-8")
     for _ in range(5):
         req = urllib.request.Request(
-            webhook + "?wait=true",
+            webhook + "?wait=true" + query,
             data=data,
             headers={"Content-Type": "application/json", "User-Agent": "wow-forever-ru-feed/1.0"},
         )
