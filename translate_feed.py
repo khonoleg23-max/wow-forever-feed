@@ -34,7 +34,7 @@ PROFESSION_RE = re.compile(
 )
 
 ADDON_RE = re.compile(
-    r"add-?ons?|weakaura|ui|interface|macro|plater|details!|questie|\btools?\b|elvui|bartender|dbm|deadly boss",
+    r"\badd-?ons?\b|weakaura|\bui\b|interface|macro|plater|details!|questie|\btools?\b|elvui|bartender|\bdbm\b|deadly boss",
     re.IGNORECASE,
 )
 
