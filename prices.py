@@ -81,6 +81,111 @@ WATCHLIST = [
     ("Large Brilliant Shard", "Большой сверкающий осколок", "✨ Наложение чар"),
 ]
 
+# ---- крафт: рецепты WoW Classic (WoW Forever может их менять) ----
+# вспомогательные материалы, которых нет в основном списке
+CRAFT_MATS = [
+    ("Icecap", "Ледяной зев"),
+    ("Stonescale Oil", "Жир каменной чешуи"),
+    ("Swiftthistle", "Быстрочертополох"),
+    ("Blackmouth Oil", "Жир черноротки"),
+    ("Elemental Fire", "Огонь стихий"),
+]
+# склянки у торговца (медь), примерно
+VENDOR = {"Crystal Vial": 20, "Leaded Vial": 16, "Empty Vial": 4}
+VENDOR_RU = {"Crystal Vial": "хрустальная склянка", "Leaded Vial": "освинцованная склянка", "Empty Vial": "пустая склянка"}
+
+# (товар, русское название, профессия, количество за крафт, {материал: штук})
+RECIPES = [
+    ("Major Healing Potion", "Огромный флакон с лечебным зельем", "⚗️ Алхимия", 1,
+     {"Golden Sansam": 2, "Mountain Silversage": 1, "Crystal Vial": 1}),
+    ("Major Mana Potion", "Огромный флакон с зельем маны", "⚗️ Алхимия", 1,
+     {"Dreamfoil": 3, "Icecap": 2, "Crystal Vial": 1}),
+    ("Superior Healing Potion", "Наилучшее лечебное зелье", "⚗️ Алхимия", 1,
+     {"Sungrass": 1, "Khadgar's Whisker": 1, "Crystal Vial": 1}),
+    ("Elixir of the Mongoose", "Эликсир мангуста", "⚗️ Алхимия", 1,
+     {"Mountain Silversage": 2, "Plaguebloom": 2, "Crystal Vial": 1}),
+    ("Greater Arcane Elixir", "Большой тайный эликсир", "⚗️ Алхимия", 1,
+     {"Dreamfoil": 3, "Mountain Silversage": 1, "Crystal Vial": 1}),
+    ("Elixir of Giants", "Эликсир великанов", "⚗️ Алхимия", 1,
+     {"Gromsblood": 1, "Plaguebloom": 1, "Crystal Vial": 1}),
+    ("Free Action Potion", "Зелье свободы действий", "⚗️ Алхимия", 1,
+     {"Blackmouth Oil": 1, "Stranglekelp": 2, "Leaded Vial": 1}),
+    ("Swiftness Potion", "Зелье стремительности", "⚗️ Алхимия", 1,
+     {"Swiftthistle": 1, "Briarthorn": 1, "Empty Vial": 1}),
+    ("Greater Fire Protection Potion", "Сильное зелье защиты от огня", "⚗️ Алхимия", 1,
+     {"Elemental Fire": 1, "Dreamfoil": 1, "Crystal Vial": 1}),
+    ("Flask of the Titans", "Фляга титанов", "⚗️ Алхимия", 1,
+     {"Gromsblood": 30, "Stonescale Oil": 10, "Black Lotus": 1, "Crystal Vial": 1}),
+    ("Flask of Supreme Power", "Фляга высшей силы", "⚗️ Алхимия", 1,
+     {"Dreamfoil": 30, "Mountain Silversage": 10, "Black Lotus": 1, "Crystal Vial": 1}),
+    ("Flask of Distilled Wisdom", "Фляга дистиллированной мудрости", "⚗️ Алхимия", 1,
+     {"Dreamfoil": 30, "Icecap": 10, "Black Lotus": 1, "Crystal Vial": 1}),
+    ("Copper Bar", "Медный слиток", "⛏ Горное дело", 1, {"Copper Ore": 1}),
+    ("Iron Bar", "Железный слиток", "⛏ Горное дело", 1, {"Iron Ore": 1}),
+    ("Mithril Bar", "Мифриловый слиток", "⛏ Горное дело", 1, {"Mithril Ore": 1}),
+    ("Thorium Bar", "Ториевый слиток", "⛏ Горное дело", 1, {"Thorium Ore": 1}),
+    ("Arcanite Bar", "Арканитовый слиток", "⛏ Горное дело", 1, {"Thorium Bar": 1, "Arcane Crystal": 1}),
+    ("Bolt of Linen Cloth", "Рулон льняной ткани", "🧵 Портняжное дело", 1, {"Linen Cloth": 2}),
+    ("Bolt of Woolen Cloth", "Рулон шерстяной ткани", "🧵 Портняжное дело", 1, {"Wool Cloth": 3}),
+    ("Bolt of Silk Cloth", "Рулон шёлка", "🧵 Портняжное дело", 1, {"Silk Cloth": 4}),
+    ("Bolt of Mageweave", "Рулон магической ткани", "🧵 Портняжное дело", 1, {"Mageweave Cloth": 4}),
+    ("Bolt of Runecloth", "Рулон рунической ткани", "🧵 Портняжное дело", 1, {"Runecloth": 4}),
+]
+AH_CUT = 0.05  # аукцион забирает 5% с продажи
+
+
+def fetch_targets():
+    seen, out = set(), []
+    for en, ru, group in WATCHLIST:
+        seen.add(en)
+        out.append((en, ru, group))
+    for en, ru in CRAFT_MATS + [(r[0], r[1]) for r in RECIPES]:
+        if en not in seen:
+            seen.add(en)
+            out.append((en, ru, None))
+    return out
+
+
+def craft_fields(snapshot):
+    """Строки «выгодно ли крафтить» по профессиям, самые выгодные сверху."""
+    by_prof: dict[str, list[tuple[float, str]]] = {}
+    for en, ru, prof, yield_n, mats in RECIPES:
+        sell = snapshot.get(en)
+        cost, missing = 0, []
+        for mat, n in mats.items():
+            if mat in VENDOR:
+                cost += VENDOR[mat] * n
+            elif mat in snapshot:
+                cost += snapshot[mat]["price"] * n
+            else:
+                missing.append(mat)
+        if not sell or missing:
+            why = "нет на аукционе" if not sell else "нет материалов: " + ", ".join(missing)
+            by_prof.setdefault(prof, []).append((-1e12, f"▫️ {ru} — {why}"))
+            continue
+        cost /= yield_n
+        net = sell["price"] * (1 - AH_CUT)
+        profit = net - cost
+        margin = round(profit * 100 / cost) if cost else 0
+        mark = "✅" if profit > 0 else "❌"
+        sign = "+" if profit > 0 else "−"
+        link = f"https://thewowdb.com/wow-forever/item/{sell['id']}/"
+        line = (f"{mark} [{ru}]({link}) — продажа **{money(sell['price'])}**, материалы {money(int(cost))} → "
+                f"**{sign}{money(int(abs(profit)))}** ({'+' if margin > 0 else ''}{margin}%)")
+        by_prof.setdefault(prof, []).append((profit, line))
+    fields = []
+    for prof, rows in by_prof.items():
+        rows.sort(key=lambda r: r[0], reverse=True)
+        text, name = "", prof
+        for _, line in rows:
+            if len(text) + len(line) + 1 > 1000:
+                fields.append({"name": name, "value": text})
+                text, name = "", "​"
+            text += line + "\n"
+        fields.append({"name": name, "value": text})
+    return fields
+
+
 ROW_RE = re.compile(
     r'data-copper="(\d+)".*?data-wgf-item="item=(\d+)"[^>]*>(?:<img[^>]*>)?([^<]+)</a>'
     r'.*?class="qty-cell">([\d,]+)<span class="ah-subtext"> (\d+) listing',
@@ -152,7 +257,7 @@ def main() -> int:
     now = int(time.time())
 
     snapshot = {}
-    for en, ru, group in WATCHLIST:
+    for en, ru, group in fetch_targets():
         try:
             item = fetch_item(en)
         except Exception as exc:
@@ -221,6 +326,10 @@ def main() -> int:
         post(hook, {"title": f"💰 Цены аукциона на {today}", "fields": fields[:25],
                     "description": "Самая низкая цена выкупа за штуку. Стрелки — изменение к прошлым суткам и неделе.",
                     "footer": {"text": "WoW Forever EU · данные TheWoWDB · Кадгар следит за аукционом"}})
+        post(hook, {"title": "⚒ Что выгодно крафтить", "fields": craft_fields(snapshot)[:25],
+                    "description": "Цена готового предмета на аукционе минус 5% комиссии и стоимость материалов "
+                                   "по сегодняшним ценам. Склянки — по цене торговца. Рецепты как в Classic.",
+                    "footer": {"text": "WoW Forever EU · данные TheWoWDB · Кадгар считает выгоду"}})
         state["last_digest"] = now
 
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1), "utf-8")
