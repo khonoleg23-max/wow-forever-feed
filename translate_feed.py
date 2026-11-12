@@ -170,8 +170,11 @@ def build_rss(title: str, description: str, self_url: str, entries: list[dict]) 
         ET.SubElement(it, "link").text = e["link"]
         ET.SubElement(it, "guid", isPermaLink="false").text = e["guid"]
         ET.SubElement(it, "pubDate").text = e["pubDate"]
-        body = html.escape(e["summary_ru"]).replace("\n", "<br>")
-        body += f'<br><br><a href="{html.escape(e["link"])}">Читать полностью на Wowhead (англ.)</a>'
+        if e.get("body_html"):  # дайджест архива: уже готовый HTML со ссылками
+            body = e["body_html"]
+        else:
+            body = html.escape(e["summary_ru"]).replace("\n", "<br>")
+            body += f'<br><br><a href="{html.escape(e["link"])}">Читать полностью на Wowhead (англ.)</a>'
         ET.SubElement(it, "description").text = body
         if e.get("image"):
             ET.SubElement(
@@ -210,6 +213,12 @@ def main() -> int:
     # порядок как в исходной ленте (сначала свежие)
     order = [i["guid"] for i in items]
     entries = [cache[g] for g in order if g in cache]
+
+    # архив со старта беты (дайджесты по дням, см. backfill.py) идёт после свежих статей
+    archive_file = DOCS / "archive.json"
+    if archive_file.exists():
+        archive = json.loads(archive_file.read_text("utf-8"))
+        entries += sorted(archive, key=lambda e: e["guid"], reverse=True)
 
     guides = [e for e in entries if not e["professions"]]
     profs = [e for e in entries if e["professions"]]
