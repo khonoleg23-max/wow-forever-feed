@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
+    inputs:
+      test_repost:
+        description: "Заново отправить самую свежую статью в Discord (проверка)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -32,6 +37,9 @@ jobs:
       - name: Translate feed
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DISCORD_WEBHOOK_GUIDES: ${{ secrets.DISCORD_WEBHOOK_GUIDES }}
+          DISCORD_WEBHOOK_PROFESSIONS: ${{ secrets.DISCORD_WEBHOOK_PROFESSIONS }}
+          TEST_REPOST: ${{ inputs.test_repost && '1' || '0' }}
         run: python translate_feed.py
 
       - name: Commit updated feeds

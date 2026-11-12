@@ -18,6 +18,8 @@ from datetime import datetime, timezone
 from email.utils import format_datetime
 from pathlib import Path
 
+from discord_full import html_to_blocks, post_article, translate_blocks
+
 SOURCE_URL = "https://www.wowhead.com/news/rss/forever"
 ROOT = Path(__file__).resolve().parent
 DOCS = ROOT / "docs"
@@ -69,6 +71,7 @@ def parse_source(raw: bytes) -> list[dict]:
                 "pubDate": (it.findtext("pubDate") or "").strip(),
                 "image": media.get("url") if media is not None else None,
                 "text": strip_html(body or desc),
+                "html": body or desc,
             }
         )
     return items
@@ -190,6 +193,11 @@ def main() -> int:
     items = parse_source(fetch(SOURCE_URL))
     print(f"Source items: {len(items)}")
 
+    hooks = {
+        False: os.environ.get("DISCORD_WEBHOOK_GUIDES", "").strip(),
+        True: os.environ.get("DISCORD_WEBHOOK_PROFESSIONS", "").strip(),
+    }
+
     new = 0
     for item in items:
         if item["guid"] in cache:
@@ -210,9 +218,33 @@ def main() -> int:
         }
         new += 1
 
+        hook = hooks[cache[item["guid"]]["professions"]]
+        if hook:  # полный перевод сразу в Discord
+            try:
+                blocks, images = html_to_blocks(item["html"])
+                blocks_ru = translate_blocks(blocks, google_translate)
+                parts = post_article(hook, title_ru, item["link"], item["image"] or (images[:1] or [None])[0], blocks_ru)
+                cache[item["guid"]]["webhook"] = True
+                print(f"    posted to Discord in {parts} message(s)")
+            except Exception as exc:
+                print(f"    Discord post failed: {exc}", file=sys.stderr)
+
     # порядок как в исходной ленте (сначала свежие)
     order = [i["guid"] for i in items]
-    entries = [cache[g] for g in order if g in cache]
+    # ручная проверка: TEST_REPOST=1 заново отправляет самую свежую статью
+    if os.environ.get("TEST_REPOST") == "1" and items:
+        it = items[0]
+        hook = hooks[bool(PROFESSION_RE.search(it["title"]))] or hooks[False]
+        if hook:
+            blocks, images = html_to_blocks(it["html"])
+            parts = post_article(hook, cache[it["guid"]]["title_ru"], it["link"], it["image"],
+                                 translate_blocks(blocks, google_translate))
+            print(f"Test repost: {it['title']} -> {parts} message(s)")
+        else:
+            print("Test repost skipped: no DISCORD_WEBHOOK_* secrets")
+
+    # статьи, ушедшие через вебхук, в RSS не кладём, чтобы MonitoRSS не продублировал их
+    entries = [cache[g] for g in order if g in cache and not cache[g].get("webhook")]
 
     # архив со старта беты (дайджесты по дням, см. backfill.py) идёт после свежих статей
     archive_file = DOCS / "archive.json"
