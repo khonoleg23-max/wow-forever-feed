@@ -1,0 +1,42 @@
+name: WoW Forever auction prices
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      digest:
+        description: "Прислать сводку цен в Discord прямо сейчас"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prices
+  cancel-in-progress: false
+
+jobs:
+  prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Snapshot prices
+        env:
+          DISCORD_WEBHOOK_PROFESSIONS: ${{ secrets.DISCORD_WEBHOOK_PROFESSIONS }}
+          FORCE_DIGEST: ${{ inputs.digest && '1' || '0' }}
+        run: python prices.py
+      - name: Commit history
+        run: |
+          git config user.name "feed-bot"
+          git config user.email "feed-bot@users.noreply.github.com"
+          git add prices
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Update auction prices"
+            for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
+          fi
