@@ -16,7 +16,7 @@ from html.parser import HTMLParser
 BLOCK_TAGS = {"p", "div", "br", "li", "h1", "h2", "h3", "h4", "h5", "h6", "blockquote", "tr", "ul", "ol", "table"}
 HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 EMBED_LIMIT = 3900  # лимит описания embed 4096
-COLOR = 0x1E6FD9
+COLOR = 0xFFD100  # золотой цвет заголовков интерфейса WoW
 BOT_NAME = "Кадгар"
 BOT_AVATAR = "https://wow.zamimg.com/images/wow/icons/large/quest_khadgar.jpg"  # официальная иконка Blizzard с CDN Wowhead
 
@@ -214,10 +214,11 @@ def post_article(webhook: str, title_ru: str, link: str, image: str | None, bloc
             if image:
                 embed["image" if total == 1 else "thumbnail"] = {"url": image}
         if n == total:
-            embed["footer"] = {"text": "Кадгар переводит с Wowhead"}
-            embed["description"] = chunk + f"\n\n[Оригинал на Wowhead]({link})"
-        if total > 1:
-            embed.setdefault("author", {"name": f"Часть {n}/{total}"})
+            embed["footer"] = {"text": "Библиотека Даларана · Кадгар переводит с Wowhead",
+                               "icon_url": "https://wow.zamimg.com/images/wow/icons/large/inv_misc_book_09.jpg"}
+            embed["description"] = chunk + f"\n\n📜 [Оригинал на Wowhead]({link})"
+        part = f" · свиток {n} из {total}" if total > 1 else ""
+        embed["author"] = {"name": f"Кадгар, хранитель знаний Кирин-Тора{part}", "icon_url": BOT_AVATAR}
         _send(webhook, {"username": BOT_NAME, "avatar_url": BOT_AVATAR, "embeds": [embed], "allowed_mentions": {"parse": []},
                      "flags": 4096})  # SUPPRESS_NOTIFICATIONS: без пушей и звука
         time.sleep(1)

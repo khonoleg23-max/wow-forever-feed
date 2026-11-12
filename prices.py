@@ -97,6 +97,41 @@ PROFESSIONS = {
     "cooking": "🍳 Кулинария",
     "firstaid": "🩹 Первая помощь",
 }
+# ---- оформление в стиле WoW ----
+ICON = "https://wow.zamimg.com/images/wow/icons/large/{}.jpg"
+PROF_ICON = {
+    "alchemy": "trade_alchemy", "blacksmithing": "trade_blacksmithing", "enchanting": "trade_engraving",
+    "engineering": "trade_engineering", "leatherworking": "inv_misc_armorkit_17", "tailoring": "trade_tailoring",
+    "mining": "trade_mining", "cooking": "inv_misc_food_15", "firstaid": "spell_holy_sealofsacrifice",
+}
+PROF_QUOTE = {
+    "alchemy": "Зелье, сваренное вовремя, спасло больше героев, чем любой меч.",
+    "blacksmithing": "Хороший клинок рождается в огне, а хорошая сделка — на аукционе.",
+    "enchanting": "Магия любит точность. Как и золото.",
+    "engineering": "Если что-то взорвалось — значит, работает. Почти.",
+    "leatherworking": "Шкура зверя — лучший доспех для того, кто умеет её выделать.",
+    "tailoring": "Даже архимаг начинал с простой льняной мантии.",
+    "mining": "Глубины Азерота щедры к тем, кто не боится кирки.",
+    "cooking": "Даже архимагу нужно хорошо поесть перед походом в Огненные Недра.",
+    "firstaid": "Бинт в нужную минуту стоит дороже эпического лута.",
+}
+# цвета качества предметов WoW
+Q_EPIC, Q_RARE, Q_LEGENDARY, Q_GOLD = 0xA335EE, 0x0070DD, 0xFF8000, 0xFFD100
+AUTHOR = {"name": "Кадгар, хранитель знаний Кирин-Тора",
+          "icon_url": "https://wow.zamimg.com/images/wow/icons/large/quest_khadgar.jpg"}
+FOOTER_ICON = ICON.format("inv_misc_coin_01")
+
+
+def wow_embed(embed: dict, color: int, icon: str | None = None) -> dict:
+    embed.setdefault("author", AUTHOR)
+    embed["color"] = color
+    if icon:
+        embed["thumbnail"] = {"url": ICON.format(icon)}
+    embed["footer"] = {"text": embed.get("footer", {}).get("text", ""), "icon_url": FOOTER_ICON}
+    embed["timestamp"] = datetime.now(timezone.utc).isoformat()
+    return embed
+
+
 # товары у торговца (item id -> медь), примерно; берётся меньшая из цены торговца и аукциона
 VENDOR = {
     3371: 4, 3372: 16, 8925: 20,                               # склянки
@@ -205,25 +240,26 @@ def profession_report(prof: str, recipes, names, snap) -> list[dict]:
         margin = round(profit * 100 / cost) if cost else 0
         ru = names.get(product, [sale["name"]] * 2)[1]
         mark, sign = ("✅", "+") if profit > 0 else ("❌", "−")
-        rows.append((profit, f"{mark} {item_link(product, ru)} ({skill}) — {money(sale['price'])}, "
-                             f"мат. {money(int(cost))} → **{sign}{money(int(abs(profit)))}** "
-                             f"({'+' if margin > 0 else ''}{margin}%)"
-                             + (f" · ⚠️ {sale['qty']} шт." if sale["qty"] <= 3 else "")))
+        rows.append((profit, f"{mark} **{item_link(product, ru)}** · навык {skill}"
+                             + (f" · ⚠️ всего {sale['qty']} шт." if sale["qty"] <= 3 else "")
+                             + f"\n\u2003продажа {money(sale['price'])} · реагенты {money(int(cost))} → "
+                             f"**{sign}{money(int(abs(profit)))}** ({'+' if margin > 0 else ''}{margin}%)"))
     rows.sort(key=lambda r: r[0], reverse=True)
     good = [line for p, line in rows if p > 0]
     bad = [line for p, line in rows if p <= 0]
-    lines = good[:22] + bad[:max(0, 26 - len(good[:22]))][:4]
-    desc = ""
+    lines = good[:15] + bad[:3]
+    desc = f"*«{PROF_QUOTE[prof]}»*\n\n"
     for line in lines:
-        if len(desc) + len(line) + 1 > 3600:
+        if len(desc) + len(line) + 1 > 3700:
             break
         desc += line + "\n"
-    if not desc:
-        desc = "Сейчас на аукционе нет готовых предметов этой профессии с известными ценами материалов."
-    desc += (f"\n_Выгодно: {len(good)}, в минус: {len(bad)}, нет на аукционе: {no_sale}"
-             + (f", нет цены материалов: {no_mats}" if no_mats else "") + "._")
-    craft = {"title": f"{title} — что выгодно крафтить", "description": desc,
-             "footer": {"text": "Цена на аукционе − 5% комиссии − материалы · (число) — навык · рецепты WoW Forever с Wowhead"}}
+    if not lines:
+        desc += "Сейчас на аукционе нет готовых предметов этой профессии с известными ценами реагентов.\n"
+    desc += (f"\n📜 Выгодно: **{len(good)}** · в минус: **{len(bad)}** · нет на аукционе: {no_sale}"
+             + (f" · нет цены реагентов: {no_mats}" if no_mats else ""))
+    craft = wow_embed({"title": f"{title} — свиток выгодных рецептов", "description": desc,
+                       "footer": {"text": "Аукционный дом · цена − 5% комиссии − реагенты · рецепты WoW Forever"}},
+                      Q_EPIC, PROF_ICON[prof])
 
     mats = sorted(mat_use, key=lambda i: -mat_use[i])
     mlines = []
@@ -234,10 +270,10 @@ def profession_report(prof: str, recipes, names, snap) -> list[dict]:
         ru = names.get(rid, ["?", "?"])[1]
         if rid in snap:
             s = snap[rid]
-            vend = " (у торговца дешевле)" if VENDOR.get(rid, 1e12) < s["price"] else ""
-            mlines.append(f"{item_link(rid, ru)} — **{money(price)}**{vend} · {s['qty']:,} шт.".replace(",", " "))
+            vend = " · 🏪 у торговца дешевле" if VENDOR.get(rid, 1e12) < s["price"] else ""
+            mlines.append(f"📦 {item_link(rid, ru)} — **{money(price)}**{vend} · {s['qty']:,} шт.".replace(",", " "))
         else:
-            mlines.append(f"{ru} — **{money(price)}** у торговца")
+            mlines.append(f"🏪 {ru} — **{money(price)}** у торговца")
         if len(mlines) >= 30:
             break
     mdesc = ""
@@ -245,20 +281,23 @@ def profession_report(prof: str, recipes, names, snap) -> list[dict]:
         if len(mdesc) + len(line) + 1 > 3800:
             break
         mdesc += line + "\n"
-    mats_embed = {"title": f"{title} — материалы", "description": mdesc or "Материалов на аукционе нет.",
-                  "footer": {"text": "Самые ходовые материалы профессии · самая низкая цена за штуку"}}
+    mats_embed = wow_embed({"title": f"{title} — реагенты на аукционе",
+                            "description": mdesc or "Реагентов на аукционе нет.",
+                            "footer": {"text": "Аукционный дом · самые ходовые реагенты · цена за штуку"}},
+                           Q_RARE)
     return [craft, mats_embed]
 
 
 def money(c: int) -> str:
-    g, s, m = c // 10000, c // 100 % 100, c % 100
+    """Деньги как в игре: 🟡 золото, ⚪ серебро, 🟤 медь."""
+    g, sv, m = c // 10000, c // 100 % 100, c % 100
     parts = []
     if g:
-        parts.append(f"{g}з")
-    if s:
-        parts.append(f"{s}с")
+        parts.append(f"{g:,}🟡".replace(",", " "))
+    if sv:
+        parts.append(f"{sv}⚪")
     if m or not parts:
-        parts.append(f"{m}м")
+        parts.append(f"{m}🟤")
     return " ".join(parts[:2])  # точность до двух монет хватает
 
 
@@ -347,8 +386,10 @@ def main() -> int:
             f"{'📈' if c > 0 else '📉'} **{ru}** — {money(s['price'])} (было {money(int(d))}) **{arrow(c)}** · {s['qty']:,} шт.".replace(",", " ")
             for ru, en, s, d, c in alerts
         ]
-        post(hook, {"title": "⚠️ Резкое изменение цен на аукционе", "description": "\n".join(lines),
-                    "footer": {"text": "WoW Forever EU · данные TheWoWDB"}})
+        post(hook, wow_embed({"title": "⚠️ Гоблины аукциона взбудоражены!",
+                              "description": "*«Цены скачут, как гном на ракетном ранце.»*\n\n" + "\n".join(lines),
+                              "footer": {"text": "Аукционный дом · WoW Forever EU · данные TheWoWDB"}},
+                             Q_LEGENDARY, "inv_misc_bomb_02"))
 
     # ---- ежедневная сводка ----
     digest_sent = False
@@ -374,9 +415,11 @@ def main() -> int:
                 text += line + "\n"
             fields.append({"name": name, "value": text})
         today = datetime.now(timezone.utc).strftime("%d.%m.%Y")
-        post(hook, {"title": f"💰 Цены аукциона на {today}", "fields": fields[:25],
-                    "description": "Самая низкая цена выкупа за штуку. Стрелки — изменение к прошлым суткам и неделе.",
-                    "footer": {"text": "WoW Forever EU · данные TheWoWDB · выгода крафта — в ветках профессий"}})
+        post(hook, wow_embed({"title": f"💰 Вести с аукциона — {today}", "fields": fields[:25],
+                              "description": "*«Золото не пахнет, но всегда знает, куда течь.»*\n"
+                                             "Самая низкая цена выкупа за штуку · стрелки — к прошлым суткам и неделе.",
+                              "footer": {"text": "Аукционный дом · WoW Forever EU · выгода крафта — в ветках профессий"}},
+                             Q_GOLD, "inv_misc_coin_01"))
         state["last_digest"] = now
         digest_sent = True
 
