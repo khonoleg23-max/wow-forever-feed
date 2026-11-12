@@ -33,6 +33,20 @@ PROFESSION_RE = re.compile(
     re.IGNORECASE,
 )
 
+ADDON_RE = re.compile(
+    r"add-?ons?|weakaura|ui|interface|macro|plater|details!|questie|\btools?\b|elvui|bartender|dbm|deadly boss",
+    re.IGNORECASE,
+)
+
+
+def route(title: str) -> str:
+    if PROFESSION_RE.search(title):
+        return "professions"
+    if ADDON_RE.search(title):
+        return "addons"
+    return "guides"
+
+
 NS = {
     "media": "http://search.yahoo.com/mrss/",
     "content": "http://purl.org/rss/1.0/modules/content/",
@@ -194,8 +208,8 @@ def main() -> int:
     print(f"Source items: {len(items)}")
 
     hooks = {
-        False: os.environ.get("DISCORD_WEBHOOK_GUIDES", "").strip(),
-        True: os.environ.get("DISCORD_WEBHOOK_PROFESSIONS", "").strip(),
+        name: os.environ.get(f"DISCORD_WEBHOOK_{name.upper()}", "").strip()
+        for name in ("guides", "professions", "addons")
     }
 
     new = 0
@@ -218,7 +232,7 @@ def main() -> int:
         }
         new += 1
 
-        hook = hooks[cache[item["guid"]]["professions"]]
+        hook = hooks[route(item["title"])] or hooks["guides"]  # без вебхука аддонов — в гайды
         if hook:  # полный перевод сразу в Discord
             try:
                 blocks, images = html_to_blocks(item["html"])
@@ -234,7 +248,7 @@ def main() -> int:
     # ручная проверка: TEST_REPOST=1 заново отправляет самую свежую статью
     if os.environ.get("TEST_REPOST") == "1" and items:
         it = items[0]
-        hook = hooks[bool(PROFESSION_RE.search(it["title"]))] or hooks[False]
+        hook = hooks[route(it["title"])] or hooks["guides"]
         if hook:
             blocks, images = html_to_blocks(it["html"])
             parts = post_article(hook, cache[it["guid"]]["title_ru"], it["link"], it["image"],
