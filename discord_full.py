@@ -18,7 +18,7 @@ HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 EMBED_LIMIT = 3900  # лимит описания embed 4096
 COLOR = 0x1E6FD9
 BOT_NAME = "Кадгар"
-BOT_AVATAR = "https://khonoleg23-max.github.io/wow-forever-feed/sage.png"
+BOT_AVATAR = "https://wow.zamimg.com/images/wow/icons/large/quest_khadgar.jpg"  # официальная иконка Blizzard с CDN Wowhead
 
 
 class _Blocks(HTMLParser):
