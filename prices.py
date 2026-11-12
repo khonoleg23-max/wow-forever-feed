@@ -210,13 +210,13 @@ def main() -> int:
             )
         fields = []
         for group, lines in groups.items():
-            text = ""
+            text, name = "", group
             for line in lines:  # лимит поля embed — 1024 символа
                 if len(text) + len(line) + 1 > 1000:
-                    fields.append({"name": group, "value": text})
-                    text, group = "", group + " (дальше)"
+                    fields.append({"name": name, "value": text})
+                    text, name = "", "​"  # продолжение группы без нового заголовка
                 text += line + "\n"
-            fields.append({"name": group, "value": text})
+            fields.append({"name": name, "value": text})
         today = datetime.now(timezone.utc).strftime("%d.%m.%Y")
         post(hook, {"title": f"💰 Цены аукциона на {today}", "fields": fields[:25],
                     "description": "Самая низкая цена выкупа за штуку. Стрелки — изменение к прошлым суткам и неделе.",
