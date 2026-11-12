@@ -200,6 +200,16 @@ def build_rss(title: str, description: str, self_url: str, entries: list[dict]) 
     return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
 
 
+def latest_from_archive(channel: str) -> dict:
+    for page in range(1, 20):
+        raw = fetch(f"https://www.wowhead.com/forever/news?page={page}").decode("utf-8")
+        m = re.search(r'id="data[.]news[.]newsData">(.*?)</script>', raw, re.DOTALL)
+        for p in json.loads(m.group(1))["newsPosts"]:
+            if route(p["title"]) == channel:
+                return p
+    raise RuntimeError(f"no {channel} articles found")
+
+
 def main() -> int:
     DOCS.mkdir(exist_ok=True)
     cache = json.loads(CACHE_FILE.read_text("utf-8")) if CACHE_FILE.exists() else {}
@@ -245,17 +255,26 @@ def main() -> int:
 
     # порядок как в исходной ленте (сначала свежие)
     order = [i["guid"] for i in items]
-    # ручная проверка: TEST_REPOST=1 заново отправляет самую свежую статью
-    if os.environ.get("TEST_REPOST") == "1" and items:
-        it = items[0]
-        hook = hooks[route(it["title"])] or hooks["guides"]
-        if hook:
-            blocks, images = html_to_blocks(it["html"])
-            parts = post_article(hook, cache[it["guid"]]["title_ru"], it["link"], it["image"],
-                                 translate_blocks(blocks, google_translate))
-            print(f"Test repost: {it['title']} -> {parts} message(s)")
+    # ручная проверка: TEST_CHANNEL=guides|professions|addons заново отправляет
+    # самую свежую статью этой рубрики (если в ленте такой нет, берём её из архива Wowhead)
+    test = os.environ.get("TEST_CHANNEL", "").strip()
+    if test in hooks:
+        hook = hooks[test]
+        if not hook:
+            print(f"Test skipped: secret DISCORD_WEBHOOK_{test.upper()} is not set")
         else:
-            print("Test repost skipped: no DISCORD_WEBHOOK_* secrets")
+            it = next((i for i in items if route(i["title"]) == test), None)
+            if it:
+                blocks, _ = html_to_blocks(it["html"])
+                title_ru = cache[it["guid"]]["title_ru"]
+                link, image = it["link"], it["image"]
+            else:
+                p = latest_from_archive(test)
+                blocks = [("p", p["preview"])]
+                title_ru = google_translate(p["title"])
+                link, image = "https://www.wowhead.com" + p["postUrl"], p.get("thumbnailUrl")
+            parts = post_article(hook, title_ru, link, image, translate_blocks(blocks, google_translate))
+            print(f"Test {test}: {title_ru} -> {parts} message(s)")
 
     # статьи, ушедшие через вебхук, в RSS не кладём, чтобы MonitoRSS не продублировал их
     entries = [cache[g] for g in order if g in cache and not cache[g].get("webhook")]
