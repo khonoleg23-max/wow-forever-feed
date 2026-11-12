@@ -17,6 +17,8 @@ BLOCK_TAGS = {"p", "div", "br", "li", "h1", "h2", "h3", "h4", "h5", "h6", "block
 HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 EMBED_LIMIT = 3900  # лимит описания embed 4096
 COLOR = 0x1E6FD9
+BOT_NAME = "Кадгар"
+BOT_AVATAR = "https://khonoleg23-max.github.io/wow-forever-feed/sage.png"
 
 
 class _Blocks(HTMLParser):
@@ -212,11 +214,11 @@ def post_article(webhook: str, title_ru: str, link: str, image: str | None, bloc
             if image:
                 embed["image" if total == 1 else "thumbnail"] = {"url": image}
         if n == total:
-            embed["footer"] = {"text": "Wowhead · перевод на русский"}
+            embed["footer"] = {"text": "Кадгар переводит с Wowhead"}
             embed["description"] = chunk + f"\n\n[Оригинал на Wowhead]({link})"
         if total > 1:
             embed.setdefault("author", {"name": f"Часть {n}/{total}"})
-        _send(webhook, {"username": "WoW Forever RU", "embeds": [embed], "allowed_mentions": {"parse": []},
+        _send(webhook, {"username": BOT_NAME, "avatar_url": BOT_AVATAR, "embeds": [embed], "allowed_mentions": {"parse": []},
                      "flags": 4096})  # SUPPRESS_NOTIFICATIONS: без пушей и звука
         time.sleep(1)
     return total
