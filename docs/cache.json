@@ -543,5 +543,31 @@
   "engine": "free",
   "added": 1794508864,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383860": {
+  "guid": "https://www.wowhead.com/news=383860",
+  "title_en": "New High Level Battle Mage Weapon Discovered in WoW: Forever",
+  "title_ru": "В WoW: Forever обнаружено новое оружие боевого мага высокого уровня",
+  "summary_ru": "Игроки обнаружили новое высокоуровневое оружие боевого мага под названием Wit's Edge в WoW: Forever!\nБоевой маг — это архетип мага, который склонен использовать заклинания и атаки ближнего боя, чтобы победить своих врагов. Это не поддерживалось в прошлых версиях World of Warcraft, поскольку Маг традиционно является бойцом дальнего боя. С новым оружием 60-го уровня, обнаруженным в WoW: Forever, у боевых магов может появиться некоторый потенциал на максимальном уровне!\nЭто оружие обеспечивает некоторую силу заклинаний и проникающую способность заклинаний, но также имеет уникальный эффект: Конец остроумия.",
+  "link": "https://www.wowhead.com/news=383860/new-high-level-battle-mage-weapon-discovered-in-wow-forever",
+  "pubDate": "Thu, 12 Nov 2026 13:25:01 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56122-new-high-level-battle-mage-weapon-discovered-in-wow-forever.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1794512632,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383858": {
+  "guid": "https://www.wowhead.com/news=383858",
+  "title_en": "Enhancement Shaman Class Changes Now Live in WoW: Forever",
+  "title_ru": "Изменения класса шамана улучшения теперь в WoW: Forever",
+  "summary_ru": "Blizzard подтвердила, что изменения в Шамане улучшений уже вступили в силу. \nРуководство по шаманам улучшений\nОбратите внимание:\nИз-за неожиданной задержки в развертывании следующие изменения вступили в силу сегодня во всех регионах в 10:45 по тихоокеанскому времени.\nКлассы\nШаман\nНаполнители оружия и тотемы оружия теперь можно использовать одновременно.\nУлучшение\n Урон от «Удара бури» уменьшен до 100% урона от оружия (было 150%), а время восстановления увеличено до 8 секунд (было 6 секунд).",
+  "link": "https://www.wowhead.com/news=383858/enhancement-shaman-class-changes-now-live",
+  "pubDate": "Thu, 12 Nov 2026 13:12:41 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56118-enhancement-shaman-class-changes-now-live.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794512636,
+  "webhook": true
  }
 }
