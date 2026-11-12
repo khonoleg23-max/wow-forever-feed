@@ -517,5 +517,31 @@
   "engine": "free",
   "added": 1794502236,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383854": {
+  "guid": "https://www.wowhead.com/news=383854",
+  "title_en": "\"Start Making Other Arrangements\" - Josh Greenfield on Locking Character Creation on PvP Rulesets",
+  "title_ru": "«Начните принимать другие меры» — Джош Гринфилд о блокировке создания персонажей в наборах правил PvP",
+  "summary_ru": "В эпизоде ​​7 подкаста WoW: Forever Джош Гринфилд комментирует блокировку создания персонажей в наборах правил PvP, отмечая, что игроки Орды, которые не создали персонажа в большинстве PvP- и RP-PVP-миров, должны «начать принимать другие меры».\nНесколько дней назад Blizzard объявила, что они решают проблему общего баланса фракций на PvP-серверах. Для этого они усложнили создание персонажа для более популярной фракции в мирах PvP и RP-PVP, большинство из которых — Орда.",
+  "link": "https://www.wowhead.com/news=383854/start-making-other-arrangements-josh-greenfield-expands-on-pvp-ruleset-character",
+  "pubDate": "Thu, 12 Nov 2026 11:58:03 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56114-start-making-other-arrangements-josh-greenfield-expands-on-pvp-ruleset-character.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794508857,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383853": {
+  "guid": "https://www.wowhead.com/news=383853",
+  "title_en": "The WoW: Forever Podcast Episode 7 Now Available - Lore Episode",
+  "title_ru": "Подкаст WoW: Forever, 7-я серия уже доступна — лор-эпизод",
+  "summary_ru": "Подкаст WoW: Forever продолжается! Эпизод 7 уже здесь, и команда говорит о лоре. \nв седьмом эпизоде подкаста WoW: Forever команда рассказывает о Лоре со специальными гостями:\nШон Коупленд, руководитель отдела истории\nПлатиновый ВоВ\nНоббель87",
+  "link": "https://www.wowhead.com/news=383853/the-wow-forever-podcast-episode-7-now-available-lore-episode",
+  "pubDate": "Thu, 12 Nov 2026 11:37:38 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56113-the-wow-forever-podcast-episode-7-now-available-lore-episode.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794508864,
+  "webhook": true
  }
 }
