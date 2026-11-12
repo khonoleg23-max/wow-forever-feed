@@ -216,6 +216,7 @@ def post_article(webhook: str, title_ru: str, link: str, image: str | None, bloc
             embed["description"] = chunk + f"\n\n[Оригинал на Wowhead]({link})"
         if total > 1:
             embed.setdefault("author", {"name": f"Часть {n}/{total}"})
-        _send(webhook, {"username": "WoW Forever RU", "embeds": [embed], "allowed_mentions": {"parse": []}})
+        _send(webhook, {"username": "WoW Forever RU", "embeds": [embed], "allowed_mentions": {"parse": []},
+                     "flags": 4096})  # SUPPRESS_NOTIFICATIONS: без пушей и звука
         time.sleep(1)
     return total
