@@ -288,16 +288,22 @@ def profession_report(prof: str, recipes, names, snap) -> list[dict]:
     return [craft, mats_embed]
 
 
+# иконки монет — эмодзи сервера WoW Forever (вебхуки сервера могут их использовать)
+COIN_GOLD = "<:gold:1570696828679094365>"
+COIN_SILVER = "<:silver:1570697224638169192>"
+COIN_COPPER = "<:copper:1570697350047858779>"
+
+
 def money(c: int) -> str:
-    """Деньги как в игре: 🟡 золото, ⚪ серебро, 🟤 медь."""
+    """Деньги как в игре: золото, серебро, медь — иконками монет WoW."""
     g, sv, m = c // 10000, c // 100 % 100, c % 100
     parts = []
     if g:
-        parts.append(f"{g:,}🟡".replace(",", " "))
+        parts.append(f"{g:,}{COIN_GOLD}".replace(",", " "))
     if sv:
-        parts.append(f"{sv}⚪")
+        parts.append(f"{sv}{COIN_SILVER}")
     if m or not parts:
-        parts.append(f"{m}🟤")
+        parts.append(f"{m}{COIN_COPPER}")
     return " ".join(parts[:2])  # точность до двух монет хватает
 
 
