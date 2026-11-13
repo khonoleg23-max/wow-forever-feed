@@ -595,5 +595,18 @@
   "engine": "free",
   "added": 1794526319,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383846": {
+  "guid": "https://www.wowhead.com/news=383846",
+  "title_en": "New Max Level Weekly Quest Rewards Up to 100 Gold in WoW: Forever",
+  "title_ru": "Новые награды за еженедельные задания максимального уровня — до 100 золотых в WoW: Forever",
+  "summary_ru": "Как только вы достигнете максимального уровня в WoW: Forever, появится новый еженедельный квест, за который можно получить случайное количество золота, вплоть до 100!\nВ экономике золота в WoW: Forever произошли некоторые изменения: отключение преобразования опыта в золото, дополнительное золото квестов для квестов более высокого уровня, временное увеличение депозита аукционного дома до 1 серебра при запуске и многое другое. Еще одно изменение — новый квест для игроков, достигших максимального уровня 60.",
+  "link": "https://www.wowhead.com/news=383846/new-max-level-weekly-quest-rewards-up-to-100-gold-in-wow-forever",
+  "pubDate": "Thu, 12 Nov 2026 19:10:58 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56126-new-max-level-weekly-quest-rewards-up-to-100-gold-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794534997,
+  "webhook": true
  }
 }
