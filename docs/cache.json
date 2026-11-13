@@ -608,5 +608,70 @@
   "engine": "free",
   "added": 1794534997,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383870": {
+  "guid": "https://www.wowhead.com/news=383870",
+  "title_en": "Blizzard Taking Down WoW: Forever Realms in 30 Minutes to Fix Urgent Server Crash",
+  "title_ru": "Blizzard уничтожила WoW: Forever Realms за 30 минут, чтобы исправить срочный сбой сервера",
+  "summary_ru": "Blizzard объявила об экстренном 30-минутном обслуживании серверов, чтобы исправить срочный сбой сервера в мирах WoW: Forever. \nОб этом было объявлено в игре через сообщение и указано в панели запуска Battle.net. Blizzard отключит серверы WoW: Forever для перезапуска игрового мира. \nПривет, ребята, мы обнаружили срочный сбой сервера, который нужно исправить с помощью перезагрузки. Все миры исчезнут через 30 минут и быстро вернутся после этого.",
+  "link": "https://www.wowhead.com/news=383870/blizzard-taking-down-wow-forever-realms-in-30-minutes-to-fix-urgent-server-crash",
+  "pubDate": "Fri, 13 Nov 2026 12:33:36 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56129-blizzard-taking-down-wow-forever-realms-in-30-minutes-to-fix-urgent-server-crash.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794595149,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383869": {
+  "guid": "https://www.wowhead.com/news=383869",
+  "title_en": "The WoW: Forever Podcast, a New Short Story, This Week’s Videos, and More! — WoW Weekly",
+  "title_ru": "Подкаст WoW: Forever, новый рассказ, видеоролики этой недели и многое другое! — Еженедельник WoW",
+  "summary_ru": "Blizzard опубликовала отчет об этой неделе в WoW, отметив продолжение подкаста WoW: Forever, новый рассказ и многое другое!\nЕженедельник WoW на этой неделе полон знаний, историй и многого другого! Присоединяйтесь к Шону Коупленду, чтобы мы глубже погрузились в историю подкаста World of Warcraft: Forever, соберитесь у костра, чтобы услышать легендарные истории Демара Бранта в рассказе «Цена чести», а также наслаждайтесь видеороликами этой недели и многим другим!\nПосмотрите подкаст WoW: Forever — Эпизод истории \nПрисоединяйтесь к WoW: Foreve",
+  "link": "https://www.wowhead.com/news=383869/the-wow-forever-podcast-a-new-short-story-this-week-s-videos-and-more-wow-weekly",
+  "pubDate": "Fri, 13 Nov 2026 12:12:25 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56128-the-wow-forever-podcast-a-new-short-story-this-week-s-videos-and-more-wow-weekly.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794595154,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383868": {
+  "guid": "https://www.wowhead.com/news=383868",
+  "title_en": "New Short Story “Cost of Honor” for WoW: Forever",
+  "title_ru": "Новый рассказ «Цена чести» для WoW: Forever",
+  "summary_ru": "Blizzard выпустила новый рассказ для WoW: Forever под названием «Цена чести»!\nПока в небе бушует буря, молодые люди Риверглейдс собираются у костра, чтобы услышать истории, лежащие в основе легенд их истории, от великого Демара Бранта. Через рассказы о войне, жертвах и трудном выборе они узнают, что истинная сила народа заключается не в одной победе, а в смелости защищать друг друга.",
+  "link": "https://www.wowhead.com/news=383868/new-short-story-cost-of-honor-for-wow-forever",
+  "pubDate": "Fri, 13 Nov 2026 12:03:42 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56127-new-short-story-cost-of-honor-for-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794595160,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383857": {
+  "guid": "https://www.wowhead.com/news=383857",
+  "title_en": "Might of Stormwind World Buff Returns in WoW: Forever",
+  "title_ru": "Мировое усиление «Мощь Штормграда» возвращается в WoW: Forever",
+  "summary_ru": "Мировое усиление «Мощь Штормграда», впервые представленное в сезоне «Открытие», вернулось для игроков Альянса в WoW: Forever.\nБафф «Мощь Штормграда» был введен в SoD как прямое соотношение 1:1 к баффу «Благословение вождя Орды», поскольку до сезона «Открытие» Орда имела доступ только к этому мировому баффу «Ускорение и здоровье».",
+  "link": "https://www.wowhead.com/news=383857/might-of-stormwind-world-buff-returns-in-wow-forever",
+  "pubDate": "Fri, 13 Nov 2026 11:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56116-might-of-stormwind-world-buff-returns-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794595165,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383859": {
+  "guid": "https://www.wowhead.com/news=383859",
+  "title_en": "Secret Disguise Toy Found WoW: Forever",
+  "title_ru": "Найдена секретная игрушка для маскировки WoW: Forever",
+  "summary_ru": "В WoW Forever была найдена новая секретная игрушка — знак оперативника Алькаса, начиная с нового подземелья: тюрьмы Алькаса. Вся информация об этом секрете снова получена из The WoW Secret Finding Discord!\nКак получить игрушку для маскировки оперативника Alcaz\nИгроки могут начать эту цепочку, войдя и зачистив подземелье тюрьмы Алькас.",
+  "link": "https://www.wowhead.com/news=383859/secret-disguise-toy-found-wow-forever",
+  "pubDate": "Fri, 13 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56119-secret-disguise-toy-found-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794595170,
+  "webhook": true
  }
 }
