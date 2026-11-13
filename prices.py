@@ -335,11 +335,34 @@ def load(path, default):
     return json.loads(path.read_text("utf-8")) if path.exists() else default
 
 
-def post(hook, embed, thread: str | None = None):
+def post(hook, embed, thread: str | None = None) -> bool:
+    """Отправка одного embed; ошибка Discord не роняет весь прогон (история цен всё равно сохранится)."""
     embed.setdefault("color", 0xE0A933)
-    _send(hook, {**BOT, "embeds": [embed], "allowed_mentions": {"parse": []}, "flags": 4096},
-          f"&thread_id={thread}" if thread else "")
-    time.sleep(1)
+    try:
+        _send(hook, {**BOT, "embeds": [embed], "allowed_mentions": {"parse": []}, "flags": 4096},
+              f"&thread_id={thread}" if thread else "")
+    except Exception as e:  # noqa: BLE001
+        body = e.read().decode("utf-8", "replace")[:500] if hasattr(e, "read") else ""
+        print(f"!! Discord не принял сообщение «{embed.get('title', '')}»: {e} {body}")
+        return False
+    finally:
+        time.sleep(1)
+    return True
+
+
+def chunk_fields(fields: list[dict], budget: int = 4500) -> list[list[dict]]:
+    """Делит поля на части: в одном embed Discord — не больше 25 полей и 6000 символов всего."""
+    parts, cur, size = [], [], 0
+    for f in fields:
+        n = len(f["name"]) + len(f["value"])
+        if cur and (size + n > budget or len(cur) >= 25):
+            parts.append(cur)
+            cur, size = [], 0
+        cur.append(f)
+        size += n
+    if cur:
+        parts.append(cur)
+    return parts
 
 
 def main() -> int:
@@ -424,11 +447,14 @@ def main() -> int:
                 text += line + "\n"
             fields.append({"name": name, "value": text})
         today = datetime.now(timezone.utc).strftime("%d.%m.%Y")
-        post(hook, wow_embed({"title": f"💰 Вести с аукциона — {today}", "fields": fields[:25],
-                              "description": "*«Золото не пахнет, но всегда знает, куда течь.»*\n"
-                                             "Самая низкая цена выкупа за штуку · стрелки — к прошлым суткам и неделе.",
-                              "footer": {"text": "Аукционный дом · WoW Forever EU · выгода крафта — в ветках профессий"}},
-                             Q_GOLD, "inv_misc_coin_01"))
+        parts = chunk_fields(fields)
+        for i, part in enumerate(parts):
+            emb = {"title": f"💰 Вести с аукциона — {today}" + (f" ({i + 1}/{len(parts)})" if len(parts) > 1 else ""),
+                   "fields": part, "footer": {"text": "Аукционный дом · WoW Forever EU · выгода крафта — в ветках профессий"}}
+            if i == 0:
+                emb["description"] = ("*«Золото не пахнет, но всегда знает, куда течь.»*\n"
+                                      "Самая низкая цена выкупа за штуку · стрелки — к прошлым суткам и неделе.")
+            post(hook, wow_embed(emb, Q_GOLD, "inv_misc_coin_01" if i == 0 else None))
         state["last_digest"] = now
         if auto_due:
             state["last_auto_digest"] = now
