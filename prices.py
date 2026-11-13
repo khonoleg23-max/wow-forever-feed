@@ -184,13 +184,13 @@ def snapshot_ah(classes) -> dict[int, dict]:
         seen_first = set()
         for page in range(1, MAX_PAGES + 1):
             rows = None
-            for attempt in range(2):
+            for attempt in range(4):  # сайт иногда отвечает 503 — ждём дольше с каждой попыткой
                 try:
                     rows, n_rows = fetch_page(cls, page)
                     break
                 except Exception as exc:
                     print(f"  class {cls} page {page}: error {exc}", file=sys.stderr)
-                    time.sleep(30)
+                    time.sleep(20 * (attempt + 1))
             time.sleep(3)  # бережно к сайту
             if not rows or rows[0]["id"] in seen_first:
                 break  # ошибка или страницы закончились (сайт повторяет последнюю)
