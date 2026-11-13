@@ -1,0 +1,43 @@
+name: Khadgar reminders
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Прислать пробное напоминание"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reminders
+  cancel-in-progress: false
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Send due reminders
+        env:
+          DISCORD_WEBHOOK_NEWS: ${{ secrets.DISCORD_WEBHOOK_NEWS }}
+          DISCORD_WEBHOOK_GUIDES: ${{ secrets.DISCORD_WEBHOOK_GUIDES }}
+          TEST_REMINDER: ${{ inputs.test && '1' || '' }}
+        run: python reminders.py
+      - name: Commit state
+        run: |
+          git config user.name "feed-bot"
+          git config user.email "feed-bot@users.noreply.github.com"
+          git add reminders
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Update reminders state"
+            for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
+          fi
