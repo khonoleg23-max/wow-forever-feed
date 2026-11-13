@@ -1,5 +1,5 @@
 {
- "last_digest": 1794554977,
+ "last_digest": 1794576593,
  "alerts": {
   "Peacebloom": 1794554083,
   "Earthroot": 1794554083,
@@ -10,6 +10,13 @@
   "Black Lotus": 1794554083,
   "Thorium Ore": 1794554083,
   "Briarthorn": 1794554977,
-  "Light Leather": 1794554977
- }
+  "Light Leather": 1794554977,
+  "Bruiseweed": 1794576593,
+  "Liferoot": 1794576593,
+  "Khadgar's Whisker": 1794576593,
+  "Golden Sansam": 1794576593,
+  "Tin Ore": 1794576593
+ },
+ "wishes": {},
+ "last_auto_digest": 1794576593
 }
