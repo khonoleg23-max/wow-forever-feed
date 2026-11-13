@@ -22,7 +22,7 @@ STATE = ROOT / "reminders" / "state.json"
 ICON = "https://wow.zamimg.com/images/wow/icons/large/{}.jpg"
 BOT = {"username": "Кадгар", "avatar_url": ICON.format("quest_khadgar")}
 AUTHOR = {"name": "Кадгар, хранитель знаний Кирин-Тора", "icon_url": ICON.format("quest_khadgar")}
-RESET_HOUR_UTC = 4  # EU: еженедельный сброс в среду в 04:00 UTC
+RESET_HOUR_UTC = 4  # EU: еженедельный сброс в среду в 04:00 UTC = 09:00 по Алматы (UTC+5)
 
 
 def faire_dates(year: int, month: int):
@@ -51,7 +51,7 @@ def due_events(now: datetime):
         yield f"reset-soon-{week[0]}-{week[1]}", embed(
             "⏳ Завтра недельный сброс",
             "*«Время — самый редкий реагент. Не тратьте его зря.»*\n\n"
-            "Успейте закрыть рейды и еженедельные задания: в среду в 07:00 по Москве всё обнулится.",
+            "Успейте закрыть рейды и еженедельные задания: в среду в 09:00 по Алматы всё обнулится.",
             "spell_holy_borrowedtime", 0xFF8000)
     if wd == 2 and h >= RESET_HOUR_UTC:  # среда утром
         yield f"reset-{week[0]}-{week[1]}", embed(

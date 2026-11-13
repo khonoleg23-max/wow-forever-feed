@@ -2,7 +2,7 @@
 
 Каждый запуск снимает самую низкую цену выкупа и количество лотов по списку товаров,
 копит историю в prices/history.json и:
-  * раз в день (после 15:00 UTC) присылает в Discord сводку изменений за сутки и неделю;
+  * раз в день (в 13:17 UTC = 18:17 по Алматы) присылает в Discord сводку изменений за сутки и неделю;
   * сразу присылает тревогу, если цена резко сдвинулась относительно вчерашней.
 
 Сообщения уходят в канал профессий через вебхук DISCORD_WEBHOOK_PROFESSIONS (тихо, без пушей).
@@ -34,7 +34,7 @@ REGION = "eu"
 KEEP_DAYS = 45
 ALERT_PCT = 40  # тревога, если цена ушла больше чем на 40% от вчерашней
 ALERT_COOLDOWN_H = 12
-DIGEST_HOUR_UTC = 13  # сводка с планового прогона в 13:17 UTC (16:17 МСК, 18:17 по UTC+5)
+DIGEST_HOUR_UTC = 13  # сводка с планового прогона в 13:17 UTC (18:17 по Алматы)
 UA = "Mozilla/5.0 (compatible; wow-forever-ru-feed/1.0; personal price tracker)"
 BOT = {"username": "Кадгар", "avatar_url": "https://wow.zamimg.com/images/wow/icons/large/quest_khadgar.jpg"}
 
