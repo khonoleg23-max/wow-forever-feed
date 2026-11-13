@@ -34,7 +34,7 @@ REGION = "eu"
 KEEP_DAYS = 45
 ALERT_PCT = 40  # тревога, если цена ушла больше чем на 40% от вчерашней
 ALERT_COOLDOWN_H = 12
-DIGEST_HOUR_UTC = 15
+DIGEST_HOUR_UTC = 13  # сводка с планового прогона в 13:17 UTC (16:17 МСК, 18:17 по UTC+5)
 UA = "Mozilla/5.0 (compatible; wow-forever-ru-feed/1.0; personal price tracker)"
 BOT = {"username": "Кадгар", "avatar_url": "https://wow.zamimg.com/images/wow/icons/large/quest_khadgar.jpg"}
 
@@ -351,7 +351,10 @@ def main() -> int:
     hour = datetime.now(timezone.utc).hour
     force_digest = os.environ.get("FORCE_DIGEST") == "1"
     asked = os.environ.get("PROFESSION", "").strip()
-    digest_due = force_digest or (hour >= DIGEST_HOUR_UTC and now - state["last_digest"] > 20 * 3600)
+    today_utc = datetime.now(timezone.utc).date()
+    last_day = datetime.fromtimestamp(state.get("last_auto_digest", 0), timezone.utc).date()
+    auto_due = hour >= DIGEST_HOUR_UTC and last_day < today_utc  # раз в календарный день, ручные запуски не сдвигают
+    digest_due = force_digest or auto_due
     gear = digest_due or asked in ("all", "blacksmithing", "leatherworking", "tailoring", "engineering")
     ah = snapshot_ah(AH_CLASSES + (GEAR_CLASSES if gear else []))
     by_name: dict[str, dict] = {}
@@ -427,6 +430,8 @@ def main() -> int:
                               "footer": {"text": "Аукционный дом · WoW Forever EU · выгода крафта — в ветках профессий"}},
                              Q_GOLD, "inv_misc_coin_01"))
         state["last_digest"] = now
+        if auto_due:
+            state["last_auto_digest"] = now
         digest_sent = True
 
     # ---- отчёты по профессиям: каждая в своей ветке канала ----
