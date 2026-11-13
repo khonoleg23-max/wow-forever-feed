@@ -29,6 +29,8 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "prices"
 HISTORY = DATA / "history.json"
 STATE = DATA / "state.json"
+WISHLIST = DATA / "wishlist.json"
+WISH_COOLDOWN_H = 20
 SEARCH = "https://thewowdb.com/wow-forever/auction-house/?"
 REGION = "eu"
 KEEP_DAYS = 45
@@ -422,6 +424,42 @@ def main() -> int:
                               "description": "*«Цены скачут, как гном на ракетном ранце.»*\n\n" + "\n".join(lines),
                               "footer": {"text": "Аукционный дом · WoW Forever EU · данные TheWoWDB"}},
                              Q_LEGENDARY, "inv_misc_bomb_02"))
+
+    # ---- список желаний: пинг, когда цена упала до желаемой ----
+    wishes = load(WISHLIST, {"wishes": []}).get("wishes", [])
+    ru_to_en = {ru.lower(): en.lower() for en, ru, _ in WATCHLIST}
+    state.setdefault("wishes", {})
+    for w in wishes:
+        item, user, limit = w.get("item"), str(w.get("user", "")).strip(), w.get("max_gold")
+        if not item or not user.isdigit() or limit is None:
+            continue
+        if isinstance(item, int) or str(item).isdigit():
+            row = ah.get(int(item))
+        else:
+            key = str(item).strip().lower()
+            row = by_name.get(ru_to_en.get(key, key))
+        if not row or row["price"] > float(limit) * 10000:
+            continue
+        wkey = f"{user}:{row['id']}"
+        if now - state["wishes"].get(wkey, 0) < WISH_COOLDOWN_H * 3600:
+            continue
+        state["wishes"][wkey] = now
+        print(f"wish hit: {row['name']} for {user}")
+        if hook:
+            link = f"https://thewowdb.com/wow-forever/item/{row['id']}/"
+            name = w.get("label") or row["name"]
+            embed = wow_embed({"title": "🛒 Желание исполнено!",
+                               "description": f"*«Гоблины шепчут: товар подешевел.»*\n\n"
+                                              f"[{name}]({link}) — **{money(row['price'])}** за штуку "
+                                              f"(ты ждал до {money(int(float(limit) * 10000))}) · {row['qty']:,} шт. на аукционе".replace(",", " "),
+                               "footer": {"text": "Список желаний · prices/wishlist.json"}},
+                              Q_GOLD, "inv_misc_bag_10")
+            try:
+                _send(hook, {**BOT, "content": f"<@{user}>", "embeds": [embed],
+                             "allowed_mentions": {"users": [user]}})
+            except Exception as e:  # noqa: BLE001
+                print("!! wish send failed:", e)
+            time.sleep(1)
 
     # ---- ежедневная сводка ----
     digest_sent = False

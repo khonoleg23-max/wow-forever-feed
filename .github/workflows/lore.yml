@@ -1,0 +1,21 @@
+name: Khadgar lore fact
+
+on:
+  schedule:
+    - cron: "30 4 * * *"   # 09:30 по Алматы
+  workflow_dispatch:
+
+jobs:
+  lore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Send lore fact
+        env:
+          DISCORD_WEBHOOK_NEWS: ${{ secrets.DISCORD_WEBHOOK_NEWS }}
+          DISCORD_WEBHOOK_GUIDES: ${{ secrets.DISCORD_WEBHOOK_GUIDES }}
+        run: python lore.py
