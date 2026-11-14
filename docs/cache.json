@@ -673,5 +673,57 @@
   "engine": "free",
   "added": 1794595170,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383876": {
+  "guid": "https://www.wowhead.com/news=383876",
+  "title_en": "Many Fixes to Dungeons, Quests, Enemies and Classes - WoW: Forever Hotfixes for November 13, 2026",
+  "title_ru": "Множество исправлений в подземельях, заданиях, врагах и классах — исправления WoW: Forever от 13 ноября 2026 г.",
+  "summary_ru": "Blizzard опубликовала сегодняшние исправления, в том числе множество исправлений подземелий, квестов, врагов и классов!\nИсправлены проблемы с неприменением убывающей отдачи.\nБольшое количество исправлений и изменений классов.\nУ многих предметов исправлена ​​статистика.\nВо многих квестах были исправлены проблемы.\nБольше игроков могут выиграть событие «Рыбалка в Тернистой долине».\nИсправлена ​​ошибка двойной спецификации.\nМногие враги были изменены или исправлены.",
+  "link": "https://www.wowhead.com/news=383876/many-fixes-to-dungeons-quests-enemies-and-classes-wow-forever-hotfixes-for",
+  "pubDate": "Fri, 13 Nov 2026 19:59:35 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56138-many-fixes-to-dungeons-quests-enemies-and-classes-wow-forever-hotfixes-for.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794634776,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383875": {
+  "guid": "https://www.wowhead.com/news=383875",
+  "title_en": "Blizzard Refunding Gold for Players Who Purchased Skills During Monday Server Issues",
+  "title_ru": "Blizzard возвращает золото игрокам, которые приобрели навыки во время проблем с сервером в понедельник",
+  "summary_ru": "Blizzard возвращает золото игрокам, которые приобрели навыки во время проблем с сервером в понедельник.\nРанее на этой неделе Blizzard была вынуждена отключить серверы из-за проблем. За это время игроки потеряли некоторые покупки, в том числе некоторые навыки и тотемы шамана. Кажется, они работают над решением проблем. \nБлагодаря внутриигровой почте, которая теперь разослана всем затронутым игрокам, мы возместили стоимость покупок навыков, совершенных в понедельник, 9 ноября, с 13:17 по восточноевропейскому времени.",
+  "link": "https://www.wowhead.com/news=383875/blizzard-refunding-gold-for-players-who-purchased-skills-during-monday-server",
+  "pubDate": "Fri, 13 Nov 2026 19:53:22 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56136-blizzard-refunding-gold-for-players-who-purchased-skills-during-monday-server.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794634787,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383849": {
+  "guid": "https://www.wowhead.com/news=383849",
+  "title_en": "Riverglades is One of the Best Leveling Zones in WoW: Forever",
+  "title_ru": "Риверглейдс — одна из лучших зон прокачки в WoW: Forever",
+  "summary_ru": "Многие игроки упоминали, что Риверглейдс — одна из лучших зон прокачки в WoW: Forever, поэтому обязательно посетите ее на своем пути к 60-му уровню!\nПутеводитель по зоне Риверглейдс\nРечные поляны — это совершенно новая зона в WoW: Forever, созданная так, чтобы казалось, что она всегда принадлежала классическому WoW.",
+  "link": "https://www.wowhead.com/news=383849/riverglades-is-one-of-the-best-leveling-zones-in-wow-forever",
+  "pubDate": "Fri, 13 Nov 2026 17:08:44 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56134-riverglades-is-one-of-the-best-leveling-zones-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794634791,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383873": {
+  "guid": "https://www.wowhead.com/news=383873",
+  "title_en": "Skyborne Don't Have Reputation Discount for Mounts in WoW: Forever",
+  "title_ru": "Skyborne не имеет скидки на репутацию для средств передвижения в WoW: Forever",
+  "summary_ru": "Skyborne не получает 10%-ную скидку на репутацию за изучение своего средства передвижения в WoW: Forever!\nWoW: Руководство по средствам передвижения Forever\nИзучение своего средства передвижения имеет большое значение в WoW: Forever, поскольку оно значительно сокращает время в пути. Однако для изучения навыка верховой езды требуется как уровень, так и огромная стоимость золота. \nНавык верховой ездыТребуемый уровеньСкорость скакунаСтоимость обученияСтоимость скакуна\nУченик верховой езды4060% (первый раз бесплатно)\nПодмастерье верхом60100%\nВы можете изучить навык верховой езды у своего расового тренера по верховой езде.",
+  "link": "https://www.wowhead.com/news=383873/skyborne-dont-have-reputation-discount-for-mounts-in-wow-forever",
+  "pubDate": "Fri, 13 Nov 2026 14:40:55 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56131-skyborne-dont-have-reputation-discount-for-mounts-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794634798,
+  "webhook": true
  }
 }
