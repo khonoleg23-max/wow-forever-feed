@@ -1,7 +1,7 @@
 {
  "last_digest": 1794576593,
  "alerts": {
-  "Peacebloom": 1794554083,
+  "Peacebloom": 1794641109,
   "Earthroot": 1794619477,
   "Mageroyal": 1794554083,
   "Kingsblood": 1794619477,
@@ -9,10 +9,10 @@
   "Sungrass": 1794554083,
   "Black Lotus": 1794554083,
   "Thorium Ore": 1794554083,
-  "Briarthorn": 1794554977,
+  "Briarthorn": 1794641109,
   "Light Leather": 1794554977,
-  "Bruiseweed": 1794576593,
-  "Liferoot": 1794576593,
+  "Bruiseweed": 1794641109,
+  "Liferoot": 1794641109,
   "Khadgar's Whisker": 1794576593,
   "Golden Sansam": 1794576593,
   "Tin Ore": 1794576593,
@@ -22,7 +22,8 @@
   "Arcane Crystal": 1794619477,
   "Soul Dust": 1794619477,
   "Dream Dust": 1794619477,
-  "Large Brilliant Shard": 1794619477
+  "Large Brilliant Shard": 1794619477,
+  "Rugged Leather": 1794641109
  },
  "wishes": {},
  "last_auto_digest": 1794576593
