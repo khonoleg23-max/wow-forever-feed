@@ -738,5 +738,31 @@
   "engine": "free",
   "added": 1794668816,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383871": {
+  "guid": "https://www.wowhead.com/news=383871",
+  "title_en": "Infiltrate Krol'dok Stronghold: New Dungeon in WoW: Forever",
+  "title_ru": "Проникните в крепость Крол'док: новое подземелье в WoW: Forever",
+  "summary_ru": "Крепость Кролдок — это новое подземелье, которое бросит вызов игрокам 40–45 уровней в WoW: Forever. Взгляните на квесты и награды, которые вы найдете внутри!\nРуководство по подземельям Крепости Крол'док\nВ нашем руководстве по подземельям есть все, что вам нужно для прохождения этого подземелья: где его найти, стратегии боссов, примечательный мусор и многое другое. Следите за обновлениями нашего журнала подземелий!\nНовое подземелье: Крепость Крол'док\nКрепость Крол'док — это подземелье для игроков 40–45 уровней, расположенное в новой зоне Речные поляны.",
+  "link": "https://www.wowhead.com/news=383871/infiltrate-kroldok-stronghold-new-dungeon-in-wow-forever",
+  "pubDate": "Sat, 14 Nov 2026 13:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56139-infiltrate-kroldok-stronghold-new-dungeon-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794688018,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383880": {
+  "guid": "https://www.wowhead.com/news=383880",
+  "title_en": "Dungeon Mobs Grant Zero Experience if Trivial to Anyone in Party in WoW: Forever",
+  "title_ru": "Мобы в подземельях не дают нулевого опыта всем, кто находится в группе в WoW: Forever, если это тривиально",
+  "summary_ru": "В исправлениях прошлой ночи Blizzard объявила, что если какой-либо член группы в подземелье имеет слишком высокий уровень, никто в группе не получит опыта.\nНедавно Blizzard выпустила большой набор исправлений для подземелий, квестов, неигровых персонажей, предметов и многого другого. Эти исправления внесли изменения в опыт прохождения подземелий: если моб является тривиальным для кого-либо в группе, он не дает опыта. Мобы становятся серыми, когда игрок слишком высокого уровня и моб считается «тривиальным».",
+  "link": "https://www.wowhead.com/news=383880/dungeon-mobs-grant-zero-experience-if-trivial-to-anyone-in-party",
+  "pubDate": "Sat, 14 Nov 2026 10:16:46 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56141-dungeon-mobs-grant-zero-experience-if-trivial-to-anyone-in-party.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794688030,
+  "webhook": true
  }
 }
