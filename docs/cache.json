@@ -764,5 +764,18 @@
   "engine": "free",
   "added": 1794688030,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383883": {
+  "guid": "https://www.wowhead.com/news=383883",
+  "title_en": "Dungeon Mobs Now Grant Zero Experience When Highest Player is 13 Levels Above the Creature in WoW: Forever",
+  "title_ru": "Мобы в подземельях теперь не дают нулевого опыта, если самый высокий игрок находится на 13 уровней выше существа в WoW: Forever",
+  "summary_ru": "Совершенно новое изменение: мобы в подземельях теперь не будут давать нулевой опыт, когда игрок самого высокого уровня находится более чем на 12 уровней выше существа, а не когда моб серый!\nМногие игроки очень критически отнеслись к вчерашним изменениям в подземельях, и во многих сообщениях в социальных сетях и на форумах они делились своим личным опытом того, как эти изменения повлияли на них.",
+  "link": "https://www.wowhead.com/news=383883/dungeon-mobs-now-grant-zero-experience-when-highest-player-is-13-levels-above",
+  "pubDate": "Sat, 14 Nov 2026 19:20:35 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56143-dungeon-mobs-now-grant-zero-experience-when-highest-player-is-13-levels-above.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794710494,
+  "webhook": true
  }
 }
