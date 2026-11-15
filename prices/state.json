@@ -3,7 +3,7 @@
  "alerts": {
   "Peacebloom": 1794641109,
   "Earthroot": 1794706089,
-  "Mageroyal": 1794683024,
+  "Mageroyal": 1794727622,
   "Kingsblood": 1794619477,
   "Goldthorn": 1794619477,
   "Sungrass": 1794683024,
@@ -23,14 +23,15 @@
   "Soul Dust": 1794619477,
   "Dream Dust": 1794619477,
   "Large Brilliant Shard": 1794706089,
-  "Rugged Leather": 1794641109,
+  "Rugged Leather": 1794727622,
   "Iron Ore": 1794662016,
   "Runecloth": 1794662016,
   "Strange Dust": 1794662016,
   "Vision Dust": 1794662016,
   "Firebloom": 1794683024,
   "Mithril Ore": 1794706089,
-  "Illusion Dust": 1794706089
+  "Illusion Dust": 1794706089,
+  "Gromsblood": 1794727622
  },
  "wishes": {},
  "last_auto_digest": 1794662016
