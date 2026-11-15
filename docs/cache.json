@@ -777,5 +777,18 @@
   "engine": "free",
   "added": 1794710494,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383879": {
+  "guid": "https://www.wowhead.com/news=383879",
+  "title_en": "An Old SoD Secret Has New Rewards in WoW: Forever",
+  "title_ru": "У старого секрета SoD новые награды в WoW: Forever",
+  "summary_ru": "На этой неделе, хотя большинство игроков все еще путешествуют по ранним уровням, некоторые исследуют подземелья более высоких уровней и ищут признаки секретов и сюрпризов, которые мы нашли в сезоне «Открытие». В этом случае SeventeenUncles обнаружил, что в области в Глубинах Черной горы, где раньше находился квест на игрушку-генератор радуги, теперь есть новая игрушка.\nСпасибо SeventeenUncles за предоставленную информацию в этой статье.",
+  "link": "https://www.wowhead.com/news=383879/an-old-sod-secret-has-new-rewards-in-wow-forever",
+  "pubDate": "Sun, 15 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56140-an-old-sod-secret-has-new-rewards-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794755264,
+  "webhook": true
  }
 }
