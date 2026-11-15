@@ -790,5 +790,18 @@
   "engine": "free",
   "added": 1794755264,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383845": {
+  "guid": "https://www.wowhead.com/news=383845",
+  "title_en": "Save Gold and Gain Bag Space by Earning Quest Rewards in WoW: Forever",
+  "title_ru": "Экономьте золото и увеличивайте место в сумке, зарабатывая награды за задания в WoW: Forever",
+  "summary_ru": "Хотите обновить свои сумки, но у вас мало золота? Вот несколько улучшений сумок из квестов Forever, которые дадут вам немного больше места для хранения!\nРуководство по обновлению сумки\nЕсть много предметов, которые игроки захотят носить с собой во время прокачки уровня в WoW: Forever. От расходных материалов, которые пополняют вас перед следующим вытягиванием, до квестовых предметов, которые вам нужно носить с собой, до предметов, которые вы хотите продать, чтобы заработать немного золота, место в сумке является ценным, особенно на ранних уровнях.",
+  "link": "https://www.wowhead.com/news=383845/save-gold-and-gain-bag-space-by-earning-quest-rewards-in-wow-forever",
+  "pubDate": "Sun, 15 Nov 2026 13:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56108-save-gold-and-gain-bag-space-by-earning-quest-rewards-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794771346,
+  "webhook": true
  }
 }
