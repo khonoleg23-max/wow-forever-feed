@@ -803,5 +803,31 @@
   "engine": "free",
   "added": 1794771346,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383897": {
+  "guid": "https://www.wowhead.com/news=383897",
+  "title_en": "Forever 101: Blizzard Releases New Player Overview Video for WoW: Forever",
+  "title_ru": "Forever 101: Blizzard выпускает обзорное видео нового игрока для WoW: Forever",
+  "summary_ru": "Blizzard выпустила видеоролик Forever 101, который служит обзором для новых игроков WoW: Forever. \nЭто видео представляет собой знакомство с новыми игроками в WoW: Forever и охватывает:\nСоциальные функции: панель «Недавние союзники» и кемпинг.\nПрофессия\nСтолицы\nЗапасаемся припасами.\nПорталы и призыв.\nГильдии.\nМаксимальный уровень контента.",
+  "link": "https://www.wowhead.com/news=383897/forever-101-blizzard-releases-new-player-overview-video-for-wow-forever",
+  "pubDate": "Mon, 16 Nov 2026 12:10:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56150-forever-101-blizzard-releases-new-player-overview-video-for-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794857181,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383806": {
+  "guid": "https://www.wowhead.com/news=383806",
+  "title_en": "Should WoW: Forever Dungeons Let Players Complete Quests in One Run?",
+  "title_ru": "Должна ли WoW: Forever Dungeons позволять игрокам выполнять квесты за один проход?",
+  "summary_ru": "World of Warcraft: Forever выпущен со всеми классическими подземельями, а также совершенно новыми. В этих подземельях квесты варьируются от старых и знаковых, таких как «Братство Справедливости», до совершенно новых, таких как «Разрушение в Мертвых копях».",
+  "link": "https://www.wowhead.com/news=383806/should-wow-forever-dungeons-let-players-complete-quests-in-one-run",
+  "pubDate": "Mon, 16 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56071-should-wow-forever-dungeons-let-players-complete-quests-in-one-run.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794857184,
+  "webhook": true
  }
 }
