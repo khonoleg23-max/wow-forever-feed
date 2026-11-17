@@ -829,5 +829,44 @@
   "engine": "free",
   "added": 1794857184,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383900": {
+  "guid": "https://www.wowhead.com/news=383900",
+  "title_en": "More Classes, Quest, and Item Changes - WoW: Forever Hotfixes for November 16, 2026",
+  "title_ru": "Дополнительные классы, задания и изменения предметов — исправления WoW: Forever от 16 ноября 2026 г.",
+  "summary_ru": "Blizzard анонсировала на сегодня хотфиксы, включающие множество изменений классов, квестов, предметов и подземелий!\nИсправления\n16 ноября 2026 г.\nКемпинг\nВ рыболовной стойке теперь есть приманки для всех.\nШанс выпадения раздутой рыбы, пойманной с помощью эффекта рыболовной стойки, увеличен, а таблицы добычи скорректированы соответствующим образом.\nКлассы\nДруид\n Исправлена ошибка, из-за которой ранги «Буйного роста» не перезаряжались.",
+  "link": "https://www.wowhead.com/news=383900/more-classes-quest-and-item-changes-wow-forever-hotfixes-for-november-16-2026",
+  "pubDate": "Mon, 16 Nov 2026 20:23:22 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56153-more-classes-quest-and-item-changes-wow-forever-hotfixes-for-november-16-2026.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794924318,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383893": {
+  "guid": "https://www.wowhead.com/news=383893",
+  "title_en": "New Scarlet Monastery Hearthstone in WoW: Forever",
+  "title_ru": "Новый Hearthstone Монастыря Алого ордена в WoW: Forever",
+  "summary_ru": "В WoW: Forever найден новый косметический камень Hearthstone!\nКосметические камни возвращения — новинка WoW: Forever, которая придает вашему персонажу уникальную анимацию в течение 10 секунд во время применения умения. В WoW: Forever был обнаружен первый косметический Hearthstone — Алый Hearthstone. Эта игрушка попадает в ваш ящик с игрушками, но вместо того, чтобы разыграть ее прямо оттуда, вы получаете Алый камень возвращения, который по-прежнему занимает место в сумке. \nВот как выглядит анимация Hearthstone.",
+  "link": "https://www.wowhead.com/news=383893/new-scarlet-monastery-hearthstone-in-wow-forever",
+  "pubDate": "Mon, 16 Nov 2026 18:00:20 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56149-new-scarlet-monastery-hearthstone-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794924326,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383898": {
+  "guid": "https://www.wowhead.com/news=383898",
+  "title_en": "100+ Gold Per Hour Farm Nerfed in WoW: Forever",
+  "title_ru": "Ферма, зарабатывающая более 100 золота в час, ослаблена в WoW: Forever",
+  "summary_ru": "Ферма, приносящая более 100 золота в час в Крепости Черной Пасти, теперь была ослаблена после того, как некоторые игроки уже получили сотни, если не тысячи золота за пробежки.\nПо мере того, как игроки начинают повышать свой уровень, они узнают, как быстро заработать золото, чтобы купить дорогого эпического скакуна, завершить свои профессии и разблокировать лучшее в слоте снаряжение.",
+  "link": "https://www.wowhead.com/news=383898/100-gold-per-hour-farm-nerfed-in-wow-forever",
+  "pubDate": "Mon, 16 Nov 2026 15:04:18 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56151-100-gold-per-hour-farm-nerfed-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794924332,
+  "webhook": true
  }
 }
