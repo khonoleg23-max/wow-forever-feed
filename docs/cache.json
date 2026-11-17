@@ -868,5 +868,57 @@
   "engine": "free",
   "added": 1794924332,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383910": {
+  "guid": "https://www.wowhead.com/news=383910",
+  "title_en": "Blizzard Removing Gold and Applying Account Suspensions to Significant Abusers of Blackmaw Hold Farm",
+  "title_ru": "Blizzard удаляет золото и применяет блокировку учетных записей к злоумышленникам фермы Blackmaw Hold Farm",
+  "summary_ru": "Blizzard заберет все золото, заработанное на ферме Крепости Черной Пасти, и применит блокировку учетных записей к злоумышленникам!\nПока игроки продолжают знакомиться с высокоуровневым контентом WoW Forever, мы внимательно следим за игровой экономикой, чтобы убедиться, что источники золота и затраты хорошо сбалансированы. Поиск эффективных мест для фарма всегда был частью игры, и именно с 2004 года большинство игроков зарабатывали своих эпических маунтов.",
+  "link": "https://www.wowhead.com/news=383910/blizzard-applying-account-suspensions-to-significant-abusers-of-blackmaw-hold",
+  "pubDate": "Tue, 17 Nov 2026 12:39:41 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56168-blizzard-applying-account-suspensions-to-significant-abusers-of-blackmaw-hold.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794948212,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383909": {
+  "guid": "https://www.wowhead.com/news=383909",
+  "title_en": "Spell Power Added to Soulforge Paladin Armor - Item Hotfixes in WoW: Forever",
+  "title_ru": "В броню паладина Soulforge добавлена ​​сила заклинаний — исправления предметов в WoW: Forever",
+  "summary_ru": "Последние исправления изменили характеристики некоторых предметов в WoW: Forever, включая добавление силы заклинаний в броню паладина Soulforge!\nКомплект Паладина из кузницы душ\nВ набор подземелий Soulforge для паладинов были внесены некоторые изменения: множеству частей была удалена Сила и добавлена сила заклинаний!\nПрочность брони Soulforge удалена, интеллект увеличен, а сила заклинаний добавлена ​​ко всем частям.",
+  "link": "https://www.wowhead.com/news=383909/spell-power-added-to-soulforge-paladin-armor-item-hotfixes-in-wow-forever",
+  "pubDate": "Tue, 17 Nov 2026 12:37:40 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56166-spell-power-added-to-soulforge-paladin-armor-item-hotfixes-in-wow-forever.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1794948219,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383906": {
+  "guid": "https://www.wowhead.com/news=383906",
+  "title_en": "WoW: Forever Post Hits #1 on r/all - Many Players Are Very Upset About the Blackmaw Hold Gold Farm",
+  "title_ru": "WoW: Forever Post занимает первое место на r/all – многие игроки очень расстроены золотой фермой в Крепости Черной Пасти",
+  "summary_ru": "Игроки очень расстроены недавней золотой фермой в Крепости Черной Пасти и тем, как эта инъекция золота может повлиять на экономику.\nWoW: Forever упоминался как игра, в которой нужно не торопиться и получать удовольствие от путешествия, начиная с нового начала. В интервью MMORPG они упоминают, что «разрешают не торопиться».",
+  "link": "https://www.wowhead.com/news=383906/many-players-are-very-upset-about-the-blackmaw-hold-gold-farm",
+  "pubDate": "Tue, 17 Nov 2026 09:38:22 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56162-many-players-are-very-upset-about-the-blackmaw-hold-gold-farm.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794948223,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383905": {
+  "guid": "https://www.wowhead.com/news=383905",
+  "title_en": "NA WoW: Forever Servers Down for Scheduled Maintenance for 1 Hour",
+  "title_ru": "NA WoW: серверы Forever отключены на плановое обслуживание на 1 час",
+  "summary_ru": "WoW: Forever недоступен на 1 час на серверах Северной Америки в связи с плановым техническим обслуживанием.\nВ соответствии с графиком еженедельного обслуживания серверы WoW: Forever будут отключены примерно на 1 час во время планового технического обслуживания.",
+  "link": "https://www.wowhead.com/news=383905/na-wow-forever-servers-down-for-scheduled-maintenance-for-1-hour",
+  "pubDate": "Tue, 17 Nov 2026 08:54:56 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56161-na-wow-forever-servers-down-for-scheduled-maintenance-for-1-hour.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794948231,
+  "webhook": true
  }
 }
