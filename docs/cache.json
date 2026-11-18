@@ -946,5 +946,31 @@
   "engine": "free",
   "added": 1794994151,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383918": {
+  "guid": "https://www.wowhead.com/news=383918",
+  "title_en": "WoW: Forever PvP Overview Video - Honor Rewards & Battlegrounds",
+  "title_ru": "Обзорное видео WoW: Forever PvP — награды чести и поля боя",
+  "summary_ru": "Blizzard выпустила видеоролик, рассказывающий о PvP-системе WoW: Forever, в котором рассказывается о наградах за честь, наградах за ранги и полях сражений!\nWoW: Руководство по PvP Forever\nВ этом видео вы познакомитесь со всем, что касается PvP-системы WoW: Forever:\nОчки чести больше не определяют ваш ранг.\nОчки рейтинга зарабатываются с помощью ежедневных и еженедельных источников, еженедельных полей сражений, квестов нового сезона и определенных мировых PvP-событий (Гурубаши), что делает восхождение по рейтингу более разнообразным и предсказуемым.",
+  "link": "https://www.wowhead.com/news=383918/wow-forever-pvp-overview-video-honor-rewards-and-battlegrounds",
+  "pubDate": "Wed, 18 Nov 2026 12:03:36 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56174-wow-forever-pvp-overview-video-honor-rewards-and-battlegrounds.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795027342,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383917": {
+  "guid": "https://www.wowhead.com/news=383917",
+  "title_en": "Auction House Minimum Deposit Reduced to 1 Copper in WoW: Forever",
+  "title_ru": "Минимальный депозит аукционного дома уменьшен до 1 меди в WoW: Forever",
+  "summary_ru": "Минимальный депозит аукционного дома наконец-то снижен до 1 меди.\nПрошло почти две недели с момента запуска и больше недели с тех пор, как Blizzard объявила об изменении депозита аукционного дома. С еженедельным сбросом изменения наконец-то здесь! Аукционный дом больше не требует внесения минимального депозита в 1 серебро за каждый предмет.",
+  "link": "https://www.wowhead.com/news=383917/auction-house-minimum-deposit-reduced-to-1-copper-in-wow-forever",
+  "pubDate": "Wed, 18 Nov 2026 10:32:27 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56173-auction-house-minimum-deposit-reduced-to-1-copper-in-wow-forever.png",
+  "professions": true,
+  "engine": "free",
+  "added": 1795027347,
+  "webhook": true
  }
 }
