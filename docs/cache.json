@@ -972,5 +972,18 @@
   "engine": "free",
   "added": 1795027347,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383919": {
+  "guid": "https://www.wowhead.com/news=383919",
+  "title_en": "Weekly Gold Quest Requires Blackrock Spire and Blackrock Depths in WoW: Forever",
+  "title_ru": "Еженедельный золотой квест требует наличия Пика Черной горы и Глубин Черной горы в WoW: Forever.",
+  "summary_ru": "Чтобы выполнить золотой квест этой недели для персонажей 60-го уровня, игрокам необходимо пройти Пик Черной горы и Глубины Черной горы.\nРуководство BRD Руководство URS Руководство LBRS\nКак только персонаж достигнет 60-го уровня, он сможет получить еженедельный квест в Пиратской бухте. В то время как последние две недели игрокам требовалось выполнять задание Забытый Город, на этой неделе квест «Спрос — Юридические записи Черной горы», для выполнения которого необходимо пройти «Шпиль Черной горы» и «Глубины Черной горы».",
+  "link": "https://www.wowhead.com/news=383919/weekly-gold-quest-requires-blackrock-spire-and-blackrock-depths-in-wow-forever",
+  "pubDate": "Wed, 18 Nov 2026 13:52:08 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56175-weekly-gold-quest-requires-blackrock-spire-and-blackrock-depths-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795045237,
+  "webhook": true
  }
 }
