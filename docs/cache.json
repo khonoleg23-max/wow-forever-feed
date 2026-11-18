@@ -920,5 +920,31 @@
   "engine": "free",
   "added": 1794948231,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383914": {
+  "guid": "https://www.wowhead.com/news=383914",
+  "title_en": "UBRS Damage and Health Increases & Shen'dralas Improvements - WoW: Forever Hotfixes for November 17, 2026",
+  "title_ru": "Увеличение урона и здоровья УБРС, а также улучшения Шен'драласа — WoW: Forever Hotfixes от 17 ноября 2026 г.",
+  "summary_ru": "Blizzard опубликовала исправления на сегодня, в том числе увеличение урона и здоровья UBRS, а также улучшение болевых точек в зоне Шен'дралас. \nМногие квесты и темп Шен'драласа были улучшены, а количество квестов уменьшилось для всей группы.\nПоследний квест в основной цепочке «Кровь Агамаггана», который требовал от вас выполнения RFD (уровень 40) после Маурадона (уровень 50), теперь можно выполнить за пределами подземелья.",
+  "link": "https://www.wowhead.com/news=383914/ubrs-damage-and-health-increases-and-shendralas-improvements-wow-forever",
+  "pubDate": "Tue, 17 Nov 2026 21:43:47 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56172-ubrs-damage-and-health-increases-and-shendralas-improvements-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794994141,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383912": {
+  "guid": "https://www.wowhead.com/news=383912",
+  "title_en": "WoW: Forever Continuing to Break Records With Over 15 Million Characters Created",
+  "title_ru": "WoW: Forever продолжает бить рекорды, создав более 15 миллионов персонажей",
+  "summary_ru": "WoW: Forever продолжает бить рекорды: создано более 15 миллионов персонажей и выполнено почти 1,5 миллиарда квестов.\nВ X (Twitter) Blizzard опубликовала новую статистику за первые две недели запуска WoW: Forever.",
+  "link": "https://www.wowhead.com/news=383912/wow-forever-continuing-to-break-records-with-over-15-million-characters-created",
+  "pubDate": "Tue, 17 Nov 2026 18:04:50 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56170-wow-forever-continuing-to-break-records-with-over-15-million-characters-created.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1794994151,
+  "webhook": true
  }
 }
