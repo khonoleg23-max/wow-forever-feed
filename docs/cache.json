@@ -998,5 +998,31 @@
   "engine": "free",
   "added": 1795054015,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383896": {
+  "guid": "https://www.wowhead.com/news=383896",
+  "title_en": "Earn a Free 16-Slot Bag from a Former SoD Questline in WoW: Forever",
+  "title_ru": "Получите бесплатную сумку на 16 ячеек за выполнение бывшей линии заданий SoD в WoW: Forever.",
+  "summary_ru": "Многие квестовые линии из сезона «Открытие» нашли свое применение в Forever, и квестовая линия «Воин» для руны «Ударная волна» не является исключением. Однако, в отличие от SoD, эта цепочка квестов теперь доступна любому, независимо от класса. \nСреди других вкусностей, в середине квестовой цепочки можно получить Красную сумку, которая представляет собой бесплатную сумку на 16 ячеек. Будьте осторожны: наличие этой сумки снижает эффективный уровень скрытности на 2, что применимо только к разбойникам и друидам.",
+  "link": "https://www.wowhead.com/news=383896/earn-a-free-16-slot-bag-from-a-former-sod-questline-in-wow-forever",
+  "pubDate": "Thu, 19 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56178-earn-a-free-16-slot-bag-from-a-former-sod-questline-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795101824,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383902": {
+  "guid": "https://www.wowhead.com/news=383902",
+  "title_en": "Tame a Secret Hunter Pet in WoW: Forever",
+  "title_ru": "Приручите секретного питомца-охотника в WoW: Forever",
+  "summary_ru": "В WoW: Forever был обнаружен секретный питомец Охотника, который не только обладает отличными навыками, но и имеет довольно уникальный внешний вид! Питомец имеет общую модель с ранее неукротимым Порченым котом (котёнком бедной Винны!). Эта модель была в игре со времен Vanilla, и хотя розничные игроки могли приручить ее, начиная с Cataclysm, цепочка квестов в Classic никогда не позволяла котенку стать питомцем Охотника до сих пор. \nСпасибо Zsatrasza за предоставленную информацию в этой статье.",
+  "link": "https://www.wowhead.com/news=383902/tame-a-secret-hunter-pet-in-wow-forever",
+  "pubDate": "Thu, 19 Nov 2026 08:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56158-tame-a-secret-hunter-pet-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795101831,
+  "webhook": true
  }
 }
