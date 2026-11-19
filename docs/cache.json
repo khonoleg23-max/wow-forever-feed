@@ -1063,5 +1063,18 @@
   "engine": "free",
   "added": 1795112340,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383931": {
+  "guid": "https://www.wowhead.com/news=383931",
+  "title_en": "Blizzard Wants to Get Rid of BiS in WoW: Forever",
+  "title_ru": "Blizzard хочет избавиться от BiS в WoW: навсегда",
+  "summary_ru": "В последнем выпуске подкаста WoW: Forever старший гейм-дизайнер Эйдан Мун говорит, что хочет избавиться от идеи BiS в WoW: Forever.\nBiS, или «Лучшее в слоте», снаряжение существовало в World of Warcraft с момента его создания. Игроки стремились теоретически создать свои «лучшие» предметы для каждого слота, чтобы достичь нескольких целей по характеристикам, таких как предел меткости, предел опыта, иммунитет к критическим ударам, а также максимизировать свой урон, здоровье или ману.",
+  "link": "https://www.wowhead.com/news=383931/blizzard-wants-to-get-rid-of-bis-in-wow-forever",
+  "pubDate": "Thu, 19 Nov 2026 13:19:21 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56187-blizzard-wants-to-get-rid-of-bis-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795116558,
+  "webhook": true
  }
 }
