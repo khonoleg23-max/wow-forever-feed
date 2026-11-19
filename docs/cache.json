@@ -1076,5 +1076,18 @@
   "engine": "free",
   "added": 1795116558,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383935": {
+  "guid": "https://www.wowhead.com/news=383935",
+  "title_en": "Motes of Unstable Magic Now Soulbound in WoW: Forever - Gold Strategy Nerfed",
+  "title_ru": "Частицы нестабильной магии теперь привязаны к душам в WoW: Forever — ослаблена золотая стратегия",
+  "summary_ru": "Частицы нестабильной магии теперь являются персональными, что не позволяет игрокам высокого уровня продавать их на аукционе.\nДостигнув 48-го уровня, игроки смогут получить Нестабильную магию в Даларане или Нестабильную магию на плато Небесных наблюдателей. Этот квест дает игрокам Элементальный Аттрактор, а при использовании дает положительный эффект Магической осведомленности. Этот положительный эффект иногда дает игрокам Частицу нестабильной магии, когда они побеждают заклинателей или боссов. После завершения начального квеста появляется повторяемый квест (например,",
+  "link": "https://www.wowhead.com/news=383935/motes-of-unstable-magic-now-soulbound-in-wow-forever-gold-strategy-nerfed",
+  "pubDate": "Thu, 19 Nov 2026 15:23:45 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56189-motes-of-unstable-magic-now-soulbound-in-wow-forever-gold-strategy-nerfed.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1795129985,
+  "webhook": true
  }
 }
