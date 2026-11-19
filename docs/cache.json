@@ -1024,5 +1024,44 @@
   "engine": "free",
   "added": 1795101831,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383929": {
+  "guid": "https://www.wowhead.com/news=383929",
+  "title_en": "Study The Well - WoW: Forever Podcast Board Message Hints at New Brainteaser",
+  "title_ru": "Study The Well - Сообщение на доске подкастов WoW: Forever подсказывает новую головоломку",
+  "summary_ru": "Каждую неделю в подкасте WoW: Forever за спиной разработчиков игры размещалась доска с разными сообщениями. Эта неделя ничем не отличалась от других, и на доске позади Эйдена «Зирен» Муна написано: ИЗУЧИТЕ КОЛОДЦЕ 106.5.86.250.\nРаздор Искателей Тайн уже затронул этот вопрос и сузил его до конкретного колодца на горе Хиджал. \n\"Хорошо....",
+  "link": "https://www.wowhead.com/news=383929/study-the-well-wow-forever-podcast-board-message-hints-at-new-brainteaser",
+  "pubDate": "Thu, 19 Nov 2026 12:16:54 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56186-study-the-well-wow-forever-podcast-board-message-hints-at-new-brainteaser.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795112332,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383927": {
+  "guid": "https://www.wowhead.com/news=383927",
+  "title_en": "Zirene Teases Item Granting Bonus Stats When Bags are Full in WoW: Forever",
+  "title_ru": "Зирен дразнит предметы, дающие бонусные характеристики, когда сумки полны в WoW: Forever",
+  "summary_ru": "Зирен анонсировала новый предмет Master Looter BiS: предмет, который дает бонусные характеристики, когда ваши сумки полны.\nСегодня был выпущен новый выпуск подкаста WoW: Forever, в котором обсуждается детализация. В этом эпизоде ​​Зирена спрашивают, может ли он что-нибудь рассказать о предстоящих выпусках. \nТам может быть предмет Master Loot BiS. \nВозможно, вы получите дополнительную статистику, если ваша сумка полностью заполнена.\nХотя Зирен намекала, что это предмет Master Loot BiS, теоретически это подойдет любому.",
+  "link": "https://www.wowhead.com/news=383927/zirene-teases-item-granting-bonus-stats-when-bags-are-full",
+  "pubDate": "Thu, 19 Nov 2026 11:50:34 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56181-zirene-teases-item-granting-bonus-stats-when-bags-are-full.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795112336,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383926": {
+  "guid": "https://www.wowhead.com/news=383926",
+  "title_en": "WoW: Forever Podcast Episode 8: Classes, Itemization, and BiS",
+  "title_ru": "Подкаст WoW: Forever. Эпизод 8: Классы, классификация и BiS",
+  "summary_ru": "Вышел последний выпуск подкаста WoW: Forever, и на этой неделе он посвящен классам, предметам, BiS и многому другому!\nВ этом подкасте есть обсуждения силы заклинаний на экипировке, PvP с взрывным уроном и разделы, посвященные обсуждению каждого класса. Этот подкаст полон информации для всех. Учитывая, что на следующей неделе в США День Благодарения, мы не можем ожидать еще одного эпизода, но после этого мы посмотрим эпизод, посвященный рейдам.",
+  "link": "https://www.wowhead.com/news=383926/wow-forever-podcast-episode-8-classes-itemization-and-bis",
+  "pubDate": "Thu, 19 Nov 2026 11:24:03 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56180-wow-forever-podcast-episode-8-classes-itemization-and-bis.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795112340,
+  "webhook": true
  }
 }
