@@ -985,5 +985,18 @@
   "engine": "free",
   "added": 1795045237,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383924": {
+  "guid": "https://www.wowhead.com/news=383924",
+  "title_en": "Turn On In-Game Quest Objective Markers for Easier Navigation in WoW: Forever",
+  "title_ru": "Включите внутриигровые маркеры целей квестов, чтобы упростить навигацию в WoW: Forever",
+  "summary_ru": "В WoW: Forever доступны внутриигровые маркеры целей квестов, что упрощает навигацию без необходимости использования дополнительных дополнений.\nПоскольку WoW: Forever построен на розничном клиенте, в игру были внесены некоторые улучшения системы квестов из розничной версии. Сюда входят цели квеста и области, которые теперь отображаются на карте, мобы, указывающие, нужны ли они для квеста, и многое другое. В розничном клиенте есть одна функция, которую игроки могут включить: внутриигровые маркеры целей квестов.",
+  "link": "https://www.wowhead.com/news=383924/turn-on-in-game-quest-objective-markers-for-easier-navigation-in-wow-forever",
+  "pubDate": "Wed, 18 Nov 2026 19:25:22 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56177-turn-on-in-game-quest-objective-markers-for-easier-navigation-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795054015,
+  "webhook": true
  }
 }
