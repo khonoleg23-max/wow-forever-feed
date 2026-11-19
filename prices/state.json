@@ -1,9 +1,9 @@
 {
- "last_digest": 1795008867,
+ "last_digest": 1795095454,
  "alerts": {
   "Peacebloom": 1794842820,
   "Earthroot": 1795074033,
-  "Mageroyal": 1795052070,
+  "Mageroyal": 1795095454,
   "Kingsblood": 1794842820,
   "Goldthorn": 1795074033,
   "Sungrass": 1794842820,
@@ -14,7 +14,7 @@
   "Bruiseweed": 1794943386,
   "Liferoot": 1794987516,
   "Khadgar's Whisker": 1794842820,
-  "Golden Sansam": 1794943386,
+  "Golden Sansam": 1795095454,
   "Tin Ore": 1794662016,
   "Silverleaf": 1795074033,
   "Dreamfoil": 1795052070,
@@ -23,11 +23,11 @@
   "Soul Dust": 1794619477,
   "Dream Dust": 1794748467,
   "Large Brilliant Shard": 1794842820,
-  "Rugged Leather": 1794987516,
+  "Rugged Leather": 1795095454,
   "Iron Ore": 1794748467,
   "Runecloth": 1794662016,
   "Strange Dust": 1794965926,
-  "Vision Dust": 1794965926,
+  "Vision Dust": 1795095454,
   "Firebloom": 1795052070,
   "Mithril Ore": 1795008867,
   "Illusion Dust": 1794706089,
@@ -39,5 +39,5 @@
   "Medium Leather": 1795029417
  },
  "wishes": {},
- "last_auto_digest": 1795008867
+ "last_auto_digest": 1795095454
 }
