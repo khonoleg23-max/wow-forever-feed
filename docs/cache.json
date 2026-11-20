@@ -1128,5 +1128,31 @@
   "engine": "free",
   "added": 1795142600,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383940": {
+  "guid": "https://www.wowhead.com/news=383940",
+  "title_en": "Skyborne Now Get Reputation Discount for Mounts in WoW: Forever But You'll Need A Lot of Runecloth",
+  "title_ru": "Skyborne теперь получает скидку на репутацию для маунтов в WoW: Forever, но вам понадобится много рунной ткани",
+  "summary_ru": "Скайборны теперь получают 10% скидку на репутацию для маунтов в WoW: Forever, когда они достигают уровня «Уважение». Приготовьте сдачу рунной ткани!\nWoW: Руководство по средствам передвижения Forever\nС выходом WoW: Forever игроки заметили, что Skyborne не получают 10%-ную скидку у продавцов средств передвижения. Благодаря новым исправлениям Blizzard исправила ситуацию с продавцом расовых средств передвижения Skyborne и теперь предоставляет скидку игрокам, удостоенным награды!\nЭто увеличивает стоимость Epic Riding.",
+  "link": "https://www.wowhead.com/news=383940/skyborne-now-get-reputation-discount-for-mounts-in-wow-forever-but-youll-need-a",
+  "pubDate": "Thu, 19 Nov 2026 22:35:14 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56194-skyborne-now-get-reputation-discount-for-mounts-in-wow-forever-but-youll-need-a.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795153992,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383939": {
+  "guid": "https://www.wowhead.com/news=383939",
+  "title_en": "Ret Paladin Bug Fix and Seed Hybridizer Available Again - WoW: Forever Hotfixes for November 19th",
+  "title_ru": "Исправление ошибок Ret Paladin и гибридизатор семян снова доступны — исправления WoW: Forever от 19 ноября",
+  "summary_ru": "Blizzard опубликовала сегодняшние исправления, в том числе исправление ошибки Ret Paladin и снова доступность гибридизатора семян!\nИсправления\n19 ноября 2026 г.\nКемпинг\nГибридизатор семян снова включен.\nГибридизация семян теперь имеет скорректированные значения, а также вероятность неудачи при объединении семян.\nРедкие семена трав больше нельзя использовать в гибридизаторе семян.",
+  "link": "https://www.wowhead.com/news=383939/ret-paladin-bug-fix-and-seed-hybridizer-available-again-wow-forever-hotfixes-for",
+  "pubDate": "Thu, 19 Nov 2026 22:03:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56193-ret-paladin-bug-fix-and-seed-hybridizer-available-again-wow-forever-hotfixes-for.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1795153998,
+  "webhook": true
  }
 }
