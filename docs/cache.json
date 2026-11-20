@@ -1154,5 +1154,31 @@
   "engine": "free",
   "added": 1795153998,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383890": {
+  "guid": "https://www.wowhead.com/news=383890",
+  "title_en": "Unlock a Dungeon Shortcut in WoW: Forever with the Compound Key",
+  "title_ru": "Разблокируйте ярлык подземелья в WoW: Forever с помощью составного ключа",
+  "summary_ru": "В одном из девяти новых подземелий World of Warcraft Forever, Крепости Крол'док, есть квест, в котором вы создадите ключ, который можно использовать для оптимизации будущих прохождений, открывая различные двери после его получения. \nРуководство по подземельям Крепости Крол'док\nКвест «Изготовление крольдока/Изготовление крольдока» можно получить у NPC в подземелье по имени Тунк.",
+  "link": "https://www.wowhead.com/news=383890/unlock-a-dungeon-shortcut-in-wow-forever-with-the-compound-key",
+  "pubDate": "Fri, 20 Nov 2026 10:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56145-unlock-a-dungeon-shortcut-in-wow-forever-with-the-compound-key.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795193391,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383933": {
+  "guid": "https://www.wowhead.com/news=383933",
+  "title_en": "Every Quest for Level 30 to 40 Dungeons in WoW: Forever",
+  "title_ru": "Все квесты в подземельях 30–40 уровней в WoW: Forever",
+  "summary_ru": "Вот все квесты для подземелий 30–40 уровней, которые помогут вам быстрее прокачать уровень в WoW: Forever!\nКаждое место квеста в подземельях\nВ группе подземелий с 30 по 40 уровни появилось одно новое подземелье WoW: Forever: The Drowned City. Городом Даларан управляют многие игроки в возрасте около 20 лет, но технически он также попадает в эту категорию, если вы ищете более легкий путь. Эти подземелья содержат множество новых квестов и боссов, которые нужно исследовать.",
+  "link": "https://www.wowhead.com/news=383933/every-quest-for-level-30-to-40-dungeons-in-wow-forever",
+  "pubDate": "Fri, 20 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56188-every-quest-for-level-30-to-40-dungeons-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795193396,
+  "webhook": true
  }
 }
