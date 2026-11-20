@@ -1206,5 +1206,18 @@
   "engine": "free",
   "added": 1795204291,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383946": {
+  "guid": "https://www.wowhead.com/news=383946",
+  "title_en": "Itemization of Crafted Tier Sets Revealed in WoW: Forever's First Raid Tier",
+  "title_ru": "В WoW: Forever's First Raid Tier представлен список созданных наборов уровней",
+  "summary_ru": "Характеристики созданных версий комплектов снаряжения первого уровня рейда были раскрыты в исправлении Forever!\nДополнительная информация:\nBlizzard подтвердила Wowhead, что эти характеристики предметов были раскрыты намеренно и их можно увидеть непосредственно в игре, поскольку запутывание предметов не распространяется на предметы от продавцов и рецепты. Они также подтвердили, что бонусы набора являются временными и будут обновляться в будущем.",
+  "link": "https://www.wowhead.com/news=383946/itemization-of-crafted-tier-sets-revealed-in-wow-forevers-first-raid-tier",
+  "pubDate": "Fri, 20 Nov 2026 14:51:19 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56201-itemization-of-crafted-tier-sets-revealed-in-wow-forevers-first-raid-tier.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795210658,
+  "webhook": true
  }
 }
