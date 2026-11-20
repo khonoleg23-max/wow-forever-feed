@@ -9,6 +9,70 @@ local function gold(s) return "|cffffd100" .. s .. "|r" end
 local function fmt(s) return (s:gsub("%*%*(.-)%*%*", "|cffffd100%1|r")) end
 local function norm(s) return (s:gsub("ё", "е"):gsub("Ё", "Е")) end
 local function level() return UnitLevel("player") or 1 end
+-- строчные буквы и для кириллицы (string.lower её не трогает)
+local LOW = {}
+do
+  local up, lo = {}, {}
+  for ch in ("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"):gmatch("[\192-\244][\128-\191]*") do up[#up + 1] = ch end
+  for ch in ("абвгдеёжзийклмнопрстуфхцчшщъыьэюя"):gmatch("[\192-\244][\128-\191]*") do lo[#lo + 1] = ch end
+  for i = 1, #up do LOW[up[i]] = lo[i] end
+end
+-- string.lower зависит от локали и может испортить UTF-8, поэтому латиницу — вручную
+local function lower(s)
+  s = s:gsub("[A-Z]", function(c) return string.char(c:byte() + 32) end)
+  return (s:gsub("[\192-\244][\128-\191]*", LOW)) end
+
+-- ---------- ветка талантов ----------
+-- выбранная вручную (/kadgar ветка, код из Discord) → определённая по вложенным очкам → ветка для прокачки
+local autoSpec, rebuildRec
+local function specIdx()
+  return (char and char.spec) or autoSpec or KG.defSpec[cls] or 1
+end
+local function spec()
+  return (KG.specs[cls] or {})[specIdx()] or { name = "?", talents = {}, rec = {} }
+end
+
+-- очки по веткам: через C_Traits (новое окно талантов), иначе GetTalentTabInfo
+local function countTrees()
+  local pts = { 0, 0, 0 }
+  pcall(function()
+    local cfg = C_ClassTalents.GetActiveConfigID()
+    local ci = C_Traits.GetConfigInfo(cfg)
+    for _, tree in ipairs(ci.treeIDs) do
+      for _, node in ipairs(C_Traits.GetTreeNodes(tree)) do
+        local ni = C_Traits.GetNodeInfo(cfg, node)
+        local r = ni and (ni.currentRank or ni.ranksPurchased) or 0
+        if r > 0 and ni.activeEntry then
+          local ei = C_Traits.GetEntryInfo(cfg, ni.activeEntry.entryID)
+          local di = ei and ei.definitionID and C_Traits.GetDefinitionInfo(ei.definitionID)
+          local t = di and KG.tree[di.spellID]
+          if t then pts[t] = pts[t] + r end
+        end
+      end
+    end
+  end)
+  if pts[1] + pts[2] + pts[3] == 0 and GetTalentTabInfo then
+    for i = 1, 3 do
+      local r = { pcall(GetTalentTabInfo, i) }
+      if r[1] then -- классика: имя, значок, очки; новее: id, имя, описание, значок, очки
+        pts[i] = (type(r[4]) == "number" and r[4]) or (type(r[6]) == "number" and r[6]) or 0
+      end
+    end
+  end
+  return pts
+end
+
+local function setAuto(pts)
+  local best, bi = 0, nil
+  for i = 1, 3 do
+    if (pts[i] or 0) > best then best, bi = pts[i], i end
+  end
+  if not bi or bi == autoSpec then return end
+  local was = autoSpec
+  autoSpec = bi
+  if rebuildRec then rebuildRec() end
+  if was and not char.spec then say("вижу, ты вкладываешь очки в ветку " .. gold(spec().name) .. " — советы теперь под неё.") end
+end
 
 -- ---------- рекомендации ----------
 local function zonesFor(lvl, n)
@@ -41,7 +105,7 @@ end
 
 local function talentNow(lvl)
   local now, nxt
-  for _, t in ipairs(KG.talents[cls] or {}) do
+  for _, t in ipairs(spec().talents) do
     if t[1] <= lvl then now = t elseif not nxt then nxt = t end
   end
   return now, nxt
@@ -57,7 +121,7 @@ end
 
 local function showPlan()
   local lvl = level()
-  say(gold(KG.className[cls] or "?") .. ", " .. lvl .. " ур. — что дальше:")
+  say(gold((KG.className[cls] or "?") .. " · " .. spec().name) .. ", " .. lvl .. " ур. — что дальше:")
   local z = zonesFor(lvl)
   print("  |cff69ccf0Зоны:|r " .. (#z > 0 and list(z) or "все подходящие пройдены — бери подземелья и задания-наводки"))
   local d = dungeonsFor(lvl)
@@ -67,7 +131,7 @@ local function showPlan()
     print("  |cff69ccf0Подземелья:|r " .. list(d))
   end
   local now, nxt = talentNow(lvl)
-  if lvl >= 10 and now then print("  |cff69ccf0Таланты:|r " .. fmt(now[2])) end
+  if lvl >= 10 and now then print("  |cff69ccf0Таланты (" .. spec().name .. "):|r " .. fmt(now[2])) end
   if nxt then print("  |cff69ccf0С " .. nxt[1] .. " ур.:|r " .. fmt(nxt[2])) end
   local soon = {}
   for _, s in ipairs(KG.skills[cls] or {}) do
@@ -86,7 +150,7 @@ local function onLevelUp(lvl)
   elseif lvl % 2 == 0 then
     lines[#lines + 1] = "загляни к тренеру — новые ранги"
   end
-  for _, t in ipairs(KG.talents[cls] or {}) do
+  for _, t in ipairs(spec().talents) do
     if t[1] == lvl then lines[#lines + 1] = "таланты: " .. fmt(t[2]) end
   end
   for _, d in ipairs(KG.dungeons) do
@@ -147,8 +211,9 @@ end
 
 -- ---------- импорт из Discord ----------
 local function import(code)
-  local c, lo, hi, dl, zl = code:match("^[Kk][Qq]1:(%a+):(%d+):(%d+):([%dx%.]+):([%dx%.]+)$")
-  if not c then say("не понял код. Пример: /kadgar KQ1:dru:20:24:4:5") return end
+  local c, lo, hi, dl, zl, sp = code:match("^[Kk][Qq]1:(%a+):(%d+):(%d+):([%dx%.]+):([%dx%.]+):([123])$")
+  if not c then c, lo, hi, dl, zl = code:match("^[Kk][Qq]1:(%a+):(%d+):(%d+):([%dx%.]+):([%dx%.]+)$") end
+  if not c then say("не понял код. Пример: /kadgar KQ1:dru:20:24:4:5:2") return end
   if c ~= cls then
     say("этот код для героя-" .. (KG.className[c] or c) .. ", а ты " .. (KG.className[cls] or "?") .. ". Зайди нужным героем.")
     return
@@ -156,7 +221,8 @@ local function import(code)
   local nd, nz = 0, 0
   for id in dl:gmatch("%d+") do char.dungeons[tonumber(id)] = true; nd = nd + 1 end
   for id in zl:gmatch("%d+") do char.zones[tonumber(id)] = true; nz = nz + 1 end
-  say("запомнил прогресс из Discord: подземелий " .. nd .. ", зон " .. nz .. ".")
+  if sp then char.spec = tonumber(sp); rebuildRec() end
+  say("запомнил прогресс из Discord: подземелий " .. nd .. ", зон " .. nz .. (sp and (", ветка " .. gold(spec().name)) or "") .. ".")
   showPlan()
 end
 
@@ -182,7 +248,13 @@ local function buildNames()
       if n and not byName[n] then byName[n] = id end
     end
   end
-  for id in pairs(KG.rec[cls] or {}) do
+  rebuildRec()
+end
+
+-- советованное — под текущую ветку
+rebuildRec = function()
+  for k in pairs(recName) do recName[k] = nil end
+  for id in pairs(spec().rec) do
     for _, n in ipairs({ spellName(id), KG.names[id] }) do recName[n] = true end
   end
   for id in pairs(KG.recLegacy or {}) do
@@ -204,7 +276,7 @@ local function annotate(tt, data)
   local id = type(data) == "table" and data.id or type(data) == "number" and data or nil
   if not (id and KG.notes[id]) then id = byName[title] end
   local note = id and KG.notes[id]
-  local rec = recName[title] or (id and ((KG.rec[cls] and KG.rec[cls][id]) or (KG.recLegacy and KG.recLegacy[id])))
+  local rec = recName[title] or (id and (spec().rec[id] or (KG.recLegacy and KG.recLegacy[id])))
   local learn
   for _, s in ipairs(KG.skills[cls] or {}) do
     if s[2] == title then learn = s[1] break end
@@ -243,16 +315,15 @@ local function buttonSpell(b)
   return type(di) == "table" and di.spellID or nil
 end
 
-local function maxed(b)
+-- взято рангов, всего рангов
+local function ranks(b)
   local ni = b.nodeInfo
   if not ni and type(b.GetNodeInfo) == "function" then
     local ok, r = pcall(b.GetNodeInfo, b)
     if ok then ni = r end
   end
-  if type(ni) == "table" and ni.maxRanks and ni.maxRanks > 0 then
-    return (ni.currentRank or ni.ranksPurchased or 0) >= ni.maxRanks
-  end
-  return false
+  if type(ni) == "table" then return ni.currentRank or ni.ranksPurchased or 0, ni.maxRanks or 0 end
+  return 0, 0
 end
 
 local function glow(b, on)
@@ -272,13 +343,22 @@ end
 local function paintTalents()
   local tf = PlayerSpellsFrame and PlayerSpellsFrame.TalentsFrame
   if not tf or not tf:IsVisible() or type(tf.EnumerateAllTalentButtons) ~= "function" then return end
-  local rec = KG.rec[cls] or {}
   local ok, iter = pcall(tf.EnumerateAllTalentButtons, tf)
   if not ok or not iter then return end
+  local buttons, pts = {}, { 0, 0, 0 }
   for b in iter do
     local sid = buttonSpell(b)
+    local cur, max = ranks(b)
+    local t = sid and KG.tree[sid]
+    if t then pts[t] = pts[t] + cur end
+    buttons[#buttons + 1] = { b, sid, cur, max }
+  end
+  setAuto(pts) -- ветку видно по вложенным очкам
+  local rec = spec().rec
+  for _, x in ipairs(buttons) do
+    local b, sid, cur, max = x[1], x[2], x[3], x[4]
     local name = sid and spellName(sid)
-    local on = db.tips ~= false and sid ~= nil and (rec[sid] or (name and recName[name])) and not maxed(b)
+    local on = db.tips ~= false and sid ~= nil and (rec[sid] or (name and recName[name])) and not (max > 0 and cur >= max)
     glow(b, on and true or false)
   end
 end
@@ -312,6 +392,7 @@ local function help()
   say("команды:")
   print("  /kadgar — куда идти, таланты, тренер")
   print("  /kadgar KQ1:… — вставить код из опроса в Discord")
+  print("  /kadgar ветка — какая ветка талантов; /kadgar ветка 2 или название — выбрать; авто — по очкам")
   print("  /kadgar зона — отметить текущую зону пройденной")
   print("  /kadgar тихо — вкл/выкл подсказки в чате")
   print("  /kadgar пояснения — вкл/выкл пояснения в подсказках")
@@ -324,6 +405,38 @@ SlashCmdList.KADGAR = function(msg)
   local low = msg:lower()
   if msg == "" then showPlan()
   elseif low:match("^kq1:") then import(msg)
+  elseif msg:match("^ветка") or low:match("^spec") then
+    local arg = msg:gsub("^%S+%s*", "")
+    local specs = KG.specs[cls] or {}
+    if arg == "" then
+      local how = char.spec and "выбрана тобой" or (autoSpec and "вижу по вложенным очкам" or "для прокачки по умолчанию")
+      say("ветка талантов: " .. gold(spec().name) .. " (" .. how .. ").")
+      for i, s in ipairs(specs) do
+        print("  " .. i .. ". " .. (i == specIdx() and gold(s.name) or s.name) .. " — " .. s.about
+          .. (i == KG.defSpec[cls] and " · советую для прокачки" or ""))
+      end
+      print("  Сменить: /kadgar ветка 2 (или название), /kadgar ветка авто")
+      return
+    end
+    if arg == "авто" or arg:lower() == "auto" then
+      char.spec = nil
+      setAuto(countTrees())
+      rebuildRec()
+      say("ветку определяю сам по очкам талантов: " .. gold(spec().name) .. ".")
+      return
+    end
+    local n = tonumber(arg)
+    if not n then
+      local a = lower(norm(arg))
+      for i, s in ipairs(specs) do
+        if lower(norm(s.name)):find(a, 1, true) == 1 then n = i end
+      end
+    end
+    if not specs[n or 0] then say("не знаю такую ветку. Напиши /kadgar ветка — покажу список.") return end
+    char.spec = n
+    rebuildRec()
+    paintTalents()
+    say("ветка " .. gold(spec().name) .. ". Подсказки и подсветка талантов — под неё.")
   elseif msg == "зона" or low == "zone" then
     local z = findZone(GetZoneText())
     if z then char.zones[z[1]] = true; say("«" .. z[2] .. "» отмечена пройденной.") else say("эту зону я не знаю.") end
@@ -343,7 +456,14 @@ f:RegisterEvent("PLAYER_LOGIN")
 f:RegisterEvent("PLAYER_LEVEL_UP")
 f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 f:RegisterEvent("PLAYER_ENTERING_WORLD")
+for _, e in ipairs({ "TRAIT_CONFIG_UPDATED", "PLAYER_TALENT_UPDATE", "CHARACTER_POINTS_CHANGED" }) do
+  pcall(f.RegisterEvent, f, e) -- каких-то событий в этом клиенте может не быть
+end
 f:SetScript("OnEvent", function(_, event, arg1)
+  if cls and (event == "TRAIT_CONFIG_UPDATED" or event == "PLAYER_TALENT_UPDATE" or event == "CHARACTER_POINTS_CHANGED") then
+    setAuto(countTrees())
+    return
+  end
   if event == "ADDON_LOADED" and arg1 == ADDON then
     KadgarGuideDB = KadgarGuideDB or {}
     db = KadgarGuideDB
@@ -357,6 +477,7 @@ f:SetScript("OnEvent", function(_, event, arg1)
   elseif event == "PLAYER_LOGIN" then
     cls = KG.token[select(2, UnitClass("player"))]
     char.lastLevel = char.lastLevel or level()
+    setAuto(countTrees())
     hookAll()
     if not char.greeted then
       char.greeted = true
@@ -365,6 +486,7 @@ f:SetScript("OnEvent", function(_, event, arg1)
   elseif event == "PLAYER_LEVEL_UP" then
     if cls then onLevelUp(arg1) end
   elseif cls and (event == "ZONE_CHANGED_NEW_AREA" or event == "PLAYER_ENTERING_WORLD") then
+    if event == "PLAYER_ENTERING_WORLD" then setAuto(countTrees()) end
     onZone()
   end
 end)
