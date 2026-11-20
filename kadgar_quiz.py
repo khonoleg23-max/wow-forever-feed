@@ -203,7 +203,7 @@ SKIP = {
     "sha": "Call of the Elements / Ancestors / Spirits и Totemic Call — по желанию.",
     "mag": "Усиление магии и Ослабление магии — бесполезны при прокачке. Ранги не-ледяных заклинаний бери в последнюю очередь.",
     "wlk": "Лишние проклятия и ранги демонов-помощников можно отложить.",
-    "dru": "Abolish Poison (хватит Cure Poison), Track Humanoids, Cower, Soothe Animal, Starfire, высокие ранги Гнева корней — пропусти.",
+    "dru": "Abolish Poison (хватит Cure Poison), Track Humanoids, Cower, Soothe Animal, Starfire, у Гнева деревьев (Entangling Roots) хватит 1-го ранга.",
 }
 
 AUTHOR = '(sdict "name" "Кадгар, хранитель знаний Кирин-Тора" "icon_url" "https://wow.zamimg.com/images/wow/icons/large/quest_khadgar.jpg")'
@@ -282,7 +282,7 @@ def final(cls: str) -> str:
     skills = ";".join(f"{a}|{n}" for a, n in SKILLS[cls])
     pick = (
         '{{$out := ""}}{{$n := 0}}{{range split @DATA@ ";"}}{{$f := split . "|"}}{{$a := toInt (index $f 2)}}{{$b := toInt (index $f 3)}}'
-        '{{if and (le $a @HI@) (ge $b @LO@) (not (in @DONE@ (index $f 0))) (lt $n 4)}}'
+        '{{if and (le $a @HI@) (ge $b (add @LO@ 2)) (not (in @DONE@ (index $f 0))) (lt $n 4)}}'
         '{{$out = print $out "• **" (index $f 1) "** (" $a "–" $b ") — " (index $f 4) "\\n"}}{{$n = add $n 1}}{{end}}{{end}}'
     )
     return "".join([
