@@ -1180,5 +1180,18 @@
   "engine": "free",
   "added": 1795193396,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383944": {
+  "guid": "https://www.wowhead.com/news=383944",
+  "title_en": "WoW: Forever Class Design, Patch 12.1.7, WoW Anniversary - WoW Weekly",
+  "title_ru": "WoW: Forever Class Design, обновление 12.1.7, годовщина WoW — WoW Weekly",
+  "summary_ru": "Blizzard подвела итоги некоторых крупнейших событий WoW на этой неделе, в том числе подкаст о дизайне классов WoW: Forever, подробности об обновлении 12.1.7, юбилейном мероприятии WoW и многом другом!\nОт подкаста WoW: Forever, посвященного дизайну классов, до появления 1 декабря Midnight: Echoes of the Worldcore, жутких наград Talebound, мифического снаряжения 2/6 в Лабиринте Кино'джана и празднования 22-й годовщины World of Warcraft — новости этой недели полны свежих историй, новых испытаний и",
+  "link": "https://www.wowhead.com/news=383944/wow-forever-class-design-patch-12-1-7-wow-anniversary-wow-weekly",
+  "pubDate": "Fri, 20 Nov 2026 12:02:14 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56197-wow-forever-class-design-patch-12-1-7-wow-anniversary-wow-weekly.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795200480,
+  "webhook": true
  }
 }
