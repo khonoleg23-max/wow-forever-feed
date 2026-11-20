@@ -1193,5 +1193,18 @@
   "engine": "free",
   "added": 1795200480,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383943": {
+  "guid": "https://www.wowhead.com/news=383943",
+  "title_en": "Layer Swap and Other Targeted Layering Addons Will Be Disabled Soon in WoW: Forever",
+  "title_ru": "Замена слоев и другие целевые дополнения к слоям скоро будут отключены в WoW: Forever",
+  "summary_ru": "Надстройки целевого многоуровневого отображения больше не будут работать в предстоящем исправлении для WoW: Forever, поскольку различные вызовы API, показывающие идентификатор области, скоро будут запутаны.\nОдним из популярных дополнений на CurseForge сейчас является Layer Swap, дополнение, которое помогает облегчить переключение между слоями. Игроки используют переключение слоев по многим причинам, но главная из них — найти новую фазу, когда на текущей есть конкуренция. Это также может помочь, когда у некоторых игроков возникают ошибки на определенных уровнях.",
+  "link": "https://www.wowhead.com/news=383943/layer-swap-and-other-targeted-layering-addons-will-be-disabled-soon-in-wow",
+  "pubDate": "Fri, 20 Nov 2026 13:00:55 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56198-layer-swap-and-other-targeted-layering-addons-will-be-disabled-soon-in-wow.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795204291,
+  "webhook": true
  }
 }
