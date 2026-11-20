@@ -230,46 +230,71 @@ def trigger() -> str:
         '{{sendMessage nil (complexMessage "reply" .Message.ID "embed" (cembed '
         f'"author" {AUTHOR} "color" {COLOR} '
         '"title" "🧭 Куда держать путь, герой?" '
-        '"description" "Ответь на пару вопросов — уровень, пройденные подземелья и зоны — и я подскажу, куда идти дальше, какие таланты брать и что выучить у тренера.\\n\\nКласс я узнаю по твоей роли на сервере. Ответы видишь только ты." '
-        '"footer" (sdict "text" "WoW Forever · Альянс · быстрый вариант: !ур 23")) '
+        '"description" "Ответь на пару вопросов — уровень, пройденные подземелья и зоны — и я подскажу, куда идти дальше, какие таланты брать и что выучить у тренера.\\n\\nВыбери героя — у каждого твинка свой прогресс, я его запомню. Ответы видишь только ты." '
+        '"footer" (sdict "text" "WoW Forever · Альянс · !герои — твои персонажи · !ур 23 — быстрый ответ")) '
         '"buttons" $b)}}'
     )
 
 
 def steps() -> str:
+    """Шаги опроса. Прогресс героя хранится в БД YAGPDB: ключ kq-<класс>, значение «lo-hi-подземелья-зоны»
+    (списки id через точку, «x» — пусто). Уже сохранённое помечается ✅ и складывается с новыми отметками."""
     cl = " ".join(f'"{k}" "{v[0]}"' for k, v in CLASSES.items())
+    em = " ".join(f'"{k}" "{v[1]}"' for k, v in CLASSES.items())
     rid = " ".join(f'"{k}" {ROLE_IDS[k]}' for k in CLASSES)
-    class_opts = " ".join(
-        f'(sdict "label" "{v[0]}" "value" "{k}" "emoji" (sdict "name" "{v[1]}"))' for k, v in CLASSES.items())
-    lvl_opts = " ".join(
-        f'(sdict "label" "{"60" if a == b else f"{a}–{b}"} уровень" "value" "{a}-{b}")' for a, b in LEVELS)
+    order = " ".join(CLASSES)
+    lv = ";".join(f"{a}-{b}" for a, b in LEVELS)
+
+    def opts(data: str, near: str) -> str:
+        # меню подземелий/зон: подходящие по уровню, сохранённые — с ✅
+        return (
+            f'{{{{range split {raw(data)} ";"}}}}{{{{$f := split . "|"}}}}{{{{$a := toInt (index $f 2)}}}}{{{{$b := toInt (index $f 3)}}}}'
+            f'{{{{if {near}}}}}{{{{$x := sdict "label" (index $f 1) "value" (index $f 0) "description" (print $a "–" $b " · " (index $f 4))}}}}'
+            '{{if in $SD (index $f 0)}}{{$x.Set "emoji" (sdict "name" "✅")}}{{$x.Set "description" (print "уже отмечено · " $a "–" $b)}}{{end}}'
+            '{{$o = $o.Append $x}}{{end}}{{end}}'
+        )
+
     return "".join([
         '{{$p := split (reReplace `^.*?kq-` .CustomID "") "-"}}{{$st := index $p 0}}',
-        f'{{{{$CL := sdict {cl}}}}}{{{{$RID := sdict {rid}}}}}',
+        f'{{{{$CL := sdict {cl}}}}}{{{{$EM := sdict {em}}}}}{{{{$RID := sdict {rid}}}}}',
         '{{$cls := ""}}{{$lo := 0}}{{$hi := 0}}{{$dl := "x"}}{{$first := eq $st "s"}}',
-        '{{if eq $st "s"}}{{range $k, $v := $RID}}{{if hasRoleID $v}}{{$cls = $k}}{{end}}{{end}}',
-        '{{if $cls}}{{$st = "L"}}{{else}}{{$st = "C"}}{{end}}',
+        '{{if eq $st "s"}}{{$st = "C"}}',
         '{{else if eq $st "c"}}{{$cls = index .Values 0}}{{$st = "L"}}',
         '{{else if eq $st "l"}}{{$cls = index $p 1}}{{$r := split (index .Values 0) "-"}}'
         '{{$lo = toInt (index $r 0)}}{{$hi = toInt (index $r 1)}}{{$st = "D"}}',
         '{{else if eq $st "d"}}{{$cls = index $p 1}}{{$lo = toInt (index $p 2)}}{{$hi = toInt (index $p 3)}}'
         '{{$v := cslice}}{{range .Values}}{{if ne . "x"}}{{$v = $v.Append .}}{{end}}{{end}}'
         '{{if $v}}{{$dl = joinStr "." $v.StringSlice}}{{end}}{{$st = "Z"}}{{end}}',
-        # выбор меню
+        # сохранённый прогресс героя этого класса
+        '{{$sav := "0-0-x-x"}}{{if $cls}}{{with dbGet .User.ID (print "kq-" $cls)}}{{$sav = print .Value}}{{end}}{{end}}',
+        '{{$sp := split $sav "-"}}{{$SD := split (index $sp 2) "."}}{{$SZ := split (index $sp 3) "."}}{{$SL := print (index $sp 0) "-" (index $sp 1)}}',
         '{{$txt := ""}}{{$menu := ""}}',
-        '{{if eq $st "C"}}{{$txt = "⚔️ Какой у тебя класс? (Совет: выбери классовую роль в «Каналы и роли» — тогда я узнаю сам.)"}}'
-        f'{{{{$menu = cmenu "type" "text" "custom_id" "kq-c" "placeholder" "Выбери класс" "options" (cslice {class_opts})}}}}',
-        '{{else if eq $st "L"}}{{$txt = print "Класс: **" ($CL.Get $cls) "**. 📈 Какого ты уровня?"}}'
-        f'{{{{$menu = cmenu "type" "text" "custom_id" (print "kq-l-" $cls) "placeholder" "Выбери уровень" "options" (cslice {lvl_opts})}}}}',
-        '{{else if eq $st "D"}}{{$o := cslice (sdict "label" "Ещё ни одного" "value" "x" "emoji" (sdict "name" "➖"))}}',
-        f'{{{{range split {raw(ddata())} ";"}}}}{{{{$f := split . "|"}}}}{{{{$a := toInt (index $f 2)}}}}{{{{$b := toInt (index $f 3)}}}}',
-        '{{if and (le $a (add $hi 2)) (ge $b (sub $lo 4))}}{{$o = $o.Append (sdict "label" (index $f 1) "value" (index $f 0) "description" (print $a "–" $b " · " (index $f 4)))}}{{end}}{{end}}',
-        '{{if eq (len $o) 1}}{{$st = "Z"}}{{else}}{{$txt = print "Уровень **" $lo "–" $hi "**. 🏰 Какие подземелья ты уже прошёл? (можно несколько)"}}',
+        # класс: всегда спрашиваем (твинки); класс роли — первым, у сохранённых — их уровень
+        '{{if eq $st "C"}}{{$mine := ""}}{{range $k, $v := $RID}}{{if hasRoleID $v}}{{$mine = $k}}{{end}}{{end}}',
+        '{{$sv := sdict}}{{range dbGetPattern .User.ID "kq-%" 10 0}}{{$sv.Set (reReplace `^kq-` .Key "") (print .Value)}}{{end}}',
+        '{{$o := cslice}}{{$top := ""}}',
+        f'{{{{range split "{order}" " "}}}}{{{{$k := .}}}}{{{{$d := ""}}}}{{{{if eq $k $mine}}}}{{{{$d = "твоя роль на сервере"}}}}{{{{end}}}}',
+        '{{with $sv.Get $k}}{{$r := split . "-"}}{{if $d}}{{$d = print $d " · "}}{{end}}{{$d = print $d "📌 сохранён: " (index $r 0) "–" (index $r 1) " ур."}}{{end}}',
+        '{{$x := sdict "label" ($CL.Get $k) "value" $k "emoji" (sdict "name" ($EM.Get $k))}}{{if $d}}{{$x.Set "description" $d}}{{end}}',
+        '{{if eq $k $mine}}{{$top = $x}}{{else}}{{$o = $o.Append $x}}{{end}}{{end}}',
+        '{{if $top}}{{$o = (cslice $top).AppendSlice $o}}{{end}}',
+        '{{$txt = "⚔️ Каким героем играешь сейчас? У каждого твинка — свой прогресс, я его запомню."}}',
+        '{{$menu = cmenu "type" "text" "custom_id" "kq-c" "placeholder" "Выбери класс героя" "options" $o}}',
+        # уровень
+        '{{else if eq $st "L"}}{{$txt = print "Герой: **" ($EM.Get $cls) " " ($CL.Get $cls) "**. 📈 Какого он уровня?"}}',
+        '{{if ne $SL "0-0"}}{{$txt = print $txt " (в прошлый раз: " $SL ")"}}{{end}}{{$o := cslice}}',
+        f'{{{{range split "{lv}" ";"}}}}{{{{$r := split . "-"}}}}{{{{$lab := print (index $r 0) "–" (index $r 1)}}}}{{{{if eq (index $r 0) (index $r 1)}}}}{{{{$lab = index $r 0}}}}{{{{end}}}}',
+        '{{$x := sdict "label" (print $lab " уровень") "value" .}}{{if eq . $SL}}{{$x.Set "emoji" (sdict "name" "📌")}}{{$x.Set "description" "как в прошлый раз"}}{{end}}{{$o = $o.Append $x}}{{end}}',
+        '{{$menu = cmenu "type" "text" "custom_id" (print "kq-l-" $cls) "placeholder" "Выбери уровень" "options" $o}}',
+        # подземелья
+        '{{else if eq $st "D"}}{{$o := cslice (sdict "label" "Ничего нового" "value" "x" "emoji" (sdict "name" "➖"))}}',
+        opts(ddata(), "and (le $a (add $hi 2)) (ge $b (sub $lo 4))"),
+        '{{if eq (len $o) 1}}{{$st = "Z"}}{{else}}{{$txt = print "Уровень **" $lo "–" $hi "**. 🏰 Какие подземелья ты уже прошёл? ✅ — я уже помню, отметь новые."}}',
         '{{$menu = cmenu "type" "text" "custom_id" (print "kq-d-" $cls "-" $lo "-" $hi) "placeholder" "Отметь пройденные" "min_values" 1 "max_values" (len $o) "options" $o}}{{end}}{{end}}',
-        '{{if eq $st "Z"}}{{$o := cslice (sdict "label" "Ещё нигде не был" "value" "x" "emoji" (sdict "name" "➖"))}}',
-        f'{{{{range split {raw(zdata())} ";"}}}}{{{{$f := split . "|"}}}}{{{{$a := toInt (index $f 2)}}}}{{{{$b := toInt (index $f 3)}}}}',
-        '{{if and (le $a (add $hi 1)) (ge $b (sub $lo 5))}}{{$o = $o.Append (sdict "label" (index $f 1) "value" (index $f 0) "description" (print $a "–" $b " · " (index $f 4)))}}{{end}}{{end}}',
-        '{{$txt = "🗺 В каких зонах ты уже выполнил задания? (можно несколько)"}}',
+        # зоны
+        '{{if eq $st "Z"}}{{$SD = $SZ}}{{$o := cslice (sdict "label" "Ничего нового" "value" "x" "emoji" (sdict "name" "➖"))}}',
+        opts(zdata(), "and (le $a (add $hi 1)) (ge $b (sub $lo 5))"),
+        '{{$txt = "🗺 В каких зонах ты уже выполнил задания? ✅ — я уже помню, отметь новые."}}',
         '{{$menu = cmenu "type" "text" "custom_id" (print "kq-z-" $cls "-" $lo "-" $hi "-" $dl) "placeholder" "Отметь зоны" "min_values" 1 "max_values" (len $o) "options" $o}}{{end}}',
         '{{if $first}}{{sendResponse nil (complexMessage "content" $txt "menus" $menu "ephemeral" true)}}',
         '{{else}}{{updateMessage (complexMessageEdit "content" $txt "menus" $menu)}}{{end}}',
@@ -287,7 +312,16 @@ def final(cls: str) -> str:
     )
     return "".join([
         '{{$p := split (reReplace `^.*?kq-z-` .CustomID "") "-"}}',
-        '{{$lo := toInt (index $p 1)}}{{$hi := toInt (index $p 2)}}{{$dd := split (index $p 3) "."}}{{$zd := .Values}}',
+        '{{$lo := toInt (index $p 1)}}{{$hi := toInt (index $p 2)}}',
+        # новые отметки + сохранённые ранее → сохранить героя
+        f'{{{{$key := "kq-{cls}"}}}}{{{{$sav := "0-0-x-x"}}}}{{{{with dbGet .User.ID $key}}}}{{{{$sav = print .Value}}}}{{{{end}}}}{{{{$sp := split $sav "-"}}}}',
+        '{{$dd := cslice}}{{range (split (index $p 3) ".")}}{{if ne . "x"}}{{$dd = $dd.Append .}}{{end}}{{end}}',
+        '{{range split (index $sp 2) "."}}{{if and (ne . "x") (not (in $dd .))}}{{$dd = $dd.Append .}}{{end}}{{end}}',
+        '{{$zd := cslice}}{{range .Values}}{{if ne . "x"}}{{$zd = $zd.Append .}}{{end}}{{end}}',
+        '{{range split (index $sp 3) "."}}{{if and (ne . "x") (not (in $zd .))}}{{$zd = $zd.Append .}}{{end}}{{end}}',
+        '{{$dj := "x"}}{{if $dd}}{{$dj = joinStr "." $dd.StringSlice}}{{end}}{{$zj := "x"}}{{if $zd}}{{$zj = joinStr "." $zd.StringSlice}}{{end}}',
+        '{{dbSet .User.ID $key (print $lo "-" $hi "-" $dj "-" $zj)}}',
+        f'{{{{$code := print "/kadgar KQ1:{cls}:" $lo ":" $hi ":" $dj ":" $zj}}}}',
         f'{{{{$Z := {raw(zdata())}}}}}{{{{$D := {raw(ddata())}}}}}',
         # зоны: сначала по уровню, иначе — следующие
         pick.replace("@DATA@", "$Z").replace("@HI@", "$hi").replace("@LO@", "$lo").replace("@DONE@", "$zd") + '{{$zones := $out}}',
@@ -315,15 +349,35 @@ def final(cls: str) -> str:
         '(sdict "name" "🗺 Куда идти" "value" $zones) '
         '(sdict "name" "🏰 Подземелья" "value" $dun) '
         f'(sdict "name" "🌟 Таланты · {spec}" "value" $tal) '
-        '(sdict "name" "📖 Тренер" "value" $sk)) '
+        '(sdict "name" "📖 Тренер" "value" $sk) '
+        '(sdict "name" "🧩 Для аддона KadgarGuide" "value" (print "Вставь в чат игры этим героем:\\n```" $code "```"))) '
         f'"description" "[Полный гайд по классу на Wowhead]({GUIDE.format(slug)}) · маршрут — в #📖-библиотека-даларана" '
-        '"footer" (sdict "text" "✨ — новое в WoW Forever · по гайдам Wowhead")))}}'
+        '"footer" (sdict "text" "💾 Герой сохранён — !герои покажет всех · ✨ — новое в WoW Forever")))}}'
+    ])
+
+
+def heroes() -> str:
+    """`!герои` — список сохранённых героев пользователя и коды для аддона."""
+    cl = " ".join(f'"{k}" "{v[0]}"' for k, v in CLASSES.items())
+    em = " ".join(f'"{k}" "{v[1]}"' for k, v in CLASSES.items())
+    return "".join([
+        f'{{{{$CL := sdict {cl}}}}}{{{{$EM := sdict {em}}}}}{{{{$out := ""}}}}',
+        '{{range dbGetPattern .User.ID "kq-%" 10 0}}{{$k := reReplace `^kq-` .Key ""}}{{$r := split (print .Value) "-"}}',
+        '{{$nd := 0}}{{if ne (index $r 2) "x"}}{{$nd = len (split (index $r 2) ".")}}{{end}}',
+        '{{$nz := 0}}{{if ne (index $r 3) "x"}}{{$nz = len (split (index $r 3) ".")}}{{end}}',
+        '{{$out = print $out ($EM.Get $k) " **" ($CL.Get $k) "** — " (index $r 0) "–" (index $r 1) " ур. · подземелий: " $nd " · зон: " $nz ',
+        '"\\n`/kadgar KQ1:" $k ":" (index $r 0) ":" (index $r 1) ":" (index $r 2) ":" (index $r 3) "`\\n"}}{{end}}',
+        '{{if not $out}}{{$out = "Пока пусто. Напиши «Кадгар, что мне делать дальше?» и пройди опрос — я запомню героя."}}{{end}}',
+        '{{sendMessage nil (complexMessage "reply" .Message.ID "embed" (cembed '
+        f'"author" {AUTHOR} "color" {COLOR} '
+        '"title" (print "🛡 Герои " .User.Username) "description" $out '
+        '"footer" (sdict "text" "Код вставь в чат игры героем этого класса — аддон KadgarGuide учтёт прогресс")))}}',
     ])
 
 
 def main() -> None:
     OUT.mkdir(exist_ok=True)
-    files = {"01_trigger.gotmpl": trigger(), "02_steps.gotmpl": steps()}
+    files = {"01_trigger.gotmpl": trigger(), "02_steps.gotmpl": steps(), "03_heroes.gotmpl": heroes()}
     for c in CLASSES:
         files[f"10_final_{c}.gotmpl"] = final(c)
     for name, text in files.items():
