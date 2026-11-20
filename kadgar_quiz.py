@@ -16,7 +16,9 @@ from pathlib import Path
 OUT = Path(__file__).parent / "yagpdb"
 LIMIT = 10_000
 
-# ключ: (роль на сервере, эмодзи, ветка для прокачки, ссылка-гайд)
+# ключ: (класс, эмодзи, ветка для прокачки, ссылка-гайд)
+# ID классовых ролей на сервере WoW Forever (по ним бот узнаёт класс)
+ROLE_IDS = {'war': '1570687511083098132', 'pal': '1570687683209207839', 'hun': '1570687696161214556', 'rog': '1570687983907246240', 'pri': '1570688060490776628', 'sha': '1570688087007428700', 'mag': '1570688160621400074', 'wlk': '1570688187091656755', 'dru': '1570688266028711936'}
 CLASSES = {
     "war": ("Воин", "⚔️", "Оружие (Arms)", "warrior/arms"),
     "pal": ("Паладин", "🔨", "Воздаяние (Retribution)", "paladin/retribution"),
@@ -236,15 +238,16 @@ def trigger() -> str:
 
 def steps() -> str:
     cl = " ".join(f'"{k}" "{v[0]}"' for k, v in CLASSES.items())
+    rid = " ".join(f'"{k}" {ROLE_IDS[k]}' for k in CLASSES)
     class_opts = " ".join(
         f'(sdict "label" "{v[0]}" "value" "{k}" "emoji" (sdict "name" "{v[1]}"))' for k, v in CLASSES.items())
     lvl_opts = " ".join(
         f'(sdict "label" "{"60" if a == b else f"{a}–{b}"} уровень" "value" "{a}-{b}")' for a, b in LEVELS)
     return "".join([
         '{{$p := split (reReplace `^.*?kq-` .CustomID "") "-"}}{{$st := index $p 0}}',
-        f'{{{{$CL := sdict {cl}}}}}',
+        f'{{{{$CL := sdict {cl}}}}}{{{{$RID := sdict {rid}}}}}',
         '{{$cls := ""}}{{$lo := 0}}{{$hi := 0}}{{$dl := "x"}}{{$first := eq $st "s"}}',
-        '{{if eq $st "s"}}{{range $k, $v := $CL}}{{if hasRoleName $v}}{{$cls = $k}}{{end}}{{end}}',
+        '{{if eq $st "s"}}{{range $k, $v := $RID}}{{if hasRoleID $v}}{{$cls = $k}}{{end}}{{end}}',
         '{{if $cls}}{{$st = "L"}}{{else}}{{$st = "C"}}{{end}}',
         '{{else if eq $st "c"}}{{$cls = index .Values 0}}{{$st = "L"}}',
         '{{else if eq $st "l"}}{{$cls = index $p 1}}{{$r := split (index .Values 0) "-"}}'
