@@ -62,7 +62,7 @@ local function showPlan()
   print("  |cff69ccf0Зоны:|r " .. (#z > 0 and list(z) or "все подходящие пройдены — бери подземелья и задания-наводки"))
   local d = dungeonsFor(lvl)
   if lvl < 13 then
-    print("  |cff69ccf0Подземелья:|r с 13 ур. — Чертоги Танов под Стальгорном")
+    print("  |cff69ccf0Подземелья:|r с 13 ур. — Чертоги танов под Стальгорном")
   elseif #d > 0 then
     print("  |cff69ccf0Подземелья:|r " .. list(d))
   end
@@ -160,8 +160,37 @@ local function import(code)
   showPlan()
 end
 
--- ---------- подсказки к способностям ----------
-local function annotate(tt)
+-- ---------- подсказки к способностям, талантам и Наследию ----------
+-- Пояснения привязаны к ID заклинаний; названия берём из самого клиента, поэтому всё по-русски.
+local byName, recName = {}, {}
+
+local function spellName(id)
+  if C_Spell and C_Spell.GetSpellName then
+    local ok, n = pcall(C_Spell.GetSpellName, id)
+    if ok and n then return n end
+  end
+  if GetSpellInfo then
+    local ok, n = pcall(GetSpellInfo, id)
+    if ok and n then return n end
+  end
+  return KG.names[id]
+end
+
+local function buildNames()
+  for id in pairs(KG.notes) do
+    for _, n in ipairs({ spellName(id), KG.names[id] }) do
+      if n and not byName[n] then byName[n] = id end
+    end
+  end
+  for id in pairs(KG.rec[cls] or {}) do
+    for _, n in ipairs({ spellName(id), KG.names[id] }) do recName[n] = true end
+  end
+  for id in pairs(KG.recLegacy or {}) do
+    for _, n in ipairs({ spellName(id), KG.names[id] }) do recName[n] = true end
+  end
+end
+
+local function annotate(tt, data)
   if not tt or not db or db.tips == false or not tt.GetName or not tt.NumLines then return end
   local n = tt:GetName()
   local line = n and _G[n .. "TextLeft1"]
@@ -172,15 +201,17 @@ local function annotate(tt)
     local t = l and l:GetText()
     if t and (t:find("^Кадгар: ") or t:find("^★ Советую")) then return end
   end
-  local note = KG.notes[title]
-  local rec = KG.rec[cls] and KG.rec[cls][title]
+  local id = type(data) == "table" and data.id or type(data) == "number" and data or nil
+  if not (id and KG.notes[id]) then id = byName[title] end
+  local note = id and KG.notes[id]
+  local rec = recName[title] or (id and ((KG.rec[cls] and KG.rec[cls][id]) or (KG.recLegacy and KG.recLegacy[id])))
   local learn
   for _, s in ipairs(KG.skills[cls] or {}) do
     if s[2] == title then learn = s[1] break end
   end
   if not note and not rec then return end
   if note then tt:AddLine("Кадгар: " .. note, 0.41, 0.8, 0.94, true) end
-  if rec then tt:AddLine("★ Советую в прокачке (с " .. rec .. " ур.)", 1, 0.82, 0, true) end
+  if rec then tt:AddLine("★ Советую в прокачке", 0.3, 1, 0.4, true) end
   if learn and learn > level() then tt:AddLine("У тренера с " .. learn .. " ур.", 0.7, 0.7, 0.7, true) end
   tt:Show()
 end
@@ -188,18 +219,92 @@ end
 local function hookTooltip(tt)
   if not tt or tt.kgHooked then return end
   tt.kgHooked = true
-  tt:HookScript("OnShow", annotate)
-  pcall(tt.HookScript, tt, "OnTooltipSetSpell", annotate)
-  for _, m in ipairs({ "SetTalent", "SetSpellBookItem", "SetSpell", "SetSpellByID", "SetAction" }) do
-    if tt[m] then hooksecurefunc(tt, m, annotate) end
+  tt:HookScript("OnShow", function(s) annotate(s) end)
+  pcall(tt.HookScript, tt, "OnTooltipSetSpell", function(s) annotate(s) end)
+  for _, m in ipairs({ "SetTalent", "SetSpellBookItem", "SetSpell", "SetAction" }) do
+    if tt[m] then hooksecurefunc(tt, m, function(s) annotate(s) end) end
+  end
+  if tt.SetSpellByID then hooksecurefunc(tt, "SetSpellByID", function(s, sid) annotate(s, sid) end) end
+end
+
+-- подсветка советованных талантов в окне талантов (зелёная рамка, пока талант не взят до конца)
+local function buttonSpell(b)
+  for _, m in ipairs({ "GetSpellID", "GetBaseSpellID" }) do
+    if type(b[m]) == "function" then
+      local ok, sid = pcall(b[m], b)
+      if ok and type(sid) == "number" and sid > 0 then return sid end
+    end
+  end
+  local di = b.definitionInfo
+  if not di and type(b.GetDefinitionInfo) == "function" then
+    local ok, r = pcall(b.GetDefinitionInfo, b)
+    if ok then di = r end
+  end
+  return type(di) == "table" and di.spellID or nil
+end
+
+local function maxed(b)
+  local ni = b.nodeInfo
+  if not ni and type(b.GetNodeInfo) == "function" then
+    local ok, r = pcall(b.GetNodeInfo, b)
+    if ok then ni = r end
+  end
+  if type(ni) == "table" and ni.maxRanks and ni.maxRanks > 0 then
+    return (ni.currentRank or ni.ranksPurchased or 0) >= ni.maxRanks
+  end
+  return false
+end
+
+local function glow(b, on)
+  if on and not b.kgGlow then
+    local t = b:CreateTexture(nil, "OVERLAY", nil, 7)
+    t:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+    t:SetBlendMode("ADD")
+    t:SetVertexColor(0.3, 1, 0.4)
+    local w = (b.GetWidth and b:GetWidth()) or 40
+    t:SetSize(w * 1.8, w * 1.8)
+    t:SetPoint("CENTER", b, "CENTER")
+    b.kgGlow = t
+  end
+  if b.kgGlow then b.kgGlow:SetShown(on) end
+end
+
+local function paintTalents()
+  local tf = PlayerSpellsFrame and PlayerSpellsFrame.TalentsFrame
+  if not tf or not tf:IsVisible() or type(tf.EnumerateAllTalentButtons) ~= "function" then return end
+  local rec = KG.rec[cls] or {}
+  local ok, iter = pcall(tf.EnumerateAllTalentButtons, tf)
+  if not ok or not iter then return end
+  for b in iter do
+    local sid = buttonSpell(b)
+    local name = sid and spellName(sid)
+    local on = db.tips ~= false and sid ~= nil and (rec[sid] or (name and recName[name])) and not maxed(b)
+    glow(b, on and true or false)
   end
 end
 
+local ticker
+local function hookTalentFrame()
+  local tf = PlayerSpellsFrame and PlayerSpellsFrame.TalentsFrame
+  if not tf or tf.kgHooked then return end
+  tf.kgHooked = true
+  tf:HookScript("OnShow", function()
+    paintTalents()
+    if ticker then ticker:Cancel() end
+    ticker = C_Timer.NewTicker(0.5, paintTalents)
+  end)
+  tf:HookScript("OnHide", function() if ticker then ticker:Cancel(); ticker = nil end end)
+  if tf:IsVisible() then paintTalents() end
+end
+
 local function hookAll()
+  buildNames()
   hookTooltip(GameTooltip)
   if TooltipDataProcessor and TooltipDataProcessor.AddTooltipPostCall then
     pcall(TooltipDataProcessor.AddTooltipPostCall, TooltipDataProcessor.AllTypes, annotate)
   end
+  local loaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+  if loaded and loaded("Blizzard_PlayerSpells") then hookTalentFrame() end
 end
 
 -- ---------- команды ----------
@@ -247,6 +352,8 @@ f:SetScript("OnEvent", function(_, event, arg1)
     KadgarGuideChar = KadgarGuideChar or {}
     char = KadgarGuideChar
     char.zones, char.dungeons, char.warned = char.zones or {}, char.dungeons or {}, char.warned or {}
+  elseif event == "ADDON_LOADED" and arg1 == "Blizzard_PlayerSpells" then
+    if cls then hookTalentFrame() end
   elseif event == "PLAYER_LOGIN" then
     cls = KG.token[select(2, UnitClass("player"))]
     char.lastLevel = char.lastLevel or level()

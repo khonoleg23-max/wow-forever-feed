@@ -1,1 +1,10 @@
 __pycache__/
+# сырые данные Wowhead (перекачиваются скриптами addon_src/)
+addon_src/legacy.js
+addon_src/legacy_ru.js
+addon_src/talents.js
+addon_src/talents_ru.js
+addon_src/abil_ru.json
+addon_src/digest.txt
+addon_src/__pycache__/
+__pycache__/
