@@ -1,0 +1,12 @@
+## Interface: 16001
+## Title: |cff69ccf0Кадгар:|r путеводитель
+## Notes: Подсказки по прокачке (зоны, подземелья, таланты, тренер) и короткие пояснения к способностям, талантам и Наследию. /kadgar
+## Author: WoW Forever (Discord)
+## Version: 1.0.0
+## IconTexture: Interface\Icons\INV_Misc_Book_09
+## SavedVariables: KadgarGuideDB
+## SavedVariablesPerCharacter: KadgarGuideChar
+
+Data.lua
+Notes.lua
+Core.lua
