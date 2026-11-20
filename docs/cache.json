@@ -1089,5 +1089,44 @@
   "engine": "free",
   "added": 1795129985,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383938": {
+  "guid": "https://www.wowhead.com/news=383938",
+  "title_en": "Blizzard Investigating Several Bugged Quests in WoW: Forever",
+  "title_ru": "Blizzard расследует несколько ошибочных квестов в WoW: Forever",
+  "summary_ru": "Официальный аккаунт BlizzardCS прокомментировал несколько квестов в базе данных Wowhead, давая игрокам понять, что они расследуют ошибки.\nПоскольку Blizzard продолжает исправлять ошибки, три квеста («Зов Земли», «Выжидание нашего времени» и «Знахарь Тиик») были конкретно названы неработающими должным образом, и BlizzardCS заявила, что проблемы изучаются.",
+  "link": "https://www.wowhead.com/news=383938/blizzard-investigating-several-bugged-quests-in-wow-forever",
+  "pubDate": "Thu, 19 Nov 2026 20:09:09 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56191-blizzard-investigating-several-bugged-quests-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795142589,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383928": {
+  "guid": "https://www.wowhead.com/news=383928",
+  "title_en": "Blizzard Addresses Spell Power Gear Shortage in WoW: Forever",
+  "title_ru": "Blizzard решает проблему нехватки снаряжения с силой заклинаний в WoW: Forever",
+  "summary_ru": "В последнем выпуске подкаста WoW: Forever разработчики Крис Зирхут и Эйдан Мун высказывают обеспокоенность по поводу нехватки снаряжения для силы заклинаний в WoW: Forever.\nПо мере того, как игроки повышают уровень своих магов, чернокнижников и других классов заклинателей, они заметили отсутствие в игре надлежащего снаряжения для силы заклинаний. В WoW: Forever у классов заклинателей был уменьшен базовый урон, но предполагалось, что для компенсации этого будет добавлено новое снаряжение, поэтому получение снаряжения казалось таким же важным, как и для классов ближнего боя.",
+  "link": "https://www.wowhead.com/news=383928/blizzard-addresses-spell-power-gear-shortage-in-wow-forever",
+  "pubDate": "Thu, 19 Nov 2026 18:42:07 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56183-blizzard-addresses-spell-power-gear-shortage-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795142594,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383937": {
+  "guid": "https://www.wowhead.com/news=383937",
+  "title_en": "Some EU Players Reporting Issues with PvP Queues and Honor Gains in WoW: Forever",
+  "title_ru": "Некоторые игроки из ЕС сообщают о проблемах с PvP-очередями и получением чести в WoW: Forever",
+  "summary_ru": "Некоторые игроки из ЕС сообщают о проблемах с очередями PvP, из-за чего очереди на поле боя не появляются. \nСудя по многочисленным сообщениям на форумах и Reddit, у некоторых игроков на серверах ЕС возникают проблемы с PvP-системой в WoW: Foirever. Отчеты этих игроков показывают, что они не смогут заставить свои очереди на поле боя появляться, если они не будут многоуровневыми. \nИзображение: Битва.",
+  "link": "https://www.wowhead.com/news=383937/some-eu-players-reporting-issues-with-pvp-queues-and-honor-gains-in-wow-forever",
+  "pubDate": "Thu, 19 Nov 2026 17:20:47 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56190-some-eu-players-reporting-issues-with-pvp-queues-and-honor-gains-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795142600,
+  "webhook": true
  }
 }
