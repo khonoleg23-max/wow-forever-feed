@@ -1232,5 +1232,18 @@
   "engine": "free",
   "added": 1795221952,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383934": {
+  "guid": "https://www.wowhead.com/news=383934",
+  "title_en": "All Quests for New Alcaz Prison Dungeon in WoW: Forever",
+  "title_ru": "Все квесты нового подземелья тюрьмы Алькас в WoW: Forever",
+  "summary_ru": "Тюрьма Алькас, расположенная в Пылевых болотах, — это новое подземелье для игроков примерно 50-го уровня в WoW: Forever. Вот все квесты в подземельях, которые вам следует выполнить!\nТюрьма Алькас\nТюрьма Альказ находится на острове Альказ, одиноком острове в северо-восточной части Пылевых топей. Это подземелье короче и, вероятно, займет всего около 30 минут. \nВсе квесты в тюрьме Альказ получить довольно легко. Вы получаете по три квеста для каждой фракции за пределами подземелья, а также один секретный квест внутри подземелья.",
+  "link": "https://www.wowhead.com/news=383934/all-quests-for-new-alcaz-prison-dungeon-in-wow-forever",
+  "pubDate": "Sat, 21 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56195-all-quests-for-new-alcaz-prison-dungeon-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795278931,
+  "webhook": true
  }
 }
