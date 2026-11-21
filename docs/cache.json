@@ -1245,5 +1245,18 @@
   "engine": "free",
   "added": 1795278931,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383950": {
+  "guid": "https://www.wowhead.com/news=383950",
+  "title_en": "Maximum Dungeons Per Hour Reduced in WoW: Forever Hotfix - Solo Gold Farming Nerf?",
+  "title_ru": "В WoW: Forever Hotfix уменьшено максимальное количество подземелий в час — ослабление одиночного фарма золота?",
+  "summary_ru": "Blizzard сократила максимальное количество подземелий, которые игроки могут проходить в час в WoW: Forever. \nВо вчерашних исправлениях Blizzard объявила, что сократила максимальное количество подземелий до пяти в час. WoW: Forever запущен с блокировкой 10 подземелий в час, и это ослабление делает ее такой же, как и оригинальная блокировка классической эпохи. Неясно, было ли увеличение до 10 подземелий в час намеренным или побочным эффектом использования современного клиента.",
+  "link": "https://www.wowhead.com/news=383950/maximum-dungeons-per-hour-reduced-in-wow-forever-hotfix-solo-gold-farming-nerf",
+  "pubDate": "Sat, 21 Nov 2026 13:26:27 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56205-maximum-dungeons-per-hour-reduced-in-wow-forever-hotfix-solo-gold-farming-nerf.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795293024,
+  "webhook": true
  }
 }
