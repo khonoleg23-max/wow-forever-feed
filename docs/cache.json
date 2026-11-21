@@ -1219,5 +1219,18 @@
   "engine": "free",
   "added": 1795210658,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383949": {
+  "guid": "https://www.wowhead.com/news=383949",
+  "title_en": "LFG Bug Fix Causes Players to See More Groups - WoW: Forever Hotfixes for November 20, 2026",
+  "title_ru": "Исправление ошибки LFG заставляет игроков видеть больше групп - WoW: Forever Hotfixes от 20 ноября 2026 г.",
+  "summary_ru": "Blizzard опубликовала исправления на сегодня, которые содержат исправление ошибки, из-за которой игроки видят в LFG меньше групп, чем предполагалось. \nИсправления\n20 ноября 2026 г.\nКлассы\nРазбойник\n Бой\n «Шквал клинков» теперь корректно наносит урон Шэнку по дополнительной цели.\nЧернокнижник\nДемонология\n Исправлена ошибка, из-за которой эффекты таланта «Демоническая эгида» могли быть мгновенно перенесены в вашу броню или шкуру демона, а затем без таланта сохранить эффекты.",
+  "link": "https://www.wowhead.com/news=383949/lfg-bug-fix-causes-players-to-see-more-groups-wow-forever-hotfixes-for-november",
+  "pubDate": "Fri, 20 Nov 2026 18:23:36 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56204-lfg-bug-fix-causes-players-to-see-more-groups-wow-forever-hotfixes-for-november.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795221952,
+  "webhook": true
  }
 }
