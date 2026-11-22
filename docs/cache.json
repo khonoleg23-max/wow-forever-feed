@@ -1271,5 +1271,31 @@
   "engine": "free",
   "added": 1795360321,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383954": {
+  "guid": "https://www.wowhead.com/news=383954",
+  "title_en": "World Buffs Removed on Any Loading Screen in WoW: Forever",
+  "title_ru": "Мировые усиления удалены с любого экрана загрузки в WoW: Forever",
+  "summary_ru": "Мировые усиления теперь снимаются при каждом срабатывании экрана загрузки, что не позволяет игрокам использовать их в подземельях или на противоположном континенте.\nМировые усиления являются огромным усилением для персонажей, и хотя они не работают в рейдах в WoW: Forever, они работают на открытом воздухе и в подземельях. Некоторые из наиболее распространенных усилений на данный момент — это «Благословение вождя» или «Мощь Штормграда», получаемые при сдаче головы Ренда Чернорука и «Мокси» Мол'дара, «Свирепость Фенгуса» и «Сообразительность Слип'кика» при прохождении дани Забытого Города.",
+  "link": "https://www.wowhead.com/news=383954/world-buffs-removed-on-any-loading-screen-in-wow-forever",
+  "pubDate": "Sun, 22 Nov 2026 13:01:53 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56206-world-buffs-removed-on-any-loading-screen-in-wow-forever.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1795375268,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383947": {
+  "guid": "https://www.wowhead.com/news=383947",
+  "title_en": "The Weekly Reset with Taliesin and Evitel: Gold in Forever",
+  "title_ru": "Еженедельный сброс с Талиесином и Эвителом: золото навсегда",
+  "summary_ru": "Талиесин и Эвител освещают последние новости и глубоко погружаются в соответствующие темы в «Еженедельной перезагрузке». На этой неделе последние новости Forever и Retail, а также споры о золотодобывающих фермах в Forever.",
+  "link": "https://www.wowhead.com/news=383947/the-weekly-reset-with-taliesin-and-evitel-gold-in-forever",
+  "pubDate": "Sun, 22 Nov 2026 13:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56200-the-weekly-reset-with-taliesin-and-evitel-gold-in-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795375273,
+  "webhook": true
  }
 }
