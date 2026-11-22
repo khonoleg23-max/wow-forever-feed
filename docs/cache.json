@@ -1297,5 +1297,18 @@
   "engine": "free",
   "added": 1795375273,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383956": {
+  "guid": "https://www.wowhead.com/news=383956",
+  "title_en": "Players Can No Longer Peek Inside Lockboxes in WoW: Forever to Fix New Exploit",
+  "title_ru": "Игроки больше не могут заглядывать в сейфы в WoW: Forever, чтобы исправить новую уязвимость",
+  "summary_ru": "Благодаря недавним исправлениям игроки больше не могут заглядывать внутрь сейфов в WoW: Forever, вероятно, из-за уязвимости Lockbox.\nНедавно был обнаружен эксплойт с сейфом, который начал распространяться в сообществе. Раньше игроки могли отключить автоматическую добычу и проверить содержимое неразграбленного сейфа. Поскольку мифриловый сейф содержит некоторые очень важные и дорогие предметы, такие как рецепты, некоторым мошенникам было интересно посмотреть, что находится внутри, прежде чем отправить его обратно предполагаемому владельцу.",
+  "link": "https://www.wowhead.com/news=383956/players-can-no-longer-peek-inside-lockboxes-due-to-reroll-exploit",
+  "pubDate": "Sun, 22 Nov 2026 15:00:03 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56208-players-can-no-longer-peek-inside-lockboxes-due-to-reroll-exploit.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1795381909,
+  "webhook": true
  }
 }
