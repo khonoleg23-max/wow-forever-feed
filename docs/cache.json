@@ -1258,5 +1258,18 @@
   "engine": "free",
   "added": 1795293024,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383884": {
+  "guid": "https://www.wowhead.com/news=383884",
+  "title_en": "The Best Way to Level Lockpicking to Max in WoW: Forever",
+  "title_ru": "Лучший способ прокачать взлом замков до максимального уровня в WoW: Forever",
+  "summary_ru": "Взлом замков — это навык, который дает разбойникам полезные функции, например, открытие замков по просьбе игроков или открытие сундуков или дверей в подземельях. В Classic World of Warcraft у Разбойников был метод прокачки взломов замков, но в WoW: Forever его ослабили, заставив игроков искать альтернативные методы прокачки. \nРаньше Разбойники отправлялись в Глубины Черной горы, открывая три двери, для которых требовался Ключ Теневой Кузницы, и открывая замок Теневой Кузницы.",
+  "link": "https://www.wowhead.com/news=383884/the-best-way-to-level-lockpicking-to-max-in-wow-forever",
+  "pubDate": "Sun, 22 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56144-the-best-way-to-level-lockpicking-to-max-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795360321,
+  "webhook": true
  }
 }
