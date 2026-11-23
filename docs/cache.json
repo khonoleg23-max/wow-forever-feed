@@ -1323,5 +1323,18 @@
   "engine": "free",
   "added": 1795392506,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383955": {
+  "guid": "https://www.wowhead.com/news=383955",
+  "title_en": "Uldaman Boss No Longer Drops Loot - Nerf to Gold Farming Strategy",
+  "title_ru": "С босса Ульдамана больше не сбрасывается добыча — стратегия фарма ослабления золота",
+  "summary_ru": "The loot from one of the bosses in Uldaman has been completely removed, likely due to an efficient gold farm.\nУльдаманское подземелье\nThe Obsidian Sentinel is one of the bosses in the Uldaman dungeon and it's located just inside the back entrance of Uldaman. Этот босс доступен сразу, без необходимости дополнительного мусора, что позволяет фермерам-одиночкам быстро убить босса высокого уровня и гарантировать себе добычу.",
+  "link": "https://www.wowhead.com/news=383955/uldaman-boss-no-longer-drops-loot-nerf-targets-gold-farming-strategy",
+  "pubDate": "Sun, 22 Nov 2026 19:00:37 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56207-uldaman-boss-no-longer-drops-loot-nerf-targets-gold-farming-strategy.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795402048,
+  "webhook": true
  }
 }
