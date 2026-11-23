@@ -1336,5 +1336,18 @@
   "engine": "free",
   "added": 1795402048,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383963": {
+  "guid": "https://www.wowhead.com/news=383963",
+  "title_en": "Blizzard Announces Lockbox Change is Temporary in WoW: Forever - Peeking Inside Lockboxes Will Return",
+  "title_ru": "Blizzard объявляет, что изменение сундуков в WoW: Forever временное — возможность заглядывать внутрь сундуков вернется",
+  "summary_ru": "Blizzard объявила, что изменение сундука носит временный характер, пока они работают над исправлением. \nВчера на действующие серверы было добавлено исправление, которое лишило игроков возможности заглядывать внутрь сейфов. Blizzard объявила, что это изменение носит временный характер, и они работают над исправлением, которое позволит игрокам продолжать заглядывать внутрь сейфов. \nПодтверждаю, что изменение поведения сейфа было внесено вчера в 9:55 утра по тихоокеанскому времени в качестве временной меры.",
+  "link": "https://www.wowhead.com/news=383963/blizzard-announces-lockbox-change-is-temporary-and-peeking-inside-lockboxes-will",
+  "pubDate": "Mon, 23 Nov 2026 10:33:33 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56213-blizzard-announces-lockbox-change-is-temporary-and-peeking-inside-lockboxes-will.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795452683,
+  "webhook": true
  }
 }
