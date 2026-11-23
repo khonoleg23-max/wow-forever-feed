@@ -1349,5 +1349,31 @@
   "engine": "free",
   "added": 1795452683,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383967": {
+  "guid": "https://www.wowhead.com/news=383967",
+  "title_en": "World Buffs Now Persist Through Loading Screen & Nerf to Dire Maul Tribute Buff - World Buff Hotfixes in WoW: Forever",
+  "title_ru": "Мировые усиления теперь сохраняются на экране загрузки и ослаблении усиления дани Забытому Городу — исправления мировых усилений в WoW: Forever",
+  "summary_ru": "Мировые усиления теперь сохраняются на загрузочных экранах в WoW: Forever, однако один из усилений «Дани Забытому Городу» был ослаблен.\nМировые усиления на экране загрузки\nКак сообщалось ранее, за последние пару дней были исправлены мировые усиления, и они удалялись при каждом запуске экрана загрузки. Вчера Эйдан «Зирен» Мун объявил, что это ошибка, и на сегодняшний день она исправлена!\nМировые усиления больше не снимаются при запуске экрана загрузки.",
+  "link": "https://www.wowhead.com/news=383967/world-buffs-now-persist-through-loading-screen-and-nerf-to-dire-maul-tribute",
+  "pubDate": "Mon, 23 Nov 2026 13:39:02 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56216-world-buffs-now-persist-through-loading-screen-and-nerf-to-dire-maul-tribute.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1795463675,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383965": {
+  "guid": "https://www.wowhead.com/news=383965",
+  "title_en": "Blizzard Working on a Fix for Paladin and Warlocks Not Unlocking Epic Riding",
+  "title_ru": "Blizzard работает над исправлением того, что паладин и чернокнижники не могут разблокировать эпическую езду",
+  "summary_ru": "Blizzard работает над исправлением того, что паладины и чернокнижники не могут разблокировать «Эпическую езду» после выполнения классового задания.\nРуководство по навыкам верховой езды\nBlizzard признала ошибку, из-за которой паладины и чернокнижники не разблокируют навык эпической верховой езды при выполнении цепочки заданий. Это не позволяет им использовать других средств передвижения, таких как Лазурный гордый коготь. \nМы обнаружили здесь ошибку и думаем, что она затрагивает как паладинов, так и чернокнижников.\nМы работаем над исправлением, но исправление займет еще день или два.",
+  "link": "https://www.wowhead.com/news=383965/blizzard-working-on-a-fix-for-paladin-and-warlocks-not-getting-epic-riding",
+  "pubDate": "Mon, 23 Nov 2026 13:05:26 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56215-blizzard-working-on-a-fix-for-paladin-and-warlocks-not-getting-epic-riding.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795463683,
+  "webhook": true
  }
 }
