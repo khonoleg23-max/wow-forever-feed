@@ -1375,5 +1375,18 @@
   "engine": "free",
   "added": 1795463683,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383968": {
+  "guid": "https://www.wowhead.com/news=383968",
+  "title_en": "Uldaman Boss Drops Loot Again But Item Vendor Price Nerfed",
+  "title_ru": "Из босса Ульдамана снова выпадает добыча, но цена у продавца снижена",
+  "summary_ru": "С босса «Обсидиановый голем» в Ульдамане снова выпадает добыча, но стоимость предметов у торговцев была снижена.\nУльдаманское подземелье\nЗа последние пару дней Blizzard внесла исправления в босса «Обсидиановый страж» в Ульдамане, убрав все редкие предметы из таблицы добычи. Вероятно, это произошло из-за того, что игроки максимального уровня могли убить этого босса и выйти из зоны примерно за 90 секунд, получая в среднем 1 за забег от продажи снаряжения.",
+  "link": "https://www.wowhead.com/news=383968/uldaman-boss-drops-loot-again-but-item-vendor-price-nerfed",
+  "pubDate": "Mon, 23 Nov 2026 15:20:40 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56217-uldaman-boss-drops-loot-again-but-item-vendor-price-nerfed.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1795470140,
+  "webhook": true
  }
 }
