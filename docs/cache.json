@@ -1310,5 +1310,18 @@
   "engine": "free",
   "added": 1795381909,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383959": {
+  "guid": "https://www.wowhead.com/news=383959",
+  "title_en": "Aidan Moon Announces That World Buffs Dropping on Loading Screen is Bug",
+  "title_ru": "Эйдан Мун объявляет, что мировые усиления, выпадающие на экране загрузки, — это ошибка",
+  "summary_ru": "Эйдан Мун ответил в X (Твиттере), что выпадение мировых усилений во время экрана загрузки является ошибкой.\nВ ответ на нашу статью о том, что мировые усиления выпадают на экране загрузки, Эйдан «Зирен» Мун ответил на X, что это не предусмотрено.\nОн упоминает, что это ошибка, которая будет исправлена ​​завтра, и что ее причиной стало другое исправление ошибки.",
+  "link": "https://www.wowhead.com/news=383959/aidan-moon-announces-that-world-buffs-dropping-on-loading-screen-is-bug",
+  "pubDate": "Sun, 22 Nov 2026 17:06:59 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56210-aidan-moon-announces-that-world-buffs-dropping-on-loading-screen-is-bug.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795392506,
+  "webhook": true
  }
 }
