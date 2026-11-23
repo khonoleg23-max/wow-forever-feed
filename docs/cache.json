@@ -1388,5 +1388,18 @@
   "engine": "free",
   "added": 1795470140,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383969": {
+  "guid": "https://www.wowhead.com/news=383969",
+  "title_en": "Players Reporting that Sunder Armor Effects Don't Work in WoW: Forever Dungeons",
+  "title_ru": "Игроки сообщают, что эффекты Sunder Armor не работают в WoW: Forever Dungeons",
+  "summary_ru": "По данным сообщества Classic WoW на Github, эффекты Sunder Armor не работают в подземельях WoW: Forever.\nОсновы Раскола Брони\nВ World of Warcraft броня существа снижает получаемый им физический урон.",
+  "link": "https://www.wowhead.com/news=383969/players-reporting-that-sunder-armor-effects-dont-work-in-wow-forever-dungeons",
+  "pubDate": "Mon, 23 Nov 2026 17:00:58 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56218-players-reporting-that-sunder-armor-effects-dont-work-in-wow-forever-dungeons.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795477235,
+  "webhook": true
  }
 }
