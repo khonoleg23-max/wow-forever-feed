@@ -1401,5 +1401,18 @@
   "engine": "free",
   "added": 1795477235,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383972": {
+  "guid": "https://www.wowhead.com/news=383972",
+  "title_en": "Class and Profession Bug Fixes - WoW: Forever Hotfixes for November 23, 2026",
+  "title_ru": "Исправления ошибок классов и профессий — WoW: Forever Hotfixes от 23 ноября 2026 г.",
+  "summary_ru": "Blizzard анонсировала сегодняшние исправления, в том числе исправления ошибок классов и профессий!\nИсправления наборов уровней для Feral Druids.\nИсправлена ошибка, из-за которой заклинания и способности вызывали больше срабатываний, чем предполагалось.\nЕда с моллюсками теперь дает бонусы от сытости.\nИсправлено несколько ошибок шаблона.\nМировые усиления теперь сохраняются при смене локаций.\nОбсидиановый страж в Ульдамане снова сбрасывает добычу.\nИсправлены многочисленные квесты в Болотине и Речных полянах.",
+  "link": "https://www.wowhead.com/news=383972/class-and-profession-bug-fixes-wow-forever-hotfixes-for-november-23-2026",
+  "pubDate": "Mon, 23 Nov 2026 20:10:52 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56222-class-and-profession-bug-fixes-wow-forever-hotfixes-for-november-23-2026.jpg",
+  "professions": true,
+  "engine": "free",
+  "added": 1795490403,
+  "webhook": true
  }
 }
