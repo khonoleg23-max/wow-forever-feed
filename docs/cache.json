@@ -1414,5 +1414,18 @@
   "engine": "free",
   "added": 1795490403,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383961": {
+  "guid": "https://www.wowhead.com/news=383961",
+  "title_en": "All Tier 3 Blueprint Sources for Crafting in WoW: Forever",
+  "title_ru": "Все источники чертежей 3-го уровня для крафта в WoW: Forever",
+  "summary_ru": "Профессии в World of Warcraft: Forever имеют много особенностей, и одна из них заключается в том, что вам нужны определенные рабочие станции для изготовления определенных предметов высокого уровня. \nДля простоты этой статьи мы будем называть эти объекты профессиональными рабочими станциями. Мы знаем, что на индивидуальном уровне товары различаются и могут быть описаны как ткацкие станки, швейные машины и т. д. \nХотя эта система встречалась и в других расширениях, в Forever она немного отличается по нескольким причинам.",
+  "link": "https://www.wowhead.com/news=383961/all-tier-3-blueprint-sources-for-crafting-in-wow-forever",
+  "pubDate": "Tue, 24 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56211-all-tier-3-blueprint-sources-for-crafting-in-wow-forever.jpg",
+  "professions": true,
+  "engine": "free",
+  "added": 1795542293,
+  "webhook": true
  }
 }
