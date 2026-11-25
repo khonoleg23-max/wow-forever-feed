@@ -1518,5 +1518,18 @@
   "engine": "free",
   "added": 1795639508,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383979": {
+  "guid": "https://www.wowhead.com/news=383979",
+  "title_en": "Take Advantage of Profession Cooldowns for Goldmaking in WoW: Forever",
+  "title_ru": "Воспользуйтесь преимуществами перезарядки профессий для добычи золота в WoW: Forever",
+  "summary_ru": "Алхимики, портные и кожевники могут легко зарабатывать немного золота каждые пару дней, используя многодневное время восстановления профессии в WoW: Forever.\nМногодневные кулдауны профессий\nВ WoW: Forever три профессии имеют многодневное время восстановления, которое превращает обычные материалы в гораздо более прибыльный и ограниченный предмет. Эти кулдауны варьируются от 2 до 4 дней в зависимости от профессии и могут принести много золота за простое нажатие кнопки каждые пару дней.",
+  "link": "https://www.wowhead.com/news=383979/take-advantage-of-profession-cooldowns-for-goldmaking-in-wow-forever",
+  "pubDate": "Wed, 25 Nov 2026 16:27:09 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56230-take-advantage-of-profession-cooldowns-for-goldmaking-in-wow-forever.jpg",
+  "professions": true,
+  "engine": "free",
+  "added": 1795646689,
+  "webhook": true
  }
 }
