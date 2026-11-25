@@ -1440,5 +1440,31 @@
   "engine": "free",
   "added": 1795581557,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383986": {
+  "guid": "https://www.wowhead.com/news=383986",
+  "title_en": "Revelation Enchant Nerfed in WoW: Forever",
+  "title_ru": "Чары Откровения ослаблены в WoW: Forever",
+  "summary_ru": "Недавнее исправление ослабило скрытность популярного чар «Откровение», который уменьшает AoE-урон магов, чернокнижников и друидов в финальной игре.\nРуководство по Торговому управлению Азерота\nОдним из новых чар в WoW: Forever является Формула: чары для оружия – откровение, полученные за Благосклонность торговца у фракции Торговое управление Азерота / Снабжение и логистика Дюратора. \nЭто зачарование наносится на любое оружие и после применения может сработать любое непериодическое заклинание, не наносящее критического урона.",
+  "link": "https://www.wowhead.com/news=383986/revelation-enchant-nerfed-in-wow-forever",
+  "pubDate": "Wed, 25 Nov 2026 10:08:26 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56234-revelation-enchant-nerfed-in-wow-forever.jpg",
+  "professions": true,
+  "engine": "free",
+  "added": 1795624724,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383812": {
+  "guid": "https://www.wowhead.com/news=383812",
+  "title_en": "Dawn Waker Secret Brings Players to a Cataclysm Boss Cameo in WoW: Forever",
+  "title_ru": "Dawn Waker Secret знакомит игроков с камео босса Cataclysm в WoW: Forever",
+  "summary_ru": "Игроки, пытающиеся разгадать тайну Dawn Waker, были отправлены на остров Зефрас, где «мировой босс» в стартовой зоне Skyborne может хранить ключи к следующему этапу.",
+  "link": "https://www.wowhead.com/news=383812/dawn-waker-secret-brings-players-to-a-cataclysm-boss-cameo-in-wow-forever",
+  "pubDate": "Wed, 25 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56075-dawn-waker-secret-brings-players-to-a-cataclysm-boss-cameo-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795624731,
+  "webhook": true
  }
 }
