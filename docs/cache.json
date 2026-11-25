@@ -1531,5 +1531,31 @@
   "engine": "free",
   "added": 1795646689,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=384000": {
+  "guid": "https://www.wowhead.com/news=384000",
+  "title_en": "Fixes for Legacy Points, Classes, and Quests - WoW: Forever Hotfixes for November 25th",
+  "title_ru": "Исправления для очков наследия, классов и квестов — исправления WoW: Forever от 25 ноября",
+  "summary_ru": "Blizzard анонсировала сегодня исправления, которые включают в себя множество исправлений для классов, очков наследия и различных квестов.\nИзменены таланты Баланс-Друида.\nОхотник «Повелитель зверей» заменен на «Призванные ястребы».\nЭкзорцизм Паладина теперь может наносить критический урон.\nРазбойные яды временно являются BoP.\nДостижения PvP Legacy теперь, вероятно, должны срабатывать.\nДостижение «Наследие уровня 0.5» теперь, вероятно, должно сработать.\nТалант «Усиление» теперь работает корректно.\nАльтеракская долина меняется.\nЧары Relevation были ослаблены.",
+  "link": "https://www.wowhead.com/news=384000/fixes-for-legacy-points-classes-and-quests-wow-forever-hotfixes-for-november",
+  "pubDate": "Wed, 25 Nov 2026 17:24:22 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56253-fixes-for-legacy-points-classes-and-quests-wow-forever-hotfixes-for-november.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795650040,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383999": {
+  "guid": "https://www.wowhead.com/news=383999",
+  "title_en": "Alterac Valley Reputation Increased Again in WoW: Forever",
+  "title_ru": "Репутация Альтеракской долины снова выросла в WoW: Forever",
+  "summary_ru": "Blizzard снова повысила репутацию Альтеракской долины в WoW: Forever!\nБлагодаря дополнительным исправлениям, которые уже доступны, мы еще больше увеличили количество репутации, получаемой за победы над лейтенантами и удержанием кладбищ и шахт в конце длинных матчей, а также сократили порог для бонусной репутации за «длинный матч» до 20 минут (было 60 минут в эпоху и до сегодняшних изменений).",
+  "link": "https://www.wowhead.com/news=383999/alterac-valley-reputation-increased-again-in-wow-forever",
+  "pubDate": "Wed, 25 Nov 2026 17:11:07 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56252-alterac-valley-reputation-increased-again-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795650057,
+  "webhook": true
  }
 }
