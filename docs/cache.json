@@ -1427,5 +1427,18 @@
   "engine": "free",
   "added": 1795542293,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383980": {
+  "guid": "https://www.wowhead.com/news=383980",
+  "title_en": "Watch \"Al'Aketh Rising\" - New Motion Comic for WoW: Forever",
+  "title_ru": "Посмотрите «Восстание Аль'Акета» — новый анимационный комикс для WoW: Forever",
+  "summary_ru": "Blizzard выпустила новый анимационный комикс для WoW: Forever под названием «Al'Aketh Rising», в котором рассказывается о местном констебле Skyborne на острове Зефрас.\nКонстебль Аонда из Небеснорожденных отправляется в отдаленное поселение, которое, судя по всему, находится под строгим контролем. Заключенные маршируют под строгой охраной, незнакомцы улыбаются с жуткой убежденностью, а неловкое молчание служит прикрытием для растущей угрозы.",
+  "link": "https://www.wowhead.com/news=383980/watch-alaketh-rising-new-motion-comic-for-wow-forever",
+  "pubDate": "Tue, 24 Nov 2026 12:06:43 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56228-watch-alaketh-rising-new-motion-comic-for-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795581557,
+  "webhook": true
  }
 }
