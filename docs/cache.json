@@ -1466,5 +1466,18 @@
   "engine": "free",
   "added": 1795624731,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383988": {
+  "guid": "https://www.wowhead.com/news=383988",
+  "title_en": "Night Watchman's Torch Can Be Used While Mounted Again in WoW: Forever",
+  "title_ru": "Факел Ночного сторожа можно использовать, когда он снова установлен в WoW: Forever",
+  "summary_ru": "Благодаря недавнему исправлению Факел Ночного сторожа был исправлен, и теперь его можно снова использовать, находясь верхом!\nРуководство по факелу Ночного сторожа\nПо словам Джонни Кэша в X (Twitter), Факел Ночного сторожа был исправлен, и его снова можно использовать, пока он верхом и меняет форму! Недавнее изменение, о котором сообщалось на форумах и Reddit, очевидно, не было запланировано и было побочным эффектом исправления ошибки. \nЕсли вы еще не получили факел, его можно найти в Сумеречном лесу.",
+  "link": "https://www.wowhead.com/news=383988/players-can-once-again-use-night-watchmans-torch-while-mounted-in-wow-forever",
+  "pubDate": "Wed, 25 Nov 2026 11:04:57 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56235-players-can-once-again-use-night-watchmans-torch-while-mounted-in-wow-forever.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795628590,
+  "webhook": true
  }
 }
