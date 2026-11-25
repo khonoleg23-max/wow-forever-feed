@@ -1479,5 +1479,44 @@
   "engine": "free",
   "added": 1795628590,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383997": {
+  "guid": "https://www.wowhead.com/news=383997",
+  "title_en": "Alterac Valley Zerg Strat Nerfed in WoW: Forever",
+  "title_ru": "Страт зергов Альтеракской долины ослаблен в WoW: Forever",
+  "summary_ru": "Страта зергов Альтеракской долины мертва, поскольку у генералов теперь есть усиления башен. \nМногие игроки прокомментировали состояние Альтеракской долины за последние пару недель. Поскольку большинство игроков посещают Альтеракскую долину ради награды за репутацию, а не ради PvP, стратегия зергов стала популярной, и Орда имеет преимущество, поскольку их место появления ближе. Многие представители Альянса просто стояли в очереди и ждали победы Орды, поскольку считали, что это быстрее, чем оборона.",
+  "link": "https://www.wowhead.com/news=383997/alterac-valley-zerg-strat-nerfed-in-wow-forever",
+  "pubDate": "Wed, 25 Nov 2026 13:44:07 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56248-alterac-valley-zerg-strat-nerfed-in-wow-forever.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1795639497,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383992": {
+  "guid": "https://www.wowhead.com/news=383992",
+  "title_en": "Balance Druid Talent Changes Now Live in WoW: Forever - 10% Damage Buff While in Moonkin Form",
+  "title_ru": "Изменения талантов Balance Druid теперь доступны в WoW: Forever — увеличение урона на 10% в форме Moonkin",
+  "summary_ru": "Друиды-балансисты претерпели значительные изменения в талантах в WoW: Forever: форма Moonkin получила 10% усиление урона от тайной магии и сил природы!\nБлагодаря изменениям, которые уже вступили в силу, мы скорректировали таланты друидов, чтобы улучшить поток талантов и опыт для игроков по мере того, как они повышают уровень баланса.\nКлассы\nДруид\nУлучшенный гнев теперь переименован в Звездный гнев.\n «Звездный гнев» также уменьшает время применения «Звездного огня» на 0,1/0,2/0,3/0,4/0,5 секунды.\n «Улучшенный лунный огонь» теперь переименован в «Луна и звезды».",
+  "link": "https://www.wowhead.com/news=383992/balance-druid-talent-changes-now-live-buffs-to-moonkin-form",
+  "pubDate": "Wed, 25 Nov 2026 12:33:57 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56240-balance-druid-talent-changes-now-live-buffs-to-moonkin-form.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795639503,
+  "webhook": true
+ },
+ "https://www.wowhead.com/news=383991": {
+  "guid": "https://www.wowhead.com/news=383991",
+  "title_en": "Buy 365 Days of Game Time for $120 USD - New Limited Time Shop Offer",
+  "title_ru": "Купите 365 дней игрового времени за 120 долларов США — новое ограниченное по времени предложение магазина",
+  "summary_ru": "В честь запуска WoW: Forever Blizzard предлагает скидку на покупку 365 дней игрового времени!\nКупить WoW: Праздничный пропуск\nДля игроков, которым нужен целый год игрового времени, Blizzard предлагает большую скидку до 7 декабря. Продается за 120 долларов США, это примерно 23% скидка на годовую подписку по цене 12,99 долларов США в месяц.",
+  "link": "https://www.wowhead.com/news=383991/new-limited-time-shop-offer-buy-365-days-of-game-time-for-120-usd",
+  "pubDate": "Wed, 25 Nov 2026 12:17:35 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56237-new-limited-time-shop-offer-buy-365-days-of-game-time-for-120-usd.jpg",
+  "professions": false,
+  "engine": "free",
+  "added": 1795639508,
+  "webhook": true
  }
 }
