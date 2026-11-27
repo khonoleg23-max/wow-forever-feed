@@ -1557,5 +1557,18 @@
   "engine": "free",
   "added": 1795650057,
   "webhook": true
+ },
+ "https://www.wowhead.com/news=383998": {
+  "guid": "https://www.wowhead.com/news=383998",
+  "title_en": "Save Up To 60% and Earn In-Game Goodies with the Gear Store Black Friday Sale",
+  "title_ru": "Сэкономьте до 60 % и заработайте внутриигровые подарки на распродаже в магазине Gear Store в Черную пятницу.",
+  "summary_ru": "К Черной пятнице в магазине Blizzard Gear Store действуют скидки до 60 % на многие товары, а также одновременно проводится распродажа, на которой можно заработать внутриигровые подарки за минимальную покупку!\nРаспродажа в магазине снаряжения Blizzard в Черную пятницу\nЧерная пятница обычно сопровождается большими скидками во многих розничных магазинах, и Gear Store не является исключением. В магазине Blizzard Gear Store проходит большая распродажа в Черную пятницу со скидками до 60%.",
+  "link": "https://www.wowhead.com/news=383998/save-up-to-60-and-earn-in-game-goodies-with-the-gear-store-black-friday-sale",
+  "pubDate": "Fri, 27 Nov 2026 09:00:00 -0600",
+  "image": "https://wow.zamimg.com/uploads/blog/images/56250-save-up-to-60-and-earn-in-game-goodies-with-the-gear-store-black-friday-sale.png",
+  "professions": false,
+  "engine": "free",
+  "added": 1795801619,
+  "webhook": true
  }
 }
